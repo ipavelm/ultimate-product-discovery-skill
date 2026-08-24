@@ -1,206 +1,206 @@
-## БЛОК II: ИССЛЕДОВАНИЕ ПОТРЕБИТЕЛЕЙ
+## BLOCK II: CUSTOMER RESEARCH
 
-> 📋 **Пример Job Map** с выделенными болевыми этапами — в [examples.md](examples.md), раздел «Пример 5».
+> 📋 **A Job Map example** with the painful stages highlighted is in [examples.md](examples.md), section "Example 5".
 
-### Задача 7: Jobs-to-be-Done (JTBD) + Карточки персон
+### Task 7: Jobs-to-be-Done (JTBD) + persona cards
 
-**Ключевой принцип:** потребители нанимают продукты для выполнения работы.
+**Core principle:** customers hire products to get a job done.
 
-**B2B:** опиши работы для каждого стейкхолдера отдельно — закупщик, пользователь, ЛПР. Их Jobs могут противоречить друг другу — это критично для Value Proposition.
+**B2B:** describe the jobs for each stakeholder separately — the buyer, the user, the decision maker. Their jobs can contradict each other, which is decisive for the Value Proposition.
 
-**Шаг 1 — Типы работ:**
-- **Функциональные** — практические задачи
-- **Эмоциональные** — как хочет себя чувствовать
-- **Социальные** — как хочет выглядеть
+**Step 1 — types of job:**
+- **Functional** — the practical task
+- **Emotional** — how they want to feel
+- **Social** — how they want to be seen
 
-**Шаг 2 — Job Map (8 этапов):**
+**Step 2 — Job Map (8 stages):**
 
-| Этап | Действие потребителя | Боль / Затраты |
-|------|---------------------|----------------|
-| 1. Define | Определить цели | |
-| 2. Locate | Найти ресурсы | |
-| 3. Prepare | Подготовить | |
-| 4. Confirm | Убедиться в готовности | |
-| 5. Execute | Выполнить | |
-| 6. Monitor | Отслеживать | |
-| 7. Modify | Адаптироваться | |
-| 8. Conclude | Завершить и оценить | |
+| Stage | Customer action | Pain / cost |
+|-------|-----------------|-------------|
+| 1. Define | Set the goals | |
+| 2. Locate | Find the resources | |
+| 3. Prepare | Get ready | |
+| 4. Confirm | Check everything is ready | |
+| 5. Execute | Do it | |
+| 6. Monitor | Track it | |
+| 7. Modify | Adapt | |
+| 8. Conclude | Finish and evaluate | |
 
-**Шаг 3 — Job Stories (минимум 3–5 на сегмент):**
+**Step 3 — Job Stories (3–5 per segment minimum):**
 
-Базовый формат: *«Когда [ситуация], я хочу [работа], чтобы [результат].»*
+Basic format: *"When [situation], I want to [job], so that [outcome]."*
 
-Расширенный формат с числами (используй когда данные из интервью / CRM позволяют):
+Extended format with numbers (use it when interview or CRM data allows):
 
-*«Когда [ситуация], я трачу [X часов / Y руб.] на [текущее решение], чтобы [результат], но всё равно получаю [нежелательный исход]. Это происходит [N раз в месяц].»*
+*"When [situation], I spend [X hours / ₽Y] on [the current solution] to [outcome], and still end up with [the unwanted result]. This happens [N times a month]."*
 
-Пример: «Когда я выставляю счета клиентам, я трачу 3 часа в неделю на ручной учёт в Excel, чтобы не потерять деньги, но всё равно занижаю стоимость работы на 15–20%. Это происходит 4 раза в месяц.»
+Example: "When I invoice clients, I spend 3 hours a week on manual bookkeeping in Excel so I do not lose money, and I still under-price my work by 15–20%. This happens 4 times a month."
 
-Числовые Job Stories помогают приоритизировать боли по реальной стоимости — не только по OS, но и по экономическому ущербу.
+Numeric Job Stories help prioritise pains by their real cost — not only by OS but by economic damage.
 
-**Шаг 4 — Opportunity Score:**
+**Step 4 — Opportunity Score:**
 
-`OS = Важность + max(Важность − Удовлетворённость, 0)`
+`OS = Importance + max(Importance − Satisfaction, 0)`
 
-| Outcome | Важность (1–10) | Удовлетворённость (1–10) | OS |
-|---------|-----------------|--------------------------|-----|
+| Outcome | Importance (1–10) | Satisfaction (1–10) | OS |
+|---------|-------------------|---------------------|-----|
 
-Интерпретация: OS ≥ 15 → критическая возможность; 10–15 → значимая; < 10 → низкий приоритет.
+Interpretation: OS ≥ 15 → a critical opportunity; 10–15 → significant; < 10 → low priority.
 
-**Шаг 5 — Карточки персон:**
+**Step 5 — persona cards:**
 
 ```
-Персона:            [Имя-архетип, например, «Маша — локальный бренд»]
-Роль / контекст:    [Должность, компания, ситуация]
-Ключевые Jobs:      [Топ-3 из Job Map]
-Главные боли:       [Топ-3 с этапов Job Map]
-Текущие решения:    [Чем пользуется сейчас]
-Ключевая цитата:    [Из интервью или отзывов]
-OS-score:           [Средний OS сегмента]
-Готовность платить: [Диапазон руб./мес. или за сделку]
+Persona:            [Archetype name, e.g. "Masha — a local brand"]
+Role / context:     [Title, company, situation]
+Key jobs:           [Top 3 from the Job Map]
+Main pains:         [Top 3 from the Job Map stages]
+Current solutions:  [What they use today]
+Key quote:          [From an interview or a review]
+OS score:           [The segment's average OS]
+Willingness to pay: [Range in ₽/month or per deal]
 ```
 
-**Результат:** Job Map, Job Stories, таблица OS, карточки персон (лист «Потребители» в финплане).
+**Output:** the Job Map, the Job Stories, the OS table and the persona cards (the "Customers" sheet in the financial plan).
 
-⚠️ **Красный флаг:** OS < 8 у всех outcomes → боль не подтверждена.
-
----
-
-### Задача 8: Customer Journey Map (CJM)
-
-| Этап | Действия | Мысли | Эмоции (–2..+2) | Точки контакта | Боли | Возможности |
-|------|----------|-------|------------------|----------------|------|-------------|
-| Осознание | | | | | | |
-| Поиск | | | | | | |
-| Оценка | | | | | | |
-| Покупка | | | | | | |
-| Онбординг | | | | | | |
-| Регулярное использование | | | | | | |
-| Отток / Лояльность | | | | | | |
-
-Выяви: **Aha-moment** и **Pain peak**.
-
-**Результат:** CJM + топ-3 болей и топ-3 возможностей (лист «CJM» в финплане).
+⚠️ **Red flag:** OS < 8 across all outcomes → the pain is not confirmed.
 
 ---
 
-### Задача 9: Экспертные интервью + Интервью-гайд
+### Task 8: Customer Journey Map (CJM)
 
-**Принцип:** спрашивай о прошлом опыте, не о будущих желаниях.
+| Stage | Actions | Thoughts | Emotions (–2..+2) | Touchpoints | Pains | Opportunities |
+|-------|---------|----------|-------------------|-------------|-------|---------------|
+| Awareness | | | | | | |
+| Search | | | | | | |
+| Evaluation | | | | | | |
+| Purchase | | | | | | |
+| Onboarding | | | | | | |
+| Regular use | | | | | | |
+| Churn / loyalty | | | | | | |
+
+Identify the **aha moment** and the **pain peak**.
+
+**Output:** the CJM plus the top 3 pains and top 3 opportunities (the "CJM" sheet in the financial plan).
 
 ---
 
-**A. Подготовка — генерация персонализированного гайда**
+### Task 9: expert interviews + interview guide
 
-**Шаблон:** используй `assets/interview-guide-template.docx` как основу. Шаблон содержит 8 готовых секций (как пользоваться гайдом, согласие на запись, 3 гайда по сегментам, таблица инсайтов, красные флаги интервью, шпаргалка по рынку) с плейсхолдерами `{{PROJECT_NAME}}`, `{{GEO}}`, `{{SEGMENT_1}}–{{SEGMENT_3}}`, `{{PRODUCT_DESCRIPTION}}`.
+**Principle:** ask about past experience, not about future wishes.
+
+---
+
+**A. Preparation — generating a personalised guide**
+
+**Template:** use `assets/interview-guide-template.docx` as the base. The template carries 8 ready-made sections (how to use the guide, consent to recording, 3 per-segment guides, insight table, interview red flags, market cheat sheet) with the placeholders `{{PROJECT_NAME}}`, `{{GEO}}`, `{{SEGMENT_1}}–{{SEGMENT_3}}`, `{{PRODUCT_DESCRIPTION}}`.
 
 ```bash
 cp /mnt/skills/user/product-discovery/assets/interview-guide-template.docx /home/claude/interview-guide.docx
 ```
 
-Заполни плейсхолдеры и сгенерируй по 5-7 story-based вопросов для каждого сегмента на основе Job Map (задача 7). Шпаргалку по рынку (секция 7) заполни ключевыми фактами из Блоков I и III (PESTEL, тренды, конкуренты).
+Fill in the placeholders and generate 5–7 story-based questions per segment from the Job Map (task 7). Fill the market cheat sheet (section 7) with the key facts from blocks I and III (PESTEL, trends, competitors).
 
-**КРИТИЧНО — используй `python-docx`, не `docx` npm package:** npm-библиотека создаёт файлы с битыми ссылками на стили (~30% параграфов с `style: None`). LibreOffice открывает такие файлы, Word — нет. Подробнее в Правиле 6 SKILL.md.
+**CRITICAL — use `python-docx`, not the `docx` npm package:** the npm library produces files with broken style references (~30% of paragraphs end up with `style: None`). LibreOffice opens such files; Word does not. See Rule 6 in SKILL.md.
 
-После генерации — обязательно запусти `scripts/finalize_docx.sh` перед сохранением в outputs (Правило 6).
+Once generated, you must run `scripts/finalize_docx.sh` before saving into outputs (Rule 6).
 
-**Выбор респондентов (5–10):**
-- а) текущие потребители аналогов
-- б) «бывшие» — перешли к конкуренту
-- в) отказавшиеся — не используют ничего
+**Choosing respondents (5–10):**
+- a) current users of comparable products
+- b) "formers" — moved to a competitor
+- c) refusers — use nothing at all
 
-**B2B:** минимум 2 интервью на каждый тип стейкхолдера (пользователь, закупщик, ЛПР).
+**B2B:** at least 2 interviews per stakeholder type (user, buyer, decision maker).
 
-**Структура гайда по сегменту** (каждая секция 3+ формулируется по этому шаблону):
-
-```
-1. Разогрев (2–3 мин)
-   «Расскажите о себе и вашей работе»
-
-2. Story-based блок (15–20 мин)
-   «Расскажите о последнем разе, когда вы [ЦЕЛЕВАЯ СИТУАЦИЯ ПРОЕКТА]»
-   — «Что происходило до этого?»
-   — «Как вы решали задачу?»
-   — «Что было самым сложным?»
-   — «Как искали решение?»
-   — «Что вас остановило?»
-   — «Чем закончилось?»
-
-3. Текущие решения (5–10 мин)
-   — «Что используете сейчас?»
-   — «Что нравится? Что не работает?»
-   — «Если бы изменили одно — что?»
-
-4. Гипотезы (только в конце, 5 мин)
-   «Мы думаем о продукте, который [ОПИСАНИЕ]. Насколько резонирует?»
-   НЕ: «Вы бы купили X?»
-   ДА: «Как это вписалось бы в то, что вы делаете?»
-```
-
-**Запрещённые вопросы:** «Вы бы пользовались?», «Сколько платите?» (в начале), «Что важно в продукте?» (абстрактно).
-
-**Согласие на запись** — включи в начало гайда или отправь заранее. Минимальный текст:
+**Structure of a per-segment guide** (every section from 3 onwards follows this template):
 
 ```
-«Это интервью проводится в исследовательских целях.
-Я прошу вашего разрешения на запись разговора.
-Данные будут использованы анонимно — ваше имя
-и компания не будут упомянуты в отчётах.
-Вы можете остановить запись в любой момент.
+1. Warm-up (2–3 min)
+   "Tell me about yourself and your work"
 
-Вы согласны? [Да / Нет]»
+2. Story-based block (15–20 min)
+   "Tell me about the last time you [THE PROJECT'S TARGET SITUATION]"
+   — "What was happening before that?"
+   — "How did you handle it?"
+   — "What was the hardest part?"
+   — "How did you look for a solution?"
+   — "What stopped you?"
+   — "How did it end?"
+
+3. Current solutions (5–10 min)
+   — "What do you use now?"
+   — "What do you like? What does not work?"
+   — "If you could change one thing, what would it be?"
+
+4. Hypotheses (only at the end, 5 min)
+   "We are thinking about a product that [DESCRIPTION]. How much does that resonate?"
+   NOT: "Would you buy X?"
+   YES: "How would this fit into what you already do?"
 ```
 
-Для B2B — отправь текст согласия в письме за день до звонка, чтобы не тратить время встречи.
+**Banned questions:** "Would you use it?", "How much do you pay?" (at the start), "What matters in a product?" (too abstract).
+
+**Consent to recording** — put it at the top of the guide or send it in advance. Minimum text:
+
+```
+"This interview is being conducted for research purposes.
+I would like your permission to record the conversation.
+The data will be used anonymously — your name and company
+will not appear in any report.
+You can stop the recording at any moment.
+
+Do you agree? [Yes / No]"
+```
+
+For B2B, send the consent text by email a day before the call so the meeting time is not spent on it.
 
 ---
 
-**B. Сообщения для рекрутинга респондентов**
+**B. Recruiting messages for respondents**
 
-Сгенерируй 3 варианта короткого сообщения под конкретный проект — пользователь выбирает и рассылает:
+Generate 3 short message variants for the specific project — the user picks one and sends it:
 
 ```
-[Telegram/ВКонтакте — неформальный]
-Привет! Я исследую [тема проекта]. Не займёт больше 30 мин.
-Расскажете о своём опыте с [проблема]? Без продаж, только вопросы.
-Написать: [контакт]
+[Telegram/VKontakte — informal]
+Hi! I am researching [project topic]. It will take no more than 30 minutes.
+Would you tell me about your experience with [problem]? No pitch, just questions.
+Reach me at: [contact]
 
-[Email — профессиональный]
-Тема: 30 минут о [проблема] — нужен ваш опыт
-Добрый день, [Имя]! Провожу исследование для [проект].
-Ищу людей, которые [критерий отбора]. Интересует ваш реальный опыт.
-Удобно ли поговорить 30 минут на этой неделе?
+[Email — professional]
+Subject: 30 minutes on [problem] — I need your experience
+Hello [Name]! I am running research for [project].
+I am looking for people who [selection criterion]. Your real experience is what matters.
+Would a 30-minute conversation this week work for you?
 
 [LinkedIn — B2B]
-Добрый день, [Имя]! Вижу, что вы [роль/опыт].
-Провожу исследование в области [тема]. Хотел бы узнать ваш взгляд.
-Возможен короткий разговор (30 мин)?
+Hello [Name]! I see that you [role/experience].
+I am running research on [topic] and would value your perspective.
+Would a short call (30 min) be possible?
 ```
 
 ---
 
-**C. Альтернатива если интервью невозможны**
+**C. The alternative when interviews are impossible**
 
-1. G2, App Store, Отзовик — паттерны боли конкурентов
-2. Reddit, VC.ru, Хабр — реальные кейсы
-3. Публичные жалобы в поддержку конкурентов (Twitter, Intercom)
-4. Amazon / Wildberries для физических товаров
+1. G2, App Store, review sites — pain patterns in competitors' products
+2. Reddit, VC.ru, Habr — real cases
+3. Public support complaints aimed at competitors (Twitter, Intercom)
+4. Amazon / Wildberries for physical goods
 
-Маркируй данные как «вторичные» в таблице инсайтов.
+Mark this data as "secondary" in the insight table.
 
 ---
 
-**D. Синтез**
+**D. Synthesis**
 
-| Респондент | Сегмент | Тип данных | Ситуация | Работа (Job) | Боль | Текущее решение | Ключевая цитата |
-|------------|---------|-----------|----------|--------------|------|-----------------|-----------------|
+| Respondent | Segment | Data type | Situation | Job | Pain | Current solution | Key quote |
+|------------|---------|-----------|-----------|-----|------|------------------|-----------|
 
-Паттерны: боли у 3+ → критические. Обнови JTBD, CJM, карточки персон.
+Patterns: a pain named by 3 or more respondents is critical. Update the JTBD, the CJM and the persona cards.
 
-Формула инсайта: *«[X]% [делают/думают/чувствуют], потому что [причина]. Это означает: [вывод].»*
+Insight formula: *"[X]% [do / think / feel] this, because [reason]. Which means: [conclusion]."*
 
-**Результат:** `.docx` гайд (`/mnt/user-data/outputs/interview-guide-[slug-проекта].docx` — через `bash scripts/finalize_docx.sh /home/claude/interview-guide.docx /mnt/user-data/outputs/interview-guide-[slug].docx`) + сообщения для рекрутинга + таблица инсайтов (лист «Интервью» в финплане).
+**Output:** the `.docx` guide (`/mnt/user-data/outputs/interview-guide-[project-slug].docx`, produced through `bash scripts/finalize_docx.sh /home/claude/interview-guide.docx /mnt/user-data/outputs/interview-guide-[slug].docx`) plus the recruiting messages and the insight table (the "Interviews" sheet in the financial plan).
 
-⚠️ **Красный флаг:** < 5 из 10 подтверждают боль → сообщи пользователю.
+⚠️ **Red flag:** fewer than 5 out of 10 confirm the pain → tell the user.
 
 ---

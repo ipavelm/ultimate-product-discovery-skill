@@ -1,95 +1,95 @@
-# Strategic pivot: PD для действующего бизнеса
+# Strategic pivot: PD for an operating business
 
-Этот файл — альтернативный способ запустить PD, когда у человека уже есть работающий бизнес, и он рассматривает **стратегический переход** в новое направление: из услуг в продукт, из одного сегмента в другой, из B2C в B2B, из одной географии в другую.
+This file is the alternative way to run PD when the person already has a working business and is weighing a **strategic move** into a new direction: from services into a product, from one segment into another, from B2C into B2B, from one geography into another.
 
-Читай этот файл, если из Шага 0 стало ясно, что:
-- Стадия = «есть выручка» (не idea, не MVP)
-- Бизнес работает ≥ 1 года
-- Человек формулирует задачу не как «валидация новой идеи с нуля», а как «стоит ли нам менять направление / добавлять новое / отказываться от текущего»
+Read this file when Step 0 makes it clear that:
+- The stage is "has revenue" (not idea, not MVP)
+- The business has been running for ≥ 1 year
+- The person frames the task not as "validate a new idea from scratch" but as "should we change direction / add something new / drop what we do today"
 
-Типичные формулировки запросов, подходящих под этот сценарий:
-- «У нас агентство Growth, хотим понять — делать продуктовый модуль или остаться в услугах?»
-- «Работаем в РФ 3 года, думаем выходить в Казахстан или на арабский рынок — куда имеет смысл?»
-- «SaaS для SMB приносит $500k ARR, но рост замедлился. Стоит ли идти в Enterprise?»
-- «Продаём кофе в офисы, хотим запустить B2C-линейку в Wildberries — есть смысл?»
+Typical requests that fit this scenario:
+- "We run a growth agency, and we want to know whether to build a product module or stay in services"
+- "We have been operating in Russia for 3 years and are thinking about Kazakhstan or the Arab market — which makes sense?"
+- "Our SMB SaaS does $500k ARR but growth has slowed. Should we move into Enterprise?"
+- "We sell coffee to offices and want to launch a B2C line on Wildberries — is it worth it?"
 
-Для обычного idea/MVP-стартапа этот путь не нужен — работай по стандартным 18 задачам из SKILL.md.
+An ordinary idea- or MVP-stage startup does not need this route — work through the standard 18 tasks in SKILL.md.
 
-## Чем strategic pivot отличается от обычного PD
+## How a strategic pivot differs from ordinary PD
 
-Обычный PD исходит из нуля: у человека есть идея, надо проверить, есть ли под неё рынок. Strategic pivot исходит из существования: **текущий бизнес работает**, **альтернатива гипотетическая**, и вопрос не «есть ли рынок», а «выгоднее ли менять курс, учитывая что текущий уже окупается».
+Ordinary PD starts from zero: the person has an idea and you check whether a market exists for it. A strategic pivot starts from something that exists: **the current business works**, **the alternative is hypothetical**, and the question is not "is there a market" but "is changing course worth it, given that what we do today already pays for itself".
 
-Отсюда три принципиальных отличия:
+That produces three fundamental differences:
 
-1. **Два сценария сравниваются как равнозначные.** Текущий сценарий («продолжаем как есть») — такой же кандидат, как новый. Его нельзя рассматривать как «нулевой базис». У него свои метрики, риски, траектория.
+1. **Two scenarios are compared as equals.** The current scenario ("carry on as we are") is as much a candidate as the new one. It cannot be treated as a zero baseline. It has its own metrics, risks and trajectory.
 
-2. **Исторические данные — основной источник.** У бизнеса ≥ 1 года работы есть реальные конверсии, retention, CAC, churn. Их используют вместо экспертных оценок и бенчмарков. Достоверность данных автоматически 🟢 для текущего сценария, 🟡-🔴 для альтернативного.
+2. **Historical data is the primary source.** A business with ≥ 1 year behind it has real conversions, retention, CAC and churn. Use those instead of expert estimates and benchmarks. Data confidence is automatically 🟢 for the current scenario and 🟡–🔴 for the alternative.
 
-3. **Cost of change — отдельная категория затрат.** Переход на новый курс не бесплатный: надо переобучить/заменить команду, потерять часть текущих клиентов, потратить 6–12 мес. без выручки в новом направлении. Это явные строки в финплане нового сценария.
+3. **Cost of change is a separate cost category.** Switching course is not free: the team has to be retrained or replaced, some current customers will be lost, and 6–12 months will pass with no revenue in the new direction. These are explicit lines in the new scenario's financial plan.
 
-## Протокол strategic pivot
+## The strategic pivot protocol
 
-### Этап 1: Описание текущего состояния (не «с нуля»)
+### Stage 1: describe the current state (not "from scratch")
 
-Замени задачи 1, 3, 5 частично — не ищи внешние оценки рынка, а попроси у человека внутренние данные. Минимум:
+Replace parts of tasks 1, 3 and 5 — instead of hunting for external market estimates, ask the person for their internal data. At minimum:
 
-- Выручка за последние 12 мес. помесячно
-- Структура клиентов: сегменты, средний чек по сегментам, концентрация (% выручки от топ-10% клиентов)
-- CAC по каналам (если есть) или хотя бы по источникам (органика / paid / referral / outbound)
-- Churn/retention по когортам
-- P&L с Gross Margin
-- Команда: роли и стоимость
+- Revenue for the last 12 months, month by month
+- Customer structure: segments, average ticket per segment, concentration (% of revenue from the top 10% of customers)
+- CAC by channel (if available) or at least by source (organic / paid / referral / outbound)
+- Churn and retention by cohort
+- P&L with gross margin
+- Team: roles and cost
 
-Если данных нет — попроси выгрузки из CRM/бухгалтерии. Без них strategic pivot не получится сделать честно. Если человек не готов поделиться — проводи PD в гибридном режиме: используй экспертные оценки для текущего сценария, явно помечая 🔴 достоверность.
+If the data does not exist, ask for exports from the CRM or the accounting system. Without them a strategic pivot cannot be done honestly. If the person will not share, run PD in hybrid mode: use expert estimates for the current scenario and mark confidence 🔴 explicitly.
 
-### Этап 2: Два Lean Canvas на равных правах
+### Stage 2: two Lean Canvases, treated as equals
 
-Замени обычную задачу 10 (один холст для текущего сценария) на два холста:
+Replace the usual task 10 (one canvas for the current scenario) with two canvases:
 
-- **Сценарий A: Продолжение текущего** — что делаем, если ничего не меняем. Value Proposition, сегменты, каналы, монетизация — из реальности. Проблемы: замедление роста? плато? конкуренты? Заполняй честно.
-- **Сценарий B: Новый курс** — гипотеза pivot'а. Value Proposition, сегменты и каналы могут быть совершенно другими. Заполняй как для нового продукта.
+- **Scenario A: carry on as we are** — what happens if nothing changes. Value Proposition, segments, channels and monetisation come from reality. The problems: slowing growth? a plateau? competitors? Fill it in honestly.
+- **Scenario B: the new course** — the pivot hypothesis. Value Proposition, segments and channels may be completely different. Fill it in as you would for a new product.
 
-### Этап 3: Проекция метрик на 24 мес. для обоих
+### Stage 3: project the metrics 24 months out for both
 
-Обычный финплан рассчитан на 12–24 мес. от нуля. Для strategic pivot:
+An ordinary financial plan covers 12–24 months from zero. For a strategic pivot:
 
-- **Сценарий A (продолжение)**: экстраполируй текущую траекторию. Если рост был 5% MoM последние полгода и замедляется — моделируй дальнейшее замедление, плато, возможный спад от усиления конкуренции. Не «магически удержать 5% MoM бесконечно».
-- **Сценарий B (pivot)**: 6–12 мес. переходного периода (нулевая/отрицательная выручка в новом направлении + сокращение в старом), потом рост в новом. Закладывай cost of change отдельно.
+- **Scenario A (continuation)**: extrapolate the current trajectory. If growth has been 5% MoM for the last six months and is slowing, model further slowdown, a plateau, and a possible decline as competition intensifies. Not "magically hold 5% MoM forever".
+- **Scenario B (pivot)**: 6–12 months of transition (zero or negative revenue in the new direction plus contraction in the old), then growth in the new one. Book the cost of change separately.
 
-Используй лист «Сценарии» в финплане нестандартно — вместо пессимист/базовый/оптимист одной гипотезы построй колонки «Сценарий A базовый», «Сценарий A пессимист», «Сценарий B базовый», «Сценарий B пессимист». Агент сам добавит колонки через openpyxl, если это удобнее.
+Use the "Scenarios" sheet of the financial plan in a non-standard way: instead of pessimistic/base/optimistic for one hypothesis, build the columns "Scenario A base", "Scenario A pessimistic", "Scenario B base", "Scenario B pessimistic". The agent can add the columns through openpyxl if that is easier.
 
-### Этап 4: Cost of change для сценария B
+### Stage 4: cost of change for scenario B
 
-Отдельным списком перечисли, что придётся потерять или инвестировать для перехода:
+List separately what has to be lost or invested to make the transition:
 
-| Категория | Примеры | Оценка |
-|-----------|---------|--------|
-| Потерянная выручка | Старые клиенты, отпавшие за переход | ₽/мес. × N мес. |
-| Потерянные компетенции | Команда, не применимая к новому курсу (переобучение или замена) | ₽ однократно |
-| Упущенная выгода | Рост, который был бы в сценарии A, если бы не свернули | ₽ за период |
-| Инвестиции в новое | Разработка, маркетинг, найм, тесты | ₽ за период |
-| Репутационный риск | Если переход публичный (ребрендинг, смена позиционирования) — возможная просадка B2B-доверия | Оценить качественно |
+| Category | Examples | Estimate |
+|----------|----------|----------|
+| Lost revenue | Existing customers who fall away during the transition | ₽/month × N months |
+| Lost competencies | Team members who do not transfer to the new course (retraining or replacement) | ₽ one-off |
+| Foregone upside | The growth scenario A would have produced if you had not stopped | ₽ over the period |
+| Investment in the new | Development, marketing, hiring, tests | ₽ over the period |
+| Reputational risk | If the switch is public (rebranding, repositioning) — a possible dip in B2B trust | Assess qualitatively |
 
-Эти числа суммируются и вычитаются из NPV сценария B в финальном сравнении. Без них сравнение нечестное — сценарий B выглядит привлекательнее, чем есть.
+These numbers are summed and subtracted from scenario B's NPV in the final comparison. Without them the comparison is dishonest — scenario B looks better than it is.
 
-### Этап 5: Критерии выбора
+### Stage 5: decision criteria
 
-Вместо обычного алгоритма Go/Pivot/No-go используй три вопроса:
+Instead of the usual Go/Pivot/No-go algorithm, use three questions:
 
-1. **NPV на горизонте 3–5 лет:** какой сценарий даст больше сегодняшней ценности с учётом cost of change и риска?
-2. **Реализуемость:** есть ли у команды компетенции для сценария B? Если нет — добавь к cost of change найм/смену 30–70% команды, это часто убивает экономику pivot'а.
-3. **Обратимость:** если через 6–12 мес. станет ясно, что сценарий B не работает — сможем вернуться к A? Если да — риск pivot'а низкий. Если нет (сожжённые клиенты, разрушенный бренд, разогнанная команда) — высокий.
+1. **NPV over a 3–5 year horizon:** which scenario delivers more present value once cost of change and risk are accounted for?
+2. **Feasibility:** does the team have the competencies for scenario B? If not, add hiring or replacing 30–70% of the team to the cost of change — that alone often kills the pivot's economics.
+3. **Reversibility:** if it becomes clear in 6–12 months that scenario B is not working, can you return to A? If yes, the pivot's risk is low. If not (burned customers, a damaged brand, a dispersed team), it is high.
 
-Итоговые вердикты:
-- **Pivot к сценарию B** — если NPV(B) > NPV(A) × 1.5 (премия за риск), реализуемость ≥ 70%, и есть хоть частичная обратимость.
-- **Продолжение A с усилением** — если NPV(A) ≥ NPV(B), или NPV(B) ненамного выше и высокий риск. Предложи 2–3 улучшения текущего сценария (новый сегмент внутри текущей ниши, повышение цен, международный выход без смены продукта).
-- **Параллельный запуск** — если компания достаточно велика для запуска B как отдельного направления без сворачивания A. Обычно доступно при выручке ≥ ₽30-50 млн/мес. и команде ≥ 15 чел.
-- **Остаться в A, но зафиксировать гипотезу B** — если NPV(B) выше, но риск высокий, предложи сделать маленький эксперимент в B (1–2 мес., 5–10% бюджета) для снижения неопределённости перед полноценным pivot'ом.
+Final verdicts:
+- **Pivot to scenario B** — when NPV(B) > NPV(A) × 1.5 (a risk premium), feasibility is ≥ 70%, and there is at least partial reversibility.
+- **Continue with A and reinforce it** — when NPV(A) ≥ NPV(B), or NPV(B) is only slightly higher while risk is high. Propose 2–3 improvements to the current scenario (a new segment inside the current niche, raising prices, international expansion without changing the product).
+- **Run both in parallel** — when the company is large enough to launch B as a separate line without winding A down. Usually feasible at revenue ≥ ₽30–50M/month and a team of ≥ 15 people.
+- **Stay in A but pin down hypothesis B** — when NPV(B) is higher but the risk is high: propose a small experiment in B (1–2 months, 5–10% of the budget) to reduce the uncertainty before committing to a full pivot.
 
-## Адаптация артефактов
+## Adapting the artifacts
 
-- **One-pager** — вместо одного Value Proposition показывай сравнение двух сценариев и рекомендацию.
-- **Финплан** — оба сценария на одних и тех же листах, с разделителем. Summary показывает сравнение NPV, break-even, команды, риска.
-- **Презентация** — слайд сравнения сценариев (аналог слайда 8 «Сравнение конкурентов», но для внутренних вариантов). Используй тот же формат таблицы.
+- **One-pager** — instead of one Value Proposition, show the comparison of the two scenarios and the recommendation.
+- **Financial plan** — both scenarios on the same sheets, with a separator. The Summary shows the comparison of NPV, break-even, team and risk.
+- **Presentation** — a scenario comparison slide (the analogue of slide 8, "Competitor comparison", but for internal options). Use the same table format.
 
-Если человек после PD выбирает сценарий B — проведи **ещё один PD** уже по стандартным 18 задачам, но теперь сценарий B = основная гипотеза (не альтернатива). Strategic pivot даёт стратегическое решение, а не детальную валидацию новой гипотезы.
+If the person picks scenario B after the PD, run **another PD** through the standard 18 tasks, with scenario B now as the primary hypothesis rather than an alternative. A strategic pivot delivers a strategic decision, not a detailed validation of the new hypothesis.
