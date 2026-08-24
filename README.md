@@ -4,96 +4,96 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Made for Claude](https://img.shields.io/badge/made%20for-Claude%20Skills-D97706.svg)](https://docs.claude.com/en/docs/agents-and-tools/agent-skills)
 [![Requires: Opus](https://img.shields.io/badge/requires-latest%20Claude%20Opus-black.svg)](https://www.anthropic.com/claude)
-[![Methodology](https://img.shields.io/badge/methodology-JTBD%20%7C%20OST%20%7C%20Lean-purple.svg)](#методологическая-база)
+[![Methodology](https://img.shields.io/badge/methodology-JTBD%20%7C%20OST%20%7C%20Lean-purple.svg)](#methodology-foundation)
 
-Claude Skill для проведения структурного Product Discovery по методологии из **18 задач в 6 блоках**. Объединяет Jobs-to-be-Done (Ulwick/Christensen), Opportunity Solution Tree (Teresa Torres), Customer Development (Steve Blank), The Mom Test (Rob Fitzpatrick), Lean Canvas (Ash Maurya), PESTEL, SWOT и Business Model Canvas.
+A Claude Skill for running structured Product Discovery through a methodology of **18 tasks across 6 blocks**. It combines Jobs-to-be-Done (Ulwick/Christensen), Opportunity Solution Tree (Teresa Torres), Customer Development (Steve Blank), The Mom Test (Rob Fitzpatrick), Lean Canvas (Ash Maurya), PESTEL, SWOT and the Business Model Canvas.
 
-Версия: **3.8** · см. [CHANGELOG.md](CHANGELOG.md)
+Version: **3.8** · see [CHANGELOG.md](CHANGELOG.md)
 
-> ⚡ **Рекомендуемая модель — последний Claude Opus.** Скил использует длинный контекст (суммарно 1500+ строк методологии в references), параллельный вызов tool'ов (web_search + bash + Python), структурное планирование и оценку числовых порогов. Sonnet/Haiku справляются с отдельными задачами, но на сложных блоках (III — Стратегия, IV — Валидация, VI — Артефакты) качество артефактов заметно падает.
+> ⚡ **Recommended model: the latest Claude Opus.** The skill relies on a long context (1500+ lines of methodology across `references/`), parallel tool calls (web_search + bash + Python), structured planning and numeric-threshold judgement. Sonnet and Haiku handle individual tasks, but artifact quality drops noticeably on the harder blocks (III — Strategy, IV — Validation, VI — Artifacts).
 
-## Режимы работы
+## Modes
 
-| Режим | Когда использовать | Время |
-|-------|---------------------|-------|
-| **Light** | Idea-стадия, нет клиентов | ~45 мин |
-| **Full** | Есть MVP и клиенты | ~2–3 ч |
-| **Geographic Expansion** | Продукт выходит в новую гео | ~2 ч |
+| Mode | When to use it | Time |
+|------|----------------|------|
+| **Light** | Idea stage, no customers yet | ~45 min |
+| **Full** | MVP and customers exist | ~2–3 h |
+| **Geographic Expansion** | Product entering a new geography | ~2 h |
 
-## Артефакты на выходе
+## Output artifacts
 
-Все артефакты складываются в `/mnt/user-data/outputs/`:
+Everything is written to `/mnt/user-data/outputs/`:
 
-- `one-pager-[slug].pptx` — краткая выжимка для CEO/инвестора
-- `financial-plan-[slug].xlsx` — финансовая модель
-- `presentation-[slug].pptx` — презентация этапа Verification
-- `interview-guide-[slug].docx` — гайд для живых интервью (Full-режим, задача 9)
+- `one-pager-[slug].pptx` — one-slide summary for a CEO or investor
+- `financial-plan-[slug].xlsx` — financial model
+- `presentation-[slug].pptx` — Verification-stage deck
+- `interview-guide-[slug].docx` — guide for live interviews (Full mode, task 9)
 
-## Методология: 18 задач в 6 блоках
+## Methodology: 18 tasks across 6 blocks
 
-### Блок I — Анализ рынка (задачи 1–6) · [details](references/block-1-market.md)
+### Block I — Market analysis (tasks 1–6) · [details](references/block-1-market.md)
 
-1. **Анализ рынка** — классификация (Существующий / Ресегментированный / Новый / Клон), размер, стадия жизненного цикла, структура ценности
-2. **Анализ трендов** — 5–7 макро- и микро-трендов с горизонтом 3–5 лет, их влияние на гипотезу
-3. **Конкурентный ландшафт** — карта конкурентов (прямые, косвенные, заменители), позиционирование, feature matrix
-4. **Анализ ключевого конкурента** — глубокий разбор №1 по рынку: модель, unit-экономика, слабые места
-5. **TAM / SAM / SOM** — размер рынка top-down + bottom-up, sanity check, пороги для стадии раунда
-6. **PESTEL-анализ** — Political, Economic, Social, Technological, Environmental, Legal факторы
+1. **Market analysis** — classification (Existing / Resegmented / New / Clone), size, lifecycle stage, value structure
+2. **Trend analysis** — 5–7 macro and micro trends on a 3–5 year horizon, and their effect on the hypothesis
+3. **Competitive landscape** — competitor map (direct, indirect, substitutes), positioning, feature matrix
+4. **Key competitor analysis** — deep teardown of the market leader: model, unit economics, weak points
+5. **TAM / SAM / SOM** — market size top-down and bottom-up, sanity check, thresholds by round stage
+6. **PESTEL analysis** — Political, Economic, Social, Technological, Environmental, Legal factors
 
-### Блок II — Потребители (задачи 7–9) · [details](references/block-2-customers.md)
+### Block II — Customers (tasks 7–9) · [details](references/block-2-customers.md)
 
-7. **Jobs-to-be-Done + Карточки персон** — функциональные / социальные / эмоциональные jobs, Job Map, 2–4 персоны с мотивациями
-8. **Customer Journey Map (CJM)** — этапы пути клиента, пейны, каналы, моменты истины
-9. **Экспертные интервью + Интервью-гайд** — Mom Test-совместимый гайд на 3 сегмента, таблица инсайтов, красные флаги
+7. **Jobs-to-be-Done + persona cards** — functional, social and emotional jobs, Job Map, 2–4 personas with motivations
+8. **Customer Journey Map (CJM)** — journey stages, pains, channels, moments of truth
+9. **Expert interviews + interview guide** — a Mom Test-compatible guide for 3 segments, insight table, red flags
 
-### Блок III — Стратегия (задачи 10–14) · [details](references/block-3-strategy.md)
+### Block III — Strategy (tasks 10–14) · [details](references/block-3-strategy.md)
 
-10. **Текущий стратегический сценарий** — Lean Canvas / Business Model Canvas + Product-Audience-Channel fit
-11. **SWOT-анализ** — с опорой на конкурентный ландшафт и тренды, не в вакууме
-12. **Opportunity Solution Tree (OST)** — дерево возможностей по Teresa Torres: outcome → opportunities → solutions → experiments
-13. **Альтернативные сценарии** — 2–3 стратегические альтернативы текущему сценарию
-14. **Скоринг сценариев + RICE** — Reach / Impact / Confidence / Effort, итоговый ранкинг
+10. **Current strategic scenario** — Lean Canvas / Business Model Canvas plus Product-Audience-Channel fit
+11. **SWOT analysis** — grounded in the competitive landscape and trends, not written in a vacuum
+12. **Opportunity Solution Tree (OST)** — Teresa Torres's tree: outcome → opportunities → solutions → experiments
+13. **Alternative scenarios** — 2–3 strategic alternatives to the current scenario
+14. **Scenario scoring + RICE** — Reach / Impact / Confidence / Effort, final ranking
 
-### Блок IV — Валидация (задачи 15–17) · [details](references/block-4-validation.md)
+### Block IV — Validation (tasks 15–17) · [details](references/block-4-validation.md)
 
-15. **Пул гипотез** — выписать все нефальсифицированные допущения из блоков I–III
-16. **Rapid Assumption Testing** — план тестов (Smoke Test, Wizard of Oz, Concierge, Fake Door), критерии успеха
-17. **PMF-индикаторы и Opportunity Score** — Sean Ellis test, NPS, retention, Opportunity Score Ulwick'а
+15. **Hypothesis pool** — write out every unfalsified assumption from blocks I–III
+16. **Rapid Assumption Testing** — test plan (Smoke Test, Wizard of Oz, Concierge, Fake Door) with success criteria
+17. **PMF indicators and Opportunity Score** — Sean Ellis test, NPS, retention, Ulwick's Opportunity Score
 
-### Блок V — Главный сценарий (задача 18a) · [details](references/block-5-main-scenario.md)
+### Block V — Main scenario (task 18a) · [details](references/block-5-main-scenario.md)
 
-18a. **Выбор главного стратегического сценария** — синтез итогов I–IV, параметры для финплана (unit-экономика, каналы, команда, горизонт)
+18a. **Choosing the main strategic scenario** — synthesis of blocks I–IV, parameters for the financial plan (unit economics, channels, team, horizon)
 
-### Блок VI — Артефакты (задачи 18b–d) · [details](references/block-6-artifacts.md)
+### Block VI — Artifacts (tasks 18b–d) · [details](references/block-6-artifacts.md)
 
-18b. **One-pager (.pptx)** — 1 слайд для CEO/инвестора: проблема, решение, рынок, трекшн, команда, ask
-18c. **Финансовый план (.xlsx)** — P&L / Cash Flow на 12 месяцев + 3 года, drivers, чувствительность
-18d. **Презентация (.pptx)** — полная питч-дека Verification-стадии на 21 (Light) или 34 (Full) слайда
+18b. **One-pager (.pptx)** — a single slide for a CEO or investor: problem, solution, market, traction, team, ask
+18c. **Financial plan (.xlsx)** — P&L and Cash Flow over 12 months plus 3 years, drivers, sensitivity
+18d. **Presentation (.pptx)** — full Verification-stage pitch deck, 21 slides (Light) or 34 (Full)
 
-## Структура репозитория
+## Repository layout
 
 ```
 .
-├── SKILL.md                    # главный файл скила (метаданные + инструкции)
+├── SKILL.md                     # the skill itself (metadata + instructions)
 ├── CHANGELOG.md
-├── assets/                     # шаблоны артефактов
+├── assets/                      # artifact templates
 │   ├── one-pager-template.pptx
 │   ├── presentation-template.pptx
 │   ├── financial-plan-template.xlsx
 │   └── interview-guide-template.docx
-├── references/                 # детальные инструкции по блокам
-│   ├── block-1-market.md       # Блок I — Анализ рынка (задачи 1–6)
-│   ├── block-2-customers.md    # Блок II — Потребители (задачи 7–9)
-│   ├── block-3-strategy.md     # Блок III — Стратегия (задачи 10–14)
-│   ├── block-4-validation.md   # Блок IV — Валидация (задачи 15–17)
-│   ├── block-5-main-scenario.md # Блок V — Главный сценарий (18a)
-│   ├── block-6-artifacts.md    # Блок VI — Артефакты (18b–d)
-│   ├── customer-development.md # альтернативный путь для нового рынка
-│   ├── strategic-pivot.md      # путь для действующего бизнеса (pivot)
-│   ├── examples.md             # сквозные примеры заполнения холстов
-│   ├── glossary.md             # термины PD
-│   └── step-0-questions.md     # вопросы шага 0
-└── scripts/                    # технические скрипты
+├── references/                  # detailed per-block instructions
+│   ├── block-1-market.md        # Block I — Market analysis (tasks 1–6)
+│   ├── block-2-customers.md     # Block II — Customers (tasks 7–9)
+│   ├── block-3-strategy.md      # Block III — Strategy (tasks 10–14)
+│   ├── block-4-validation.md    # Block IV — Validation (tasks 15–17)
+│   ├── block-5-main-scenario.md # Block V — Main scenario (18a)
+│   ├── block-6-artifacts.md     # Block VI — Artifacts (18b–d)
+│   ├── customer-development.md  # alternative path for a new market
+│   ├── strategic-pivot.md       # path for an existing business (pivot)
+│   ├── examples.md              # worked examples of filled-in canvases
+│   ├── glossary.md              # Product Discovery terms
+│   └── step-0-questions.md      # step 0 questions
+└── scripts/                     # supporting scripts
     ├── preflight_check.sh
     ├── init_kb.py
     ├── delete_light_slides.py
@@ -104,35 +104,48 @@ Claude Skill для проведения структурного Product Discov
     └── finalize_docx.sh
 ```
 
-## Установка
+## Install
+
+### Claude Code and other CLI agents
+
+```bash
+npx -y skills@latest add ipavelm/ultimate-product-discovery-skill -a claude-code -g -y
+```
+
+Installs into `~/.claude/skills/product-discovery` with every reference, script and
+template. Drop `-g` to install into the current project instead. Run the same
+command again to upgrade.
 
 ### Claude.ai (Skills)
 
-1. Скачай архив репозитория (`Code → Download ZIP`) или клонируй:
+1. Download the repository (`Code → Download ZIP`) or clone it:
    ```bash
-   git clone https://github.com/<USER>/product-discovery-skill.git
+   git clone https://github.com/ipavelm/ultimate-product-discovery-skill.git
    ```
-2. Загрузи в Claude через **Settings → Capabilities → Skills → Upload skill** (соответствующий пункт UI).
-3. Скил триггерится автоматически, когда пользователь описывает задачу Product Discovery — напрямую или косвенно ("оцени идею", "выходим в Таиланд, есть ли рынок", "подготовь презентацию для ангела").
+2. Upload it in Claude under **Settings → Capabilities → Skills → Upload skill**.
+3. The skill triggers on its own once the user describes a Product Discovery task,
+   directly or indirectly ("assess this idea", "we are entering Thailand, is there
+   a market", "prepare a deck for an angel").
 
-### Локально / кастомный runtime
+### Local or custom runtime
 
-Помести папку в директорию, которую Claude монтирует как `/mnt/skills/user/`. Главный файл — `SKILL.md`.
+Place the folder in whatever directory the runtime mounts as `/mnt/skills/user/`.
+The entry point is `SKILL.md`.
 
-## Критические правила безопасности
+## Critical safety rules
 
-Скил содержит **6 STOP-GATE правил**, предотвращающих типовые ошибки в продакшене:
+The skill carries **6 STOP-GATE rules** that prevent the failure modes seen in production:
 
-1. Фиксация `PD_MODE` перед запуском скриптов
-2. Запрет `pack.py --validate false`
-3. PowerPoint round-trip (LibreOffice) перед сдачей `.pptx`
-4. Раскатка формул в финплане через `roll_formulas.py`
-5. Проверка совместимости шаблонов
-6. Word round-trip для `.docx` артефактов
+1. Pin `PD_MODE` before running any script
+2. Never pass `pack.py --validate false`
+3. PowerPoint round-trip (LibreOffice) before shipping a `.pptx`
+4. Expand financial-plan formulas through `roll_formulas.py`
+5. Verify template compatibility
+6. Word round-trip for `.docx` artifacts
 
-Подробно — в `SKILL.md` раздел «Критические правила безопасности».
+Details live in the "Critical safety rules" section of `SKILL.md`.
 
-## Методологическая база
+## Methodology foundation
 
 - Anthony Ulwick — *Outcome-Driven Innovation*
 - Clayton Christensen — *Jobs to be Done*
@@ -144,4 +157,4 @@ Claude Skill для проведения структурного Product Discov
 
 ## License
 
-MIT — см. [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).
