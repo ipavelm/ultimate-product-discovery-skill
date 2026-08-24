@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
-# finalize_docx.sh -- Финализирует .docx артефакт перед выдачей пользователю.
+# finalize_docx.sh -- Finalises a .docx artifact before it is handed to the user.
 #
-# Проблема: библиотеки типа `docx` npm package создают технически валидные
-# .docx файлы, которые открываются в LibreOffice и python-docx, но Word
-# отказывается их открывать из-за битых ссылок на стили, некорректных
-# relationships и других мелких нарушений OOXML-манифеста.
+# The problem: libraries such as the `docx` npm package produce technically
+# valid .docx files that open in LibreOffice and python-docx, but Word refuses
+# them because of broken style references, malformed relationships and other
+# small violations of the OOXML manifest.
 #
-# Решение: round-trip через LibreOffice переупаковывает файл через
-# Microsoft Word 2007 XML filter — он создаёт гарантированно Word-совместимый
-# документ с корректной структурой стилей и relationships.
+# The fix: a round-trip through LibreOffice repackages the file with the
+# Microsoft Word 2007 XML filter, which produces a reliably Word-compatible
+# document with a correct style and relationship structure.
 #
-# После round-trip делается верификация через python-docx: если все стили
-# resolved и файл открывается — гарантированно работает в Word.
+# After the round-trip, python-docx verifies the result: if every style
+# resolves and the file opens, it is guaranteed to work in Word.
 #
 # Usage:
 #     bash scripts/finalize_docx.sh /home/claude/interview-guide.docx /mnt/user-data/outputs/interview-guide-[slug].docx

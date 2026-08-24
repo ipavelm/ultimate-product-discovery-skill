@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Инициализировать Knowledge Base для нового PD.
+"""Initialise the Knowledge Base for a new PD run.
 
-Создаёт /home/claude/pd-knowledge-base.md с правильным frontmatter:
-skill-version, project-name, mode, created. Предотвращает оставление плейсхолдера
-"Режим: [Light / Full / GeoExpansion]" незаполненным.
+Creates /home/claude/pd-knowledge-base.md with the correct frontmatter:
+skill-version, project-name, mode, created. This is what stops the
+"Mode: [Light / Full / GeoExpansion]" placeholder from being left unfilled.
 
-Также создаёт /home/claude/.pd_env с экспортом PD_MODE — для корректной работы
-скриптов из Правила 1 SKILL.md (delete_light_slides.py и др.):
+It also creates /home/claude/.pd_env exporting PD_MODE, which the scripts
+covered by Rule 1 in SKILL.md need (delete_light_slides.py and others):
 
     source /home/claude/.pd_env
 
@@ -28,61 +28,61 @@ created: {date}
 updated: {date}
 mode: {mode}
 
-## Журнал выполнения (инкрементальный)
+## Execution log (incremental)
 
-_После каждой задачи дописывай сюда запись. Формат:_
-_### [Дата, время] — Задача N: [название] — done|partial|blocked_
-_- 3–5 ключевых находок_
+_Append an entry here after every task. Format:_
+_### [Date, time] — Task N: [name] — done|partial|blocked_
+_- 3–5 key findings_
 
 ---
 
-## Блок I: Рынок (полное резюме)
-_Заполняется после завершения блока I._
+## Block I: Market (full summary)
+_Filled in once block I is complete._
 
-## Блок II: Потребители
-_Заполняется после завершения блока II._
+## Block II: Customers
+_Filled in once block II is complete._
 
-## Блок III: Стратегия
-_Заполняется после завершения блока III._
+## Block III: Strategy
+_Filled in once block III is complete._
 
-## Блок IV: Гипотезы
-_Заполняется после завершения блока IV._
+## Block IV: Hypotheses
+_Filled in once block IV is complete._
 
-## Блок V: Главный сценарий
-_Заполняется после задачи 18a._
+## Block V: Main scenario
+_Filled in after task 18a._
 
-## Статус
-- Последняя завершённая задача: —
-- Последний завершённый блок: —
-- Следующий шаг: начать с Задачи 1 (Анализ рынка)
+## Status
+- Last completed task: —
+- Last completed block: —
+- Next step: start with Task 1 (market analysis)
 """
 
-# Для GeoExpansion — дополнительная секция home-geo baseline
+# For GeoExpansion — an extra home-geo baseline section
 GEO_EXPANSION_EXTRA = """
 
-## Home-geo baseline (только для Geographic Expansion)
-_Заполни в Шаге 0 перед стартом Блока I:_
-- Home-geo: [страна/регион, где продукт уже работает]
-- Платящих клиентов в home-geo: [количество]
-- ARR в home-geo: [сумма]
-- Когда запущен в home-geo: [месяц/год]
-- Ключевые метрики home-geo: LTV=[X], CAC=[Y], retention=[Z]%
-- Почему переходим в новую гео: [ключевая гипотеза]
-- Новая гео (target): [страна/регион]
-- Multi-geo roadmap: [список следующих гео с оценкой SAM, если есть]
+## Home-geo baseline (Geographic Expansion only)
+_Fill this in during Step 0, before block I starts:_
+- Home geography: [the country/region where the product already runs]
+- Paying customers in the home geography: [count]
+- ARR in the home geography: [amount]
+- Launched in the home geography: [month/year]
+- Key home-geo metrics: LTV=[X], CAC=[Y], retention=[Z]%
+- Why we are moving into a new geography: [the core hypothesis]
+- Target geography: [country/region]
+- Multi-geo roadmap: [the next geographies with SAM estimates, if any]
 """
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--project", required=True, help="Название проекта")
+    ap.add_argument("--project", required=True, help="Project name")
     ap.add_argument("--mode", required=True,
                     choices=["Light", "Full", "GeoExpansion"],
-                    help="Режим работы: Light / Full / GeoExpansion")
+                    help="Mode: Light / Full / GeoExpansion")
     ap.add_argument("--output", default="/home/claude/pd-knowledge-base.md",
-                    help="Путь к KB-файлу (default: /home/claude/pd-knowledge-base.md)")
+                    help="Path to the KB file (default: /home/claude/pd-knowledge-base.md)")
     ap.add_argument("--env-output", default="/home/claude/.pd_env",
-                    help="Путь к env-файлу (default: /home/claude/.pd_env)")
+                    help="Path to the env file (default: /home/claude/.pd_env)")
     args = ap.parse_args()
 
     output_path = Path(args.output)

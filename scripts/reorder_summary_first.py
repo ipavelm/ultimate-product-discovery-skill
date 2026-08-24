@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Переставить лист 'Summary' первым в финплане.
+"""Move the 'Summary' sheet to first position in the financial plan.
 
-Используется после заполнения финплана, чтобы инвестор/CEO видел executive-view
-сразу при открытии файла, а не листал до 14-го листа.
+Used after the plan is filled in, so the investor or CEO sees the executive view
+the moment they open the file instead of scrolling to the 14th sheet.
 
 Usage:
     python3 reorder_summary_first.py <path-to-financial-plan.xlsx>
 
-Файл модифицируется на месте.
+The file is modified in place.
 """
 import sys
 from pathlib import Path
@@ -15,29 +15,29 @@ from pathlib import Path
 try:
     from openpyxl import load_workbook
 except ImportError:
-    print("❌ Нужна библиотека openpyxl. Установить: pip install openpyxl")
+    print("❌ openpyxl is required. Install it with: pip install openpyxl")
     sys.exit(1)
 
 
 def reorder_summary_first(xlsx_path: str, summary_sheet_name: str = "Summary") -> bool:
-    """Переставить указанный лист первым. True если успешно, False если листа нет."""
+    """Move the named sheet to first position. True on success, False if it is absent."""
     wb = load_workbook(xlsx_path)
     if summary_sheet_name not in wb.sheetnames:
-        print(f"⚠️  Лист '{summary_sheet_name}' не найден в файле.")
-        print(f"   Доступные листы: {wb.sheetnames}")
+        print(f"⚠️  Sheet '{summary_sheet_name}' not found in the file.")
+        print(f"   Available sheets: {wb.sheetnames}")
         return False
 
-    # openpyxl хранит листы в wb._sheets (список) — перемещаем по индексу
+    # openpyxl keeps the sheets in wb._sheets (a list) — move by index
     summary_sheet = wb[summary_sheet_name]
     current_index = wb._sheets.index(summary_sheet)
     if current_index == 0:
-        print(f"✅ Лист '{summary_sheet_name}' уже первый, ничего делать не нужно.")
+        print(f"✅ Sheet '{summary_sheet_name}' is already first, nothing to do.")
         return True
 
-    # move_sheet с offset = -current_index переставит в начало
+    # move_sheet with offset = -current_index moves it to the front
     wb.move_sheet(summary_sheet, offset=-current_index)
     wb.save(xlsx_path)
-    print(f"✅ Лист '{summary_sheet_name}' перемещён с позиции {current_index + 1} на позицию 1.")
+    print(f"✅ Sheet '{summary_sheet_name}' moved from position {current_index + 1} to position 1.")
     return True
 
 
@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
     path = Path(sys.argv[1])
     if not path.exists():
-        print(f"❌ Файл не найден: {path}")
+        print(f"❌ File not found: {path}")
         sys.exit(1)
 
     sheet_name = sys.argv[2] if len(sys.argv) == 3 else "Summary"

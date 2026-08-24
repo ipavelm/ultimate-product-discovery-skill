@@ -1,18 +1,18 @@
 #!/bin/bash
-# Финализация презентации — единая команда с гарантией PowerPoint-совместимости.
+# Deck finalisation — one command that guarantees PowerPoint compatibility.
 #
-# Выполняет три шага:
-# 1. pack.py с полной валидацией (БЕЗ --validate false!)
-# 2. PowerPoint round-trip через LibreOffice (Microsoft Impress Office Open XML filter)
-# 3. Верификация через python-pptx — что файл действительно открывается
+# It performs three steps:
+# 1. pack.py with full validation (WITHOUT --validate false!)
+# 2. A PowerPoint round-trip through LibreOffice (Microsoft Impress Office Open XML filter)
+# 3. Verification through python-pptx — that the file really does open
 #
 # Usage:
 #     bash scripts/finalize_pptx.sh /path/to/unpacked-dir /path/to/output.pptx /path/to/original.pptx
 #
-# Где:
-#   unpacked-dir — папка с unpacked/ppt/... (результат unpack.py)
-#   output.pptx  — финальный файл (обычно /mnt/user-data/outputs/presentation-[slug].pptx)
-#   original.pptx — оригинальный шаблон (для --original в pack.py)
+# Where:
+#   unpacked-dir  — the folder holding unpacked/ppt/... (the result of unpack.py)
+#   output.pptx   — the final file (usually /mnt/user-data/outputs/presentation-[slug].pptx)
+#   original.pptx — the original template (for --original in pack.py)
 
 set -e
 
@@ -30,11 +30,11 @@ if [ ! -d "$UNPACKED" ]; then
     exit 1
 fi
 
-# Проверка наличия LibreOffice
+# Check that LibreOffice is present
 if ! command -v libreoffice >/dev/null 2>&1; then
-    echo "🔴 LibreOffice не найден — PowerPoint-совместимость не гарантирована."
-    echo "   Файл будет создан только через pack.py, без round-trip."
-    echo "   Установи LibreOffice для максимальной надёжности."
+    echo "🔴 LibreOffice not found — PowerPoint compatibility is not guaranteed."
+    echo "   The file will be produced by pack.py alone, with no round-trip."
+    echo "   Install LibreOffice for maximum reliability."
     NO_LIBREOFFICE=1
 fi
 
@@ -43,61 +43,61 @@ trap "rm -rf $TMPDIR" EXIT
 
 STEP1="$TMPDIR/step1.pptx"
 
-echo "=== Шаг 1: pack.py с полной валидацией ==="
-# Путь к pack.py из pptx-skill
+echo "=== Step 1: pack.py with full validation ==="
+# Path to pack.py from the pptx skill
 PACK_PY="/mnt/skills/public/pptx/scripts/office/pack.py"
 if [ ! -f "$PACK_PY" ]; then
-    # Fallback: поиск pack.py
+    # Fallback: search for pack.py
     PACK_PY=$(find / -name "pack.py" -path "*pptx*" 2>/dev/null | head -1)
     if [ -z "$PACK_PY" ]; then
-        echo "🔴 pack.py не найден. Проверь установку pptx skill."
+        echo "🔴 pack.py not found. Check that the pptx skill is installed."
         exit 1
     fi
 fi
 
 if ! python3 "$PACK_PY" "$UNPACKED" "$STEP1" --original "$ORIGINAL" 2>&1; then
     echo ""
-    echo "🔴 pack.py не прошёл валидацию."
+    echo "🔴 pack.py failed validation."
     echo ""
-    echo "Типичные причины:"
-    echo "  1. Дублированные ссылки на notesSlides — после запуска"
-    echo "     add_competitor_comparison_slide.py. Запусти его снова —"
-    echo "     он теперь содержит встроенную чистку."
-    echo "  2. Отсутствующие rels. Проверь что все слайды, на которые"
-    echo "     ссылается presentation.xml, существуют как файлы."
+    echo "Common causes:"
+    echo "  1. Duplicated notesSlides references — left behind by"
+    echo "     add_competitor_comparison_slide.py. Run it again;"
+    echo "     it now cleans them up itself."
+    echo "  2. Missing rels. Check that every slide referenced by"
+    echo "     presentation.xml exists as a file."
     echo ""
-    echo "См. references/block-6-artifacts.md раздел 'Troubleshooting pack.py'."
+    echo "See references/block-6-artifacts.md, section 'Troubleshooting pack.py'."
     echo ""
-    echo "НИКОГДА не используй --validate false — файл не откроется в PowerPoint."
+    echo "NEVER use --validate false — the file will not open in PowerPoint."
     exit 1
 fi
 
-echo "✅ pack.py прошёл валидацию"
+echo "✅ pack.py passed validation"
 
 if [ "$NO_LIBREOFFICE" = "1" ]; then
-    # Без LibreOffice — просто копируем результат pack.py
+    # No LibreOffice — just copy the pack.py result
     cp "$STEP1" "$OUTPUT"
-    echo "⚠️  Скопирован без LibreOffice round-trip (может не открыться в PowerPoint)"
+    echo "⚠️  Copied without the LibreOffice round-trip (it may not open in PowerPoint)"
 else
     echo ""
-    echo "=== Шаг 2: LibreOffice round-trip ==="
+    echo "=== Step 2: LibreOffice round-trip ==="
     timeout 60 libreoffice --headless --convert-to pptx "$STEP1" \
         --outdir "$TMPDIR/lo/" 2>&1 | tail -2
 
     LO_OUTPUT="$TMPDIR/lo/$(basename "$STEP1")"
     if [ ! -f "$LO_OUTPUT" ]; then
-        echo "🔴 LibreOffice конвертация не дала файл."
-        echo "   Проверь установку LibreOffice: libreoffice --version"
+        echo "🔴 The LibreOffice conversion produced no file."
+        echo "   Check the LibreOffice install: libreoffice --version"
         exit 1
     fi
 
     cp "$LO_OUTPUT" "$OUTPUT"
-    echo "✅ LibreOffice round-trip — файл пересоздан через"
+    echo "✅ LibreOffice round-trip — the file was rebuilt through the"
     echo "   Microsoft Impress Office Open XML filter"
 fi
 
 echo ""
-echo "=== Шаг 3: Верификация через python-pptx ==="
+echo "=== Step 3: verification through python-pptx ==="
 python3 - <<PYEOF
 import sys
 try:
@@ -105,25 +105,25 @@ try:
     p = Presentation("$OUTPUT")
     import os
     size_kb = os.path.getsize("$OUTPUT") / 1024
-    print(f"✅ python-pptx открывает файл")
-    print(f"   Слайдов: {len(p.slides)}")
-    print(f"   Размер:  {size_kb:.1f} KB")
-    # Проверим что нет незаполненных плейсхолдеров
+    print(f"✅ python-pptx opens the file")
+    print(f"   Slides: {len(p.slides)}")
+    print(f"   Size:   {size_kb:.1f} KB")
+    # Check that no placeholders were left unfilled
     import subprocess, re
     result = subprocess.run(['extract-text', "$OUTPUT"], capture_output=True, text=True)
     if result.returncode == 0:
         placeholders = re.findall(r'\[[^\]]{1,80}\]', result.stdout)
         real = [p for p in placeholders if not any(x in p for x in ['✅','⚠️','🔴','🟠','🟡','🟢'])]
         if real:
-            print(f"   ⚠️  Найдены незаполненные плейсхолдеры: {len(real)}")
+            print(f"   ⚠️  Unfilled placeholders found: {len(real)}")
             for p in real[:5]:
                 print(f"      - {p}")
         else:
-            print(f"   ✅ Незаполненных плейсхолдеров нет")
+            print(f"   ✅ No unfilled placeholders")
 except Exception as e:
-    print(f"🔴 python-pptx не может открыть файл: {e}")
+    print(f"🔴 python-pptx cannot open the file: {e}")
     sys.exit(1)
 PYEOF
 
 echo ""
-echo "🎉 Файл готов: $OUTPUT"
+echo "🎉 File ready: $OUTPUT"
