@@ -11,6 +11,14 @@ will not match.
   frontmatter, internal links, referenced files, workbook formulas and
   cross-sheet references, placeholder coverage in the templates, leftover data.
   It found three defects on its first run, including two in the documentation.
+  Its last step recalculates the financial-plan template and asserts the model
+  still produces possible numbers. Sign checks alone proved too weak — a formula
+  can point at the wrong row and still return a positive, rising figure — so it
+  also compares rows computed independently of each other: a segment's revenue
+  must cover its new customers times their price, total paying customers must
+  equal the sum of its four component rows, and new paying customers must match
+  the funnel's last stage. Verified in both directions: reverting one formula to
+  its broken form makes the run fail. Needs `formulas`; `--no-recalc` skips it.
 
 ### Fixed
 - **The financial model produced impossible numbers.** Almost every formula on

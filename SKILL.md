@@ -61,7 +61,7 @@ Scripts in `scripts/` cover the repetitive technical steps:
 - `finalize_pptx.sh` — final step for the deck: packaging → `office/validate.py` → LibreOffice round-trip → verification through python-pptx (Rule 3)
 - `finalize_docx.sh` — final step for the interview guide: LibreOffice round-trip → verification through python-docx (Rule 6). Required for Word compatibility
 - `roll_formulas.py` — expands month-1 formulas into months 2–12 in the P&L and Cash Flow sheets of the financial plan (Rule 4)
-- `self_check.py` — verifies the skill's own integrity after it is edited: frontmatter, internal links, referenced files, workbook formulas and cross-sheet references, placeholder coverage in the templates, leftover data. Not needed during a PD run
+- `self_check.py` — verifies the skill's own integrity after it is edited: frontmatter, internal links, referenced files, workbook formulas and cross-sheet references, placeholder coverage in the templates, leftover data, and a recalculation of the financial-plan template that asserts the model still produces possible numbers. Pass `--no-recalc` for the structural checks alone. Not needed during a PD run
 
 ## Critical safety rules
 
