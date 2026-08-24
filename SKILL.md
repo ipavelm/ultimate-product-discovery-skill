@@ -2,7 +2,7 @@
 name: product-discovery
 description: "Product Discovery through an 18-task methodology in 6 blocks — from market analysis to an investor-ready financial plan. Use when someone wants to run Product Discovery, validate a startup, assess a market hypothesis, prepare for an investment round, or raises an adjacent topic — idea validation, niche sizing, competitor teardown, product-market fit, pitch preparation, startup unit economics, geographic expansion into a new country, go-to-market for SEA / Asia / MENA. People rarely name PD explicitly; they say 'is there a market for this', 'assess my idea', 'I need a deck for an angel', 'we are entering Thailand/Singapore/UAE, how do we size it'. Use the skill in those cases too. Three modes: Light (~45 min, idea stage), Full (~2-3 h, MVP with customers), Geographic Expansion (~2 h, product entering a new geography). Produces 3-4 artifacts in /mnt/user-data/outputs/: one-pager.pptx, financial-plan.xlsx, presentation.pptx, optionally interview-guide.docx."
 metadata:
-  version: "3.8"
+  version: "4.0"
 ---
 
 # Product Discovery
@@ -61,6 +61,7 @@ Scripts in `scripts/` cover the repetitive technical steps:
 - `finalize_pptx.sh` — final step for the deck: packaging → `office/validate.py` → LibreOffice round-trip → verification through python-pptx (Rule 3)
 - `finalize_docx.sh` — final step for the interview guide: LibreOffice round-trip → verification through python-docx (Rule 6). Required for Word compatibility
 - `roll_formulas.py` — expands month-1 formulas into months 2–12 in the P&L and Cash Flow sheets of the financial plan (Rule 4)
+- `self_check.py` — verifies the skill's own integrity after it is edited: frontmatter, internal links, referenced files, workbook formulas and cross-sheet references, placeholder coverage in the templates, leftover data. Not needed during a PD run
 
 ## Critical safety rules
 
@@ -84,7 +85,7 @@ Mapping table:
 | `reorder_summary_first.py` | Light / Full / Geographic Expansion | — |
 | `roll_formulas.py` | Light / Full / Geographic Expansion | — |
 
-Before every `python3 scripts/X.py`, state it out loud: "Project mode: [light/full] → this script is [allowed/not allowed]".
+Before running any of these scripts, state it out loud: "Project mode: [light/full] → this script is [allowed/not allowed]".
 
 ### Rule 2 — NEVER ship a deck that skipped validation
 

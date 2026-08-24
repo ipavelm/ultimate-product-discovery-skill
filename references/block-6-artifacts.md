@@ -201,7 +201,7 @@ for row in range(1, ws.max_row + 1):
        ws.cell(row=41, column=col).value = f"={prev}41+{letter}36"
    ```
 
-**Verification:** run `python3 scripts/recalc.py /home/claude/financial-plan.xlsx` — the expected result is `"status": "success", "total_errors": 0`. Look at P&L row 5 (GMV) and row 41 (cumulative net profit) — they must grow from month 1 to month 12, not be identical or empty.
+**Verification:** run `python3 /home/claude/scripts/recalc.py /home/claude/financial-plan.xlsx` — the expected result is `"status": "success", "total_errors": 0`. Look at P&L row 5 (GMV) and row 41 (cumulative net profit) — they must grow from month 1 to month 12, not be identical or empty.
 
 #### Step 2.6 — CRITICAL: clear the example data out of the template
 
@@ -222,7 +222,7 @@ Check the labels rather than trusting this list: `python3 -c "import openpyxl; w
 - Replace the NEW/RETURN average tickets
 - Replace the churn rate for luxury/premium/mass depending on the business
 - Replace the marketing budget
-- Recalculate with `python3 scripts/recalc.py`: confirm there are no `#REF!` or `#DIV/0!`
+- Recalculate with `python3 /home/claude/scripts/recalc.py`: confirm there are no `#REF!` or `#DIV/0!`
 
 If you chose option A, add a "live metrics" block to Summary referencing the P&L:
 

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Product Discovery",
+      "description": "Structured Product Discovery: 18 tasks across 6 blocks, from market sizing to an investor-ready financial plan, with a one-pager, a pitch deck and an interview guide as output. Read a skill before installing it - skills run with the agent's full permissions.",
+      "skills": ["product-discovery"]
+    }
+  ]
+}

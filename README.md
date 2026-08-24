@@ -1,6 +1,6 @@
 # Ultimate Product Discovery Skill
 
-[![Version](https://img.shields.io/badge/version-3.8-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-4.0-blue.svg)](CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Made for Claude](https://img.shields.io/badge/made%20for-Claude%20Skills-D97706.svg)](https://docs.claude.com/en/docs/agents-and-tools/agent-skills)
 [![Requires: Opus](https://img.shields.io/badge/requires-latest%20Claude%20Opus-black.svg)](https://www.anthropic.com/claude)
@@ -8,7 +8,7 @@
 
 A Claude Skill for running structured Product Discovery through a methodology of **18 tasks across 6 blocks**. It combines Jobs-to-be-Done (Ulwick/Christensen), Opportunity Solution Tree (Teresa Torres), Customer Development (Steve Blank), The Mom Test (Rob Fitzpatrick), Lean Canvas (Ash Maurya), PESTEL, SWOT and the Business Model Canvas.
 
-Version: **3.8** · see [CHANGELOG.md](CHANGELOG.md)
+Version: **4.0** · see [CHANGELOG.md](CHANGELOG.md)
 
 > ⚡ **Recommended model: the latest Claude Opus.** The skill relies on a long context (1500+ lines of methodology across `references/`), parallel tool calls (web_search + bash + Python), structured planning and numeric-threshold judgement. Sonnet and Haiku handle individual tasks, but artifact quality drops noticeably on the harder blocks (III — Strategy, IV — Validation, VI — Artifacts).
 
@@ -101,7 +101,8 @@ Everything is written to `/mnt/user-data/outputs/`:
     ├── add_competitor_comparison_slide.py
     ├── roll_formulas.py
     ├── finalize_pptx.sh
-    └── finalize_docx.sh
+    ├── finalize_docx.sh
+    └── self_check.py
 ```
 
 ## Install
