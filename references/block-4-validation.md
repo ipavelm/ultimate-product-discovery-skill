@@ -1,141 +1,141 @@
-## БЛОК IV: ВАЛИДАЦИЯ ГИПОТЕЗ
+## BLOCK IV: HYPOTHESIS VALIDATION
 
-> 💡 **Если тип рынка «Новый»** (определён в задаче 1) — стандартные методы из этого блока (Smoke Test, Pre-sale) дают низкую конверсию не из-за плохого оффера, а потому что аудитория ещё не ищет решение. В этом случае читай [customer-development.md](customer-development.md) и используй протокол Customer Development (Steve Blank / The Mom Test) вместо стандартного Smoke Test + Pre-sale.
+> 💡 **If the market type is "New"** (determined in task 1), the standard methods in this block (Smoke Test, pre-sale) will convert badly — not because the offer is weak but because the audience is not yet looking for a solution. In that case read [customer-development.md](customer-development.md) and use the Customer Development protocol (Steve Blank / The Mom Test) instead of the standard Smoke Test plus pre-sale.
 
-### Задача 15: Пул гипотез
+### Task 15: hypothesis pool
 
-**6 типов:**
+**6 types:**
 
-1. **Потребности:** *«Данный сегмент [делает/думает/чувствует] вот так.»*
-2. **Спроса:** *«[ЦП] будет интересно [профиль], что подтвердит [критерий].»*
-3. **Ценности:** *«Наш [продукт] помогает [сегмент], которые хотят [задача], тем, что [профит]. В отличие от [конкурент].»*
-4. **Решения:** *«Если предоставить [решение], достигнем [результат], что подтвердит [критерий].»*
-5. **Канала:** *«Оффер [O] для канала [C] обеспечит конверсию [метрика1] при стоимости [метрика2] ≤ [значение].»*
-6. **Масштабируемости:** через юнит-экономику (LTV, CAC, Retention, P&L).
+1. **Need:** *"This segment [does / thinks / feels] the following."*
+2. **Demand:** *"[The value proposition] will interest [profile], which [criterion] will confirm."*
+3. **Value:** *"Our [product] helps [segment] who want [job] by [benefit]. Unlike [competitor]."*
+4. **Solution:** *"If we provide [solution], we reach [outcome], which [criterion] will confirm."*
+5. **Channel:** *"Offer [O] in channel [C] will deliver conversion [metric1] at a cost [metric2] ≤ [value]."*
+6. **Scalability:** through unit economics (LTV, CAC, retention, P&L).
 
-Для каждой: риск (Высокий / Средний / Низкий), метод (→ задача 16), критерий подтверждения.
+For each one: risk (High / Medium / Low), method (→ task 16), confirmation criterion.
 
-**Результат:** Пул гипотез → лист «Пул гипотез» в финплане.
+**Output:** the hypothesis pool → the "Hypothesis pool" sheet in the financial plan.
 
 ---
 
-### Задача 16: Rapid Assumption Testing
+### Task 16: Rapid Assumption Testing
 
-**Матрица методов:**
+**Method matrix:**
 
-| Тип гипотезы | Метод | Срок | Критерий |
+| Hypothesis type | Method | Timeframe | Criterion |
 |---|---|---|---|
-| Потребность существует | Story-based интервью | 1–2 нед. | 7/10 подтверждают боль |
-| Спрос на решение | Smoke Test / Fake Door | 3–7 дней | CTA конверсия ≥ бенчмарка* |
-| Готовность платить | Pre-sale | 3–5 дней | ≥ 5% B2C / ≥ 2% B2B от охвата оплатили** |
-| Канал работает | Мини-кампания | 5–7 дней | CPL ≤ целевой |
-| Ценность продукта | Wizard of Oz / Concierge | 1–2 нед. | NPS ≥ 8 |
-| Юнит-экономика | Финансовая модель | 1–3 дня | LTV/CAC ≥ 3 |
+| The need exists | Story-based interviews | 1–2 weeks | 7 out of 10 confirm the pain |
+| Demand for the solution | Smoke Test / Fake Door | 3–7 days | CTA conversion ≥ benchmark* |
+| Willingness to pay | Pre-sale | 3–5 days | ≥ 5% B2C / ≥ 2% B2B of reach paid** |
+| The channel works | Mini campaign | 5–7 days | CPL ≤ target |
+| Product value | Wizard of Oz / Concierge | 1–2 weeks | NPS ≥ 8 |
+| Unit economics | Financial model | 1–3 days | LTV/CAC ≥ 3 |
 
-**\* Бенчмарки конверсии Smoke Test по типу продукта:**
+**\* Smoke Test conversion benchmarks by product type:**
 
-| Тип продукта | Минимальная конверсия CTA | Хороший результат |
+| Product type | Minimum CTA conversion | Good result |
 |---|---|---|
-| B2C SaaS / приложение | ≥ 3% | ≥ 8% |
+| B2C SaaS / app | ≥ 3% | ≥ 8% |
 | B2B SaaS | ≥ 1% | ≥ 3% |
-| E-commerce / физический товар | ≥ 2% | ≥ 5% |
-| Нишевый / профессиональный B2B | ≥ 5% | ≥ 12% |
-| Маркетплейс (двусторонний) | ≥ 4% | ≥ 10% |
+| E-commerce / physical goods | ≥ 2% | ≥ 5% |
+| Niche / professional B2B | ≥ 5% | ≥ 12% |
+| Marketplace (two-sided) | ≥ 4% | ≥ 10% |
 
-Если конверсия ниже минимума — оффер или аудитория требуют пересмотра перед следующим тестом.
+If conversion falls below the minimum, the offer or the audience needs rethinking before the next test.
 
-**\*\* Бенчмарки Pre-sale по типу продукта:**
+**\*\* Pre-sale benchmarks by product type:**
 
-| Тип продукта | Минимум (% оплативших от охвата) | Хороший результат |
+| Product type | Minimum (% of reach who paid) | Good result |
 |---|---|---|
-| B2C, цена до 1 000 руб. | ≥ 5% | ≥ 15% |
-| B2C, цена 1 000–10 000 руб. | ≥ 2% | ≥ 8% |
-| B2B SMB (чек до 100 000 руб.) | ≥ 2% | ≥ 5% |
-| B2B Enterprise (чек > 100 000 руб.) | ≥ 1 реальный LOI / депозит | ≥ 3 LOI |
+| B2C, price under ₽1,000 | ≥ 5% | ≥ 15% |
+| B2C, price ₽1,000–10,000 | ≥ 2% | ≥ 8% |
+| B2B SMB (ticket under ₽100,000) | ≥ 2% | ≥ 5% |
+| B2B Enterprise (ticket over ₽100,000) | ≥ 1 real LOI or deposit | ≥ 3 LOIs |
 
-Если конверсия ниже минимума — скорректируй оффер или целевую аудиторию.
+If conversion falls below the minimum, adjust the offer or the target audience.
 
-**Бюджет на тесты:** используй значение из Шага 0 вопрос 8. Если бюджет < 5 000 руб. — рекомендуй Concierge или интервью вместо платной рекламы.
+**Testing budget:** use the value from Step 0, question 8. If the budget is under ₽5,000, recommend Concierge or interviews instead of paid advertising.
 
-**UTM-разметка для Smoke Test:** перед запуском автоматически сгенерируй UTM-ссылки **для каждого реального канала** из задачи 10 (BMC/Lean Canvas → Channels). Не используй жёстко зашитый список — бери каналы из холста проекта.
+**UTM tagging for the Smoke Test:** before launch, generate UTM links automatically **for every real channel** from task 10 (BMC/Lean Canvas → Channels). Do not use a hard-coded list — take the channels from the project's canvas.
 
-**Алгоритм генерации:**
-1. Возьми список каналов из задачи 10 (например: Telegram-каналы, partner newsletter, Habr, таргет VK).
-2. Для каждого канала определи `utm_source` (платформа) и `utm_medium` (тип размещения).
-3. `utm_campaign` = `smoke-test-[slug-названия-проекта]`.
-4. Если канал = платная реклама — добавь `utm_content=[креатив]` для сравнения креативов.
+**Generation algorithm:**
+1. Take the channel list from task 10 (for example: Telegram channels, partner newsletter, Habr, VK ads).
+2. For each channel, decide the `utm_source` (platform) and `utm_medium` (placement type).
+3. `utm_campaign` = `smoke-test-[project-name-slug]`.
+4. If the channel is paid advertising, add `utm_content=[creative]` so creatives can be compared.
 
-**Формат:**
+**Format:**
 ```
-https://[лендинг]/?utm_source=[канал]&utm_medium=[тип]&utm_campaign=smoke-test-[project]
+https://[landing]/?utm_source=[channel]&utm_medium=[type]&utm_campaign=smoke-test-[project]
 ```
 
-**Типовые соответствия (используй только если соответствующий канал есть в задаче 10):**
+**Common mappings (use only when the matching channel appears in task 10):**
 
-| Канал из задачи 10 | utm_source | utm_medium |
-|--------------------|-----------|-----------|
-| Telegram-канал | telegram | post |
-| Email-рассылка | email | newsletter |
-| Instagram сториз | instagram | stories |
-| ВКонтакте таргет | vk | targeted |
+| Channel from task 10 | utm_source | utm_medium |
+|----------------------|-----------|-----------|
+| Telegram channel | telegram | post |
+| Email newsletter | email | newsletter |
+| Instagram stories | instagram | stories |
+| VKontakte ads | vk | targeted |
 | Google Ads | google | cpc |
-| Habr гостевой пост | habr | guest-post |
-| Реферальная программа | referral | link |
-| Партнёрский канал | [имя партнёра] | partner |
+| Habr guest post | habr | guest-post |
+| Referral programme | referral | link |
+| Partner channel | [partner name] | partner |
 
-Раздели ссылки по каналам — это позволит сравнить конверсию источников и понять, какой канал эффективнее ещё до product-market fit. Прикрепи итоговый список UTM-ссылок к карточке гипотезы.
+Split the links by channel — that is what lets you compare conversion across sources and see which channel performs better before product-market fit. Attach the final list of UTM links to the hypothesis card.
 
-**Алгоритм (топ-3 рисковых гипотезы):**
+**Algorithm (top 3 risky hypotheses):**
 
 ```
-Гипотеза:               [формулировка]
-Метод:                   [метод]
-Что делаем:              [конкретные шаги]
-Критерий «подтверждено»: [цифра / наблюдение]
-Критерий «опровергнуто»: [цифра / наблюдение]
-Срок:                    [X дней]
-Бюджет:                  [X руб. в рамках доступного]
+Hypothesis:              [statement]
+Method:                  [method]
+What we do:              [concrete steps]
+"Confirmed" criterion:   [number / observation]
+"Refuted" criterion:     [number / observation]
+Timeframe:               [X days]
+Budget:                  [₽X within what is available]
 ```
 
-**После тестов:** обновить пул гипотез и OST. Реальный CPL и конверсии → в задачу 18a для финансовых вводных.
+**After the tests:** update the hypothesis pool and the OST. The real CPL and conversions feed task 18a as financial inputs.
 
-⚠️ **Красный флаг:** LTV/CAC < 1.5x даже в оптимисте → сообщи.
+⚠️ **Red flag:** LTV/CAC < 1.5x even in the optimistic case → report it.
 
-**Результат:** Таблица экспериментов → лист «Пул гипотез», раздел «План тестирования».
+**Output:** the experiment table → the "Hypothesis pool" sheet, section "Testing plan".
 
 ---
 
-### Задача 17: PMF-индикаторы и Opportunity Score
+### Task 17: PMF indicators and Opportunity Score
 
-**A. PMF по фазам:**
+**A. PMF by phase:**
 
-| Фаза | Метрика | Порог |
-|------|---------|-------|
-| Verification | Боль в интервью | 7/10 одна боль |
-| Verification | Smoke test конверсия | ≥ 1–5% (B2B) / ≥ 3–8% (B2C) — см. бенчмарки задачи 16 |
-| Value Validation | Sean Ellis Test | ≥ 40% «очень разочарованы» |
-| Value Validation | NPS первых | ≥ 40 |
-| Scaling Validation | Retention 3-й мес. (когортный) | ≥ 30% B2C / ≥ 50% B2B |
+| Phase | Metric | Threshold |
+|-------|--------|-----------|
+| Verification | Pain in interviews | 7 out of 10 name one pain |
+| Verification | Smoke test conversion | ≥ 1–5% (B2B) / ≥ 3–8% (B2C) — see the task 16 benchmarks |
+| Value Validation | Sean Ellis Test | ≥ 40% "very disappointed" |
+| Value Validation | NPS of the first customers | ≥ 40 |
+| Scaling Validation | Month-3 retention (cohort) | ≥ 30% B2C / ≥ 50% B2B |
 | Scaling Validation | LTV / CAC | ≥ 3x |
-| Scaling Validation | Органический рост | ≥ 20% по рекомендации |
+| Scaling Validation | Organic growth | ≥ 20% from referrals |
 
-> **Уточнение:** здесь имеется в виду **когортный** retention — доля пользователей из когорты месяца 1, остающихся активными к началу 3-го месяца. При стабильном месячном churn это `(1 − Churn)²`. Для B2C 30% к 3-му мес. соответствует месячному churn ≈ 45%, для B2B 50% — месячному churn ≈ 29%.
+> **Clarification:** this means **cohort** retention — the share of month-1 users still active at the start of month 3. With stable monthly churn that is `(1 − Churn)²`. For B2C, 30% by month 3 corresponds to roughly 45% monthly churn; for B2B, 50% corresponds to roughly 29%.
 
-**B. OS-опросник (автогенерация)**
+**B. OS questionnaire (auto-generated)**
 
-Сгенерируй готовый список вопросов для опроса 20–50 респондентов на основе outcomes из Job Map задачи 7. Для каждого outcome:
-1. «Насколько важно для вас [outcome]?» (1–10)
-2. «Насколько вы удовлетворены текущими решениями в части [outcome]?» (1–10)
+Generate a ready-made question list for surveying 20–50 respondents, based on the outcomes from the task 7 Job Map. For each outcome:
+1. "How important is [outcome] to you?" (1–10)
+2. "How satisfied are you with current solutions for [outcome]?" (1–10)
 
-`OS = Важность + max(Важность − Удовлетворённость, 0)`
+`OS = Importance + max(Importance − Satisfaction, 0)`
 
-| Outcome | Важность | Удовлетворённость | OS |
-|---------|----------|-------------------|----|
+| Outcome | Importance | Satisfaction | OS |
+|---------|------------|--------------|----|
 
-- OS ≥ 15 → критически недооценённая возможность
-- 10–15 → значимая
-- < 10 → низкий приоритет
+- OS ≥ 15 → a critically underserved opportunity
+- 10–15 → significant
+- < 10 → low priority
 
-**Результат:** PMF-таблица + OS-опросник + финальный OS (лист «PMF-метрики» в финплане).
+**Output:** the PMF table + the OS questionnaire + the final OS (the "PMF metrics" sheet in the financial plan).
 
 ---

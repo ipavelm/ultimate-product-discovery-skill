@@ -1,42 +1,42 @@
-## БЛОК V: ГЛАВНЫЙ СЦЕНАРИЙ
+## BLOCK V: MAIN SCENARIO
 
-### Задача 18a: Выбор главного стратегического сценария
+### Task 18a: choosing the main strategic scenario
 
-Из скоринга задачи 14 — наивысший балл. При равенстве — меньше рисковых гипотез.
+Take the highest score from the task 14 ranking. On a tie, prefer the scenario with fewer risky hypotheses.
 
-**Зафиксируй параметры:**
+**Pin down the parameters:**
 
 ```
-ГЛАВНЫЙ СЦЕНАРИЙ
+MAIN SCENARIO
 ────────────────────────────────────────
-Название:               [например, "B2B SaaS с freemium"]
-Целевые сегменты:       [из холста → Customer Segments]
-Ценностное предложение: [из PAC → Value Propositions]
-Модель монетизации:     [подписка / комиссия / разовые]
-Средний чек NEW:        [X руб.]
-Средний чек RETURN:     [Y руб.]
-Ключевые каналы:        [из холста → Channels]
-Команда мес.1:          [роли и кол-во]
+Name:                   [e.g. "B2B SaaS with freemium"]
+Target segments:        [from the canvas → Customer Segments]
+Value proposition:      [from PAC → Value Propositions]
+Monetisation model:     [subscription / commission / one-off]
+Average ticket NEW:     [X RUB]
+Average ticket RETURN:  [Y RUB]
+Key channels:           [from the canvas → Channels]
+Team in month 1:        [roles and headcount]
 
-ФИНАНСОВЫЕ ВВОДНЫЕ (мес. 1)
+FINANCIAL INPUTS (month 1)
 ────────────────────────────────────────
-Лидов в мес.:           [N — из задачи 16 или оценка]
-Конверсия итоговая:     [X%]
-Новых клиентов мес.1:   [= лиды × конверсия]
-GMV мес.1:              [= новые клиенты × средний чек NEW]
-OPEX мес.1:             [маркетинг + ФОТ + инфра]
-COGS %:                 [из Cost Structure]
+Leads per month:        [N — from task 16, or an estimate]
+End-to-end conversion:  [X%]
+New customers month 1:  [= leads × conversion]
+GMV month 1:            [= new customers × average ticket NEW]
+OPEX month 1:           [marketing + payroll + infrastructure]
+COGS %:                 [from Cost Structure]
 Gross Margin %:         [= 1 − COGS%]
-CAC:                    [= (маркетинг + ФОТ продаж) / новые клиенты]
-LTV (12 мес.):          [= GM × (чек_new + Σ(чек_return × Retention_м^t)), t=1..11]
-                         где GM = Gross Margin % = 1 − COGS%
-                         Упрощённая форма (для подписок): LTV = ARPU × GM / Churn_м
-LTV/CAC:                [цель ≥ 3x]
-Break-even month:       [месяц, когда накопленный P&L ≥ 0]
+CAC:                    [= (marketing + sales payroll) / new customers]
+LTV (12 months):        [= GM × (ticket_new + Σ(ticket_return × Retention_m^t)), t=1..11]
+                         where GM = Gross Margin % = 1 − COGS%
+                         Simplified form (for subscriptions): LTV = ARPU × GM / Churn_m
+LTV/CAC:                [target ≥ 3x]
+Break-even month:       [the month cumulative P&L turns ≥ 0]
 ```
 
-> **Light-режим:** вводные CPL, конверсии и retention — экспертные оценки (задачи 16 и 17 пропущены). Пометь соответствующие ячейки в финплане жёлтым фоном и припиши «гипотеза, требует верификации после 3–5 интервью и/или smoke test».
+> **Light mode:** the CPL, conversion and retention inputs are expert estimates (tasks 16 and 17 are skipped). Shade the matching cells in the financial plan yellow and add "hypothesis, needs verification after 3–5 interviews and/or a smoke test".
 
-Передай параметры в задачу 18c.
+Hand the parameters over to task 18c.
 
 ---

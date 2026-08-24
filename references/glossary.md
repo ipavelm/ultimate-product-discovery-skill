@@ -1,52 +1,52 @@
-# Глоссарий терминов Product Discovery
+# Glossary of Product Discovery terms
 
-Читай этот файл перед выполнением первой задачи, либо когда встречаешь незнакомый термин в других файлах скила. Он короткий — можно пройти по диагонали и вернуться точечно.
+Read this file before starting the first task, or whenever you hit an unfamiliar term in the other files of the skill. It is short — skim it once and come back for specifics.
 
-## Методологические концепции
+## Methodological concepts
 
-| Термин | Определение |
-|--------|-------------|
-| **JTBD** (Jobs-to-be-Done) | Люди «нанимают» продукты, чтобы выполнить конкретную работу. Задача — понять эту работу, а не описать клиента |
-| **Job Map** | Карта из 8 этапов работы потребителя. На каждом — где боль и потери времени/денег |
-| **Job Story** | Формат: «Когда [ситуация], я хочу [работа], чтобы [результат]» |
-| **OS** (Opportunity Score) | Формула: `OS = Важность + max(Важность − Удовлетворённость, 0)`. Чем выше — тем больше возможность |
-| **OST** (Opportunity Solution Tree) | Дерево Teresa Torres: бизнес-цель → возможности → решения → эксперименты |
-| **BMC** (Business Model Canvas) | 9-блочный холст для зрелой бизнес-модели |
-| **Lean Canvas** | Адаптация BMC для стартапов: проблема, решение, УЦП, нечестное преимущество, ключевые метрики |
-| **PAC** (Product Attribute Canvas) | 4 мира продукта: Customer, Competitor, Distribution, Product |
+| Term | Definition |
+|------|------------|
+| **JTBD** (Jobs-to-be-Done) | People "hire" products to get a specific job done. The task is to understand that job, not to describe the customer |
+| **Job Map** | A map of the 8 stages of the customer's job. For each one: where the pain is and where time or money leaks |
+| **Job Story** | The format: "When [situation], I want to [job], so that [outcome]" |
+| **OS** (Opportunity Score) | The formula: `OS = Importance + max(Importance − Satisfaction, 0)`. The higher it is, the bigger the opportunity |
+| **OST** (Opportunity Solution Tree) | Teresa Torres's tree: business outcome → opportunities → solutions → experiments |
+| **BMC** (Business Model Canvas) | The 9-block canvas for a mature business model |
+| **Lean Canvas** | The startup adaptation of the BMC: problem, solution, unique value proposition, unfair advantage, key metrics |
+| **PAC** (Product Attribute Canvas) | The product's 4 worlds: Customer, Competitor, Distribution, Product |
 | **AARRR** | Acquisition → Activation → Retention → Referral → Revenue |
-| **RICE** | Формула приоритизации: `(Reach × Impact × Confidence) / Effort` |
-| **Value Proposition** (ценностное предложение, УЦП) | Одно предложение: «Мы помогаем [кому] [сделать что], в отличие от [конкурента], потому что [уникальный механизм]» |
-| **Value Chain** | Цепочка создания стоимости: все звенья от сырья до потребителя |
+| **RICE** | The prioritisation formula: `(Reach × Impact × Confidence) / Effort` |
+| **Value Proposition** | One sentence: "We help [whom] [do what], unlike [competitor], because [unique mechanism]" |
+| **Value Chain** | The value creation chain: every link from raw material to the end customer |
 
-## Рыночные метрики
+## Market metrics
 
-| Термин | Определение |
-|--------|-------------|
+| Term | Definition |
+|------|------------|
 | **TAM / SAM / SOM** | Total / Serviceable / Obtainable Addressable Market |
-| **PMF** (Product-Market Fit) | Продукт точно закрывает потребность рынка. Признак: ≥40% по Sean Ellis Test |
-| **Sean Ellis Test** | Опрос «Как бы вы себя чувствовали без [продукта]?». ≥40% «Очень разочарован» → признак PMF |
+| **PMF** (Product-Market Fit) | The product precisely meets a market need. The marker: ≥40% on the Sean Ellis Test |
+| **Sean Ellis Test** | The survey question "How would you feel if you could no longer use [product]?". ≥40% answering "very disappointed" is a PMF signal |
 
-## Методы валидации
+## Validation methods
 
-| Термин | Определение |
-|--------|-------------|
-| **Smoke Test** | Лендинг с описанием продукта без самого продукта — проверяет спрос |
-| **Wizard of Oz** | Симуляция автоматизации вручную — проверяет ценность без кода |
-| **Concierge MVP** | Проходишь «работу» лично с потребителем — для B2B, высокий чек |
+| Term | Definition |
+|------|------------|
+| **Smoke Test** | A landing page describing the product without the product existing — tests demand |
+| **Wizard of Oz** | Automation simulated by hand — tests the value without writing code |
+| **Concierge MVP** | You walk through the "job" personally with the customer — for B2B and high tickets |
 
-## Unit-экономика
+## Unit economics
 
-| Термин | Определение |
-|--------|-------------|
-| **CAC** | Стоимость привлечения одного нового клиента |
-| **CPL** (Cost Per Lead) | Стоимость привлечения одного лида = бюджет канала / количество лидов |
-| **LTV** | Суммарная выручка с одного клиента за период. Расчёт: `LTV = GM × (чек_new + Σ(чек_return × Retention_м^t))` для когорты, либо `LTV = ARPU × GM / Churn_м` для подписок |
-| **ARPU** | Средний доход с пользователя за период (обычно мес. или год) |
-| **GMV** | Валовый объём продаж через платформу. Для маркетплейсов: Выручка = GMV × Take rate |
-| **K-factor** | Коэффициент вирального роста: сколько новых пользователей приводит один существующий. K ≥ 1 → экспоненциальный рост |
-| **Churn rate** | Процент клиентов, отказавшихся за месяц |
-| **Retention (месячный)** | Доля клиентов, оставшихся за один месяц. `Retention_м = 1 − Churn`. Используется в формуле LTV |
-| **Retention N-го месяца (когортный)** | Доля клиентов из когорты месяца M1, остающихся активными к началу N-го месяца. `Retention_N = Retention_м^(N−1)` при стабильном churn. Скил использует индексацию M1 = первый полный месяц после регистрации — в некоторых отраслевых бенчмарках индексация с M0, при сравнении уточняй у источника |
-| **Runway** | `Runway = остаток / ежемесячный burn rate` (мес.) |
-| **Burn rate** | Ежемесячные расходы за вычетом операционных доходов |
+| Term | Definition |
+|------|------------|
+| **CAC** | The cost of acquiring one new customer |
+| **CPL** (Cost Per Lead) | The cost of one lead = channel budget / number of leads |
+| **LTV** | Total revenue from one customer over a period. Calculated as `LTV = GM × (ticket_new + Σ(ticket_return × Retention_m^t))` for a cohort, or `LTV = ARPU × GM / Churn_m` for subscriptions |
+| **ARPU** | Average revenue per user over a period (usually a month or a year) |
+| **GMV** | Gross merchandise value transacted through the platform. For marketplaces: Revenue = GMV × take rate |
+| **K-factor** | The viral growth coefficient: how many new users one existing user brings. K ≥ 1 → exponential growth |
+| **Churn rate** | The share of customers lost over a month |
+| **Retention (monthly)** | The share of customers who stay over one month. `Retention_m = 1 − Churn`. Used in the LTV formula |
+| **Month-N retention (cohort)** | The share of the month-M1 cohort still active at the start of month N. `Retention_N = Retention_m^(N−1)` when churn is stable. This skill indexes M1 as the first full month after signup — some industry benchmarks index from M0, so check with the source when comparing |
+| **Runway** | `Runway = cash remaining / monthly burn rate` (months) |
+| **Burn rate** | Monthly spend net of operating income |
