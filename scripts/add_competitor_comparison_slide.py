@@ -26,22 +26,21 @@ except ImportError:
     sys.exit(1)
 
 
-# NOTE: the strings below are deliberately left in Russian. They are not prose —
-# they must match assets/presentation-template.pptx, whose 34 slides are still in
-# Russian. MARKER_TEXT is what detects the slide already present as slide 8 of the
-# template; translating it would break the guard and insert a duplicate slide.
-# Translate these together with the .pptx template, not before.
-SLIDE_TITLE = "Сравнение конкурентов: финансы и продукт"
-MARKER_TEXT = "Сравнение конкурентов"  # used to check whether the slide already exists
+# NOTE: these strings must match assets/presentation-template.pptx. MARKER_TEXT is
+# what detects the slide already present as slide 8 of the template — change it
+# without changing the template and the guard stops firing, so the script inserts
+# a duplicate slide.
+SLIDE_TITLE = "Competitor comparison: financials and product"
+MARKER_TEXT = "Competitor comparison"  # used to check whether the slide already exists
 
 HEADERS = [
-    "Конкурент",
-    "Рынок / гео",
-    "Цена / подписка",
-    "Клиенты (оценка)",
-    "Выручка (оценка)",
-    "Ключевые фичи",
-    "Слабость",
+    "Competitor",
+    "Market / geo",
+    "Price / subscription",
+    "Customers (est.)",
+    "Revenue (est.)",
+    "Key features",
+    "Weakness",
 ]
 
 
@@ -103,8 +102,8 @@ def add_competitor_comparison_slide(pptx_path: str) -> bool:
     sp = subtitle_tf.paragraphs[0]
     srun = sp.add_run()
     srun.text = (
-        "Финансовые и продуктовые параметры основных игроков. "
-        "Цифры — оценка по открытым источникам, указывай уровень достоверности."
+        "Financial and product parameters of the main players. "
+        "The numbers are estimates from public sources - state the confidence level."
     )
     srun.font.name = "Arial"
     srun.font.size = Pt(11)
@@ -149,7 +148,7 @@ def add_competitor_comparison_slide(pptx_path: str) -> bool:
     for row_idx in range(1, rows_count):
         for col_idx in range(cols_count):
             cell = table.cell(row_idx, col_idx)
-            placeholder = f"[Конкурент {row_idx}]" if col_idx == 0 else "[...]"
+            placeholder = f"[Competitor {row_idx}]" if col_idx == 0 else "[...]"
             cell.text = placeholder
             para = cell.text_frame.paragraphs[0]
             para.alignment = PP_ALIGN.LEFT if col_idx in (0, 5) else PP_ALIGN.CENTER
@@ -165,7 +164,7 @@ def add_competitor_comparison_slide(pptx_path: str) -> bool:
     src_tf = src_box.text_frame
     src_p = src_tf.paragraphs[0]
     src_run = src_p.add_run()
-    src_run.text = "Источники: G2, Crunchbase, SimilarWeb, отчёты компаний (задача 3, 4)"
+    src_run.text = "Sources: G2, Crunchbase, SimilarWeb, company reports (tasks 3, 4)"
     src_run.font.name = "Arial"
     src_run.font.size = Pt(8)
     src_run.font.italic = True

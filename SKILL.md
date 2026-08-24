@@ -138,7 +138,7 @@ The script finds the formulas in column C (month 1) on the P&L and Cash Flow she
 
 ### Rule 5 — Clear the placeholder segments in the financial-plan template
 
-The `financial-plan-template.xlsx` template ships with neutral placeholder segments, labelled `Сегмент 1` through `Сегмент 4` in the workbook. The formulas on the Model sheet reference the segment structure, not the labels, so renaming a segment does not break them.
+The `financial-plan-template.xlsx` template ships with neutral placeholder segments, labelled `Segment 1` through `Segment 4` in the workbook. The formulas on the Model sheet reference the segment structure, not the labels, so renaming a segment does not break them.
 
 **What to do:** replace "Segment 1–4" with the real names of your segments (taken from the Lean Canvas / BMC). If you have fewer than 4 segments, either leave the extras unused or zero out their values.
 

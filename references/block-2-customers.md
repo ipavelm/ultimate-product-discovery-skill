@@ -94,7 +94,7 @@ Identify the **aha moment** and the **pain peak**.
 
 **Template:** use `$SKILL_DIR/assets/interview-guide-template.docx` as the base. The template carries 8 ready-made sections (how to use the guide, consent to recording, 3 per-segment guides, insight table, interview red flags, market cheat sheet).
 
-It has **11** placeholders — fill every one of them, or raw `{{...}}` ships in the delivered guide:
+It has **12** placeholders — fill every one of them, or raw `{{...}}` ships in the delivered guide:
 
 | Placeholder | What goes in |
 |-------------|--------------|
@@ -107,6 +107,7 @@ It has **11** placeholders — fill every one of them, or raw `{{...}}` ships in
 | `{{AUDIENCE}}` | Who the recruiting message is addressed to |
 | `{{NAME}}` | The respondent's name in the recruiting message |
 | `{{PAIN_POINT}}` | The pain named in the recruiting message |
+| `{{SEGMENT_CONTEXT}}` | The segment's context, used in the warm-up question |
 
 Verify none are left: `python3 -c "import re; from docx import Document; d=Document('interview-guide.docx'); print(sorted(set(re.findall(r'{{[A-Z_0-9]+}}', chr(10).join(p.text for p in d.paragraphs)))))"`
 

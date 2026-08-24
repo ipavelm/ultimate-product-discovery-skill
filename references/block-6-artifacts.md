@@ -205,7 +205,7 @@ for row in range(1, ws.max_row + 1):
 
 #### Step 2.6 — CRITICAL: clear the example data out of the template
 
-The **Assumptions** and **Model** sheets in `financial-plan-template.xlsx` ship with neutral placeholder segments — "Сегмент 1" through "Сегмент 4" — plus a worked example on the analysis sheets (an invoicing SaaS for small business). The Model sheet's formulas reference the segment structure, not the labels.
+The **Assumptions** and **Model** sheets in `financial-plan-template.xlsx` ship with neutral placeholder segments — "Segment 1" through "Segment 4" — plus a worked example on the analysis sheets (an invoicing SaaS for small business). The Model sheet's formulas reference the segment structure, not the labels.
 
 **If that data is not replaced**, Model keeps calculating the placeholder segments while the assumptions block you filled in above it is ignored by the formulas. Summary then shows a mixed picture.
 
