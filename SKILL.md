@@ -1,489 +1,489 @@
 ---
 name: product-discovery
-description: "Product Discovery по методологии из 18 задач — от анализа рынка до финплана для инвестора. Используй когда человек хочет провести Product Discovery, верифицировать стартап, оценить рыночную гипотезу, подготовиться к инвест-раунду, или упоминает смежные темы: валидация идеи, оценка ниши, разбор конкурентов, product-market fit, подготовка питча, unit-экономика стартапа, географическая экспансия в новую страну, go-to-market для рынков SEA / Asia / MENA. Часто люди не называют это PD явно — говорят 'помоги понять есть ли рынок', 'оцени идею', 'нужна презентация для ангела', 'выходим в Таиланд/Сингапур/UAE, как оценить рынок?'. Используй скил и в этих случаях. Три режима: Light (~45 мин, idea-стадия), Full (~2–3 часа, MVP с клиентами), Geographic Expansion (~2 часа, продукт в новой гео). Результат — 3–4 артефакта в /mnt/user-data/outputs/: one-pager.pptx, financial-plan.xlsx, presentation.pptx, опционально interview-guide.docx."
+description: "Product Discovery through an 18-task methodology in 6 blocks — from market analysis to an investor-ready financial plan. Use when someone wants to run Product Discovery, validate a startup, assess a market hypothesis, prepare for an investment round, or raises an adjacent topic — idea validation, niche sizing, competitor teardown, product-market fit, pitch preparation, startup unit economics, geographic expansion into a new country, go-to-market for SEA / Asia / MENA. People rarely name PD explicitly; they say 'is there a market for this', 'assess my idea', 'I need a deck for an angel', 'we are entering Thailand/Singapore/UAE, how do we size it'. Use the skill in those cases too. Three modes: Light (~45 min, idea stage), Full (~2-3 h, MVP with customers), Geographic Expansion (~2 h, product entering a new geography). Produces 3-4 artifacts in /mnt/user-data/outputs/: one-pager.pptx, financial-plan.xlsx, presentation.pptx, optionally interview-guide.docx."
 metadata:
   version: "3.8"
 ---
 
 # Product Discovery
 
-Скил проводит структурное исследование рыночной гипотезы стартапа. Объединяет методологии: Jobs-to-be-Done (Ulwick/Christensen), Opportunity Solution Tree (Teresa Torres), Customer Development (Steve Blank), The Mom Test (Rob Fitzpatrick), Lean Canvas (Ash Maurya), PESTEL, SWOT, Business Model Canvas.
+This skill runs a structured investigation of a startup's market hypothesis. It combines several methodologies: Jobs-to-be-Done (Ulwick/Christensen), Opportunity Solution Tree (Teresa Torres), Customer Development (Steve Blank), The Mom Test (Rob Fitzpatrick), Lean Canvas (Ash Maurya), PESTEL, SWOT and the Business Model Canvas.
 
-Результат — четыре артефакта в `/mnt/user-data/outputs/`:
-- `one-pager-[slug].pptx` — краткая выжимка для CEO / инвестора
-- `financial-plan-[slug].xlsx` — финансовая модель на основе главного сценария
-- `presentation-[slug].pptx` — презентация этапа Verification
-- `interview-guide-[slug].docx` — гайд для живых интервью (только в Full-режиме, из задачи 9)
+The output is four artifacts in `/mnt/user-data/outputs/`:
+- `one-pager-[slug].pptx` — a short summary for a CEO or investor
+- `financial-plan-[slug].xlsx` — a financial model built on the main scenario
+- `presentation-[slug].pptx` — Verification-stage deck
+- `interview-guide-[slug].docx` — guide for live interviews (Full mode only, from task 9)
 
-## Как устроен скил
+## How the skill is organised
 
-Методология разбита на 18 задач в 6 блоках. Детальные инструкции по блокам вынесены в `references/` — читай соответствующий файл перед стартом блока, чтобы не держать все 1500 строк в контексте сразу.
+The methodology is split into 18 tasks across 6 blocks. Detailed per-block instructions live in `references/` — read the matching file before starting a block, so you never hold all 1500 lines in context at once.
 
-| Блок | Задачи | Файл | Что получится |
-|------|--------|------|---------------|
-| I. Анализ рынка | 1–6 | [references/block-1-market.md](references/block-1-market.md) | Карточка рынка, тренды, feature matrix, TAM/SAM/SOM, PESTEL |
-| II. Потребители | 7–9 | [references/block-2-customers.md](references/block-2-customers.md) | JTBD, Job Map, OS, CJM, таблица инсайтов, интервью-гайд |
-| III. Стратегия | 10–14 | [references/block-3-strategy.md](references/block-3-strategy.md) | Lean Canvas / BMC + PAC, SWOT, OST, скоринг сценариев, RICE |
-| IV. Валидация | 15–17 | [references/block-4-validation.md](references/block-4-validation.md) | Пул гипотез, план rapid testing, PMF-индикаторы |
-| V. Главный сценарий | 18a | [references/block-5-main-scenario.md](references/block-5-main-scenario.md) | Параметры для финплана |
-| VI. Артефакты | 18b–d | [references/block-6-artifacts.md](references/block-6-artifacts.md) | One-pager, финплан, презентация |
+| Block | Tasks | File | What you get |
+|-------|-------|------|--------------|
+| I. Market analysis | 1–6 | [references/block-1-market.md](references/block-1-market.md) | Market card, trends, feature matrix, TAM/SAM/SOM, PESTEL |
+| II. Customers | 7–9 | [references/block-2-customers.md](references/block-2-customers.md) | JTBD, Job Map, OS, CJM, insight table, interview guide |
+| III. Strategy | 10–14 | [references/block-3-strategy.md](references/block-3-strategy.md) | Lean Canvas / BMC + PAC, SWOT, OST, scenario scoring, RICE |
+| IV. Validation | 15–17 | [references/block-4-validation.md](references/block-4-validation.md) | Hypothesis pool, rapid testing plan, PMF indicators |
+| V. Main scenario | 18a | [references/block-5-main-scenario.md](references/block-5-main-scenario.md) | Parameters for the financial plan |
+| VI. Artifacts | 18b–d | [references/block-6-artifacts.md](references/block-6-artifacts.md) | One-pager, financial plan, presentation |
 
-Дополнительные материалы:
-- [references/glossary.md](references/glossary.md) — термины PD. Прочитай перед первой задачей или точечно при встрече незнакомого термина
-- [references/examples.md](references/examples.md) — сквозные примеры заполнения BMC, Lean Canvas, PAC, OST, Job Map. Читай перед заполнением холстов, чтобы сохранить уровень детализации
-- [references/customer-development.md](references/customer-development.md) — альтернативный путь для нового рынка (читай, если в задаче 1 тип рынка классифицирован как «Новый»)
-- [references/strategic-pivot.md](references/strategic-pivot.md) — альтернативный путь для действующего бизнеса, рассматривающего стратегический pivot (Service → Product, новая гео, новый сегмент). Читай, если стадия = «есть выручка», бизнес работает ≥ 1 года, и вопрос не «есть ли рынок», а «стоит ли менять курс»
+Supporting material:
+- [references/glossary.md](references/glossary.md) — Product Discovery terms. Read it before the first task, or look up individual terms as you hit them
+- [references/examples.md](references/examples.md) — worked examples of a filled-in BMC, Lean Canvas, PAC, OST and Job Map. Read before filling in any canvas, to keep the level of detail consistent
+- [references/customer-development.md](references/customer-development.md) — alternative path for a new market (read it if task 1 classifies the market type as "New")
+- [references/strategic-pivot.md](references/strategic-pivot.md) — alternative path for an operating business considering a strategic pivot (Service → Product, new geography, new segment). Read it when the stage is "has revenue", the business has been running for ≥ 1 year, and the question is not "is there a market" but "should we change course"
 
-Скрипты в `scripts/` для повторяющихся технических операций:
-- `preflight_check.sh` — проверка доступности инструментов перед стартом PD
-- `init_kb.py` — создание Knowledge Base со стандартным шаблоном + `/home/claude/.pd_env` с `PD_MODE`
-- `delete_light_slides.py` — удаление пустых слайдов в Light-режиме (из 34 → 21)
-- `reorder_summary_first.py` — перемещение листа Summary первым в финплане, если после openpyxl-операций он сместился
-- `add_competitor_comparison_slide.py` — вставка слайда «Сравнение конкурентов» в презентацию (применяется к шаблону один раз; если шаблон уже обновлён — пропускает)
-- `finalize_pptx.sh` — финальный шаг презентации: pack.py → LibreOffice round-trip → верификация через python-pptx (Правило 3)
-- `finalize_docx.sh` — финальный шаг интервью-гайда: LibreOffice round-trip → верификация через python-docx (Правило 6). Обязателен для Word-совместимости
-- `roll_formulas.py` — раскатывает формулы мес. 1 → мес. 2–12 в P&L и Cash Flow финплана (Правило 4)
+Scripts in `scripts/` cover the repetitive technical steps:
+- `preflight_check.sh` — checks that the required tooling is available before PD starts
+- `init_kb.py` — creates the Knowledge Base from the standard template plus `/home/claude/.pd_env` holding `PD_MODE`
+- `delete_light_slides.py` — removes the empty slides in Light mode (34 → 21)
+- `reorder_summary_first.py` — moves the Summary sheet back to first position in the financial plan if openpyxl operations displaced it
+- `add_competitor_comparison_slide.py` — inserts the "Competitor comparison" slide into the deck (applied to the template once; skips if the template already has it)
+- `finalize_pptx.sh` — final step for the deck: pack.py → LibreOffice round-trip → verification through python-pptx (Rule 3)
+- `finalize_docx.sh` — final step for the interview guide: LibreOffice round-trip → verification through python-docx (Rule 6). Required for Word compatibility
+- `roll_formulas.py` — expands month-1 formulas into months 2–12 in the P&L and Cash Flow sheets of the financial plan (Rule 4)
 
-## Критические правила безопасности
+## Critical safety rules
 
-Эти правила защищают артефакты от типовых ошибок, обнаруженных в продакшене. Нарушение любого — непригодный для инвестора результат.
+These rules protect the artifacts from failure modes observed in production. Break any one of them and the result is unusable in front of an investor.
 
-### Правило 1 — Зафиксируй режим PD_MODE перед запуском скриптов
+### Rule 1 — Pin PD_MODE before running any script
 
-В Шаге 0 после выбора режима установи переменную окружения:
+In Step 0, once the mode is chosen, set the environment variable:
 
 ```bash
-export PD_MODE=light   # или full
+export PD_MODE=light   # or full
 ```
 
-Это нужно, чтобы скрипты `scripts/*.py` могли отказаться работать в неверном режиме.
-Таблица соответствия:
+This lets the scripts in `scripts/*.py` refuse to run in the wrong mode.
+Mapping table:
 
-| Скрипт | Запускать в режиме | НИКОГДА не запускать в |
-|--------|--------------------|--------------------------|
-| `delete_light_slides.py` | Light | Full / Geographic Expansion — удалит 13 нужных слайдов (тренды, PESTEL, CJM, альтернативный сценарий, RICE, PMF) |
+| Script | Run in mode | NEVER run in |
+|--------|-------------|--------------|
+| `delete_light_slides.py` | Light | Full / Geographic Expansion — it will delete 13 slides you need (trends, PESTEL, CJM, alternative scenario, RICE, PMF) |
 | `add_competitor_comparison_slide.py` | Light / Full / Geographic Expansion | — |
 | `reorder_summary_first.py` | Light / Full / Geographic Expansion | — |
 | `roll_formulas.py` | Light / Full / Geographic Expansion | — |
 
-Перед каждым `python3 scripts/X.py` проговаривай: «Режим проекта: [light/full] → этот скрипт [допустим/недопустим]».
+Before every `python3 scripts/X.py`, state it out loud: "Project mode: [light/full] → this script is [allowed/not allowed]".
 
-### Правило 2 — НИКОГДА не используй `pack.py --validate false`
+### Rule 2 — NEVER use `pack.py --validate false`
 
-Флаг `--validate false` отключает проверки целостности OOXML. Файл пройдёт `pack.py` без ошибок, но **PowerPoint откажется его открывать**. Типичная причина — дублированные ссылки на notesSlides после копирования слайдов.
+The `--validate false` flag turns off OOXML integrity checks. The file will pass `pack.py` without complaint, and then **PowerPoint will refuse to open it**. The usual cause is duplicated notesSlides references left behind after copying slides.
 
-Если `pack.py` падает с ошибкой валидации — читай сообщение и устраняй корневую причину. Типичные ошибки и решения: [references/block-6-artifacts.md](references/block-6-artifacts.md) раздел «Troubleshooting pack.py».
+If `pack.py` fails validation, read the message and fix the root cause. Common errors and their fixes: [references/block-6-artifacts.md](references/block-6-artifacts.md), section "Troubleshooting pack.py".
 
-### Правило 3 — PowerPoint round-trip как финальный шаг (STOP-GATE)
+### Rule 3 — PowerPoint round-trip as the final step (STOP-GATE)
 
-**Когда срабатывает:** перед любым `cp *.pptx /mnt/user-data/outputs/`.
+**Trigger:** before any `cp *.pptx /mnt/user-data/outputs/`.
 
-**Что делать:** ВМЕСТО `cp` запусти `finalize_pptx.sh`. Скрипт сам копирует файл в outputs после round-trip:
+**What to do:** run `finalize_pptx.sh` INSTEAD of `cp`. The script copies the file into outputs itself, after the round-trip:
 
 ```bash
 bash scripts/finalize_pptx.sh /home/claude/presentation.pptx /mnt/user-data/outputs/presentation-[slug].pptx
 ```
 
-Этот скрипт делает за один вызов: валидную упаковку → LibreOffice round-trip через Impress Office Open XML filter → верификацию через python-pptx.
+In one call the script does: valid packaging → LibreOffice round-trip through the Impress Office Open XML filter → verification through python-pptx.
 
-**Failure mode без этого шага:** презентация открывается в LibreOffice и Google Slides, но PowerPoint отказывается её открывать из-за особенностей OOXML-манифестов (дублированные notesSlides-ссылки, некорректные relationships). Для инвестора это критично.
+**Failure mode without this step:** the deck opens in LibreOffice and Google Slides, but PowerPoint refuses it because of quirks in the OOXML manifests (duplicated notesSlides references, malformed relationships). In front of an investor that is fatal.
 
-**Как понять, что правило соблюдено:** если ты собираешься скопировать .pptx в outputs через `cp` или `present_files` без предварительного `finalize_pptx.sh` — СТОП. Вернись к скрипту.
+**How to tell the rule was followed:** if you are about to copy a .pptx into outputs with `cp` or `present_files` without running `finalize_pptx.sh` first — STOP. Go back to the script.
 
-Ручной round-trip через `soffice --convert-to pptx` тоже работает в базовом случае, но `finalize_pptx.sh` дополнительно прогоняет python-pptx верификацию и ловит 4 класса ошибок (неправильные slide-references, sparse shapes, сломанные relationships, dangling notesSlides) — эти проверки не происходят при ручном soffice-вызове.
+A manual round-trip through `soffice --convert-to pptx` also works in the simple case, but `finalize_pptx.sh` additionally runs python-pptx verification and catches 4 classes of error (wrong slide references, sparse shapes, broken relationships, dangling notesSlides) — none of which a bare soffice call checks.
 
-### Правило 4 — Раскатай формулы финплана на мес. 2–12 (STOP-GATE)
+### Rule 4 — Expand the financial-plan formulas into months 2–12 (STOP-GATE)
 
-**Когда срабатывает:** сразу после того, как заполнил лист «Допущения» финплана значениями проекта. До того, как заполнять P&L или Cash Flow.
+**Trigger:** immediately after you fill the "Assumptions" sheet with the project's values. Before filling in P&L or Cash Flow.
 
-**Что делать:**
+**What to do:**
 
 ```bash
 python3 scripts/roll_formulas.py /home/claude/financial-plan.xlsx
 ```
 
-Скрипт находит формулы в колонке C (мес. 1) на листах P&L и Cash Flow и раскатывает их в D–N (мес. 2–12) со сдвигом ссылок. Особые случаи (план роста клиентов, накопительные итоги) описаны в [references/block-6-artifacts.md](references/block-6-artifacts.md) Шаг 2.5.
+The script finds the formulas in column C (month 1) on the P&L and Cash Flow sheets and expands them into D–N (months 2–12), shifting the references. Special cases (customer growth plan, cumulative totals) are described in [references/block-6-artifacts.md](references/block-6-artifacts.md), Step 2.5.
 
-**Failure mode без этого шага:** финплан покажет выручку только за 1 месяц — инвестор откроет файл, увидит `GMV = 147K руб` в одной ячейке и пустые колонки D–N. Вывод: «модель не доделана». Доверие потеряно.
+**Failure mode without this step:** the plan shows revenue for one month only — the investor opens the file, sees `GMV = 147K RUB` in a single cell and empty columns D–N. Conclusion: "the model is unfinished". Trust is gone.
 
-**Как понять, что правило соблюдено:** после `roll_formulas.py` открой P&L и проверь — колонки D–N (мес. 2–12) содержат формулы, значения после `recalc.py` растут от мес. 1 к мес. 12. Если ручное раскатывание через `shift_formula` в собственном скрипте — ок технически, но теряешь защиту скрипта от типовых ошибок (например, некорректный сдвиг $-зафиксированных ссылок).
+**How to tell the rule was followed:** after `roll_formulas.py`, open the P&L and check that columns D–N (months 2–12) contain formulas and that values grow from month 1 to month 12 once `recalc.py` has run. Expanding by hand with your own `shift_formula` script is technically fine, but you lose the script's protection against the usual mistakes (for example, shifting `$`-anchored references incorrectly).
 
-### Правило 5 — Очисти сегменты-плейсхолдеры в шаблоне финплана
+### Rule 5 — Clear the placeholder segments in the financial-plan template
 
-Начиная с v3.7 шаблон `financial-plan-template.xlsx` содержит нейтральные сегменты-плейсхолдеры: «Сегмент 1», «Сегмент 2», «Сегмент 3», «Сегмент 4» (ранее были одежные «Блогеры», «Локальные бренды» и т.п.). Формулы «Модели» ссылаются на структуру сегментов.
+Since v3.7 the `financial-plan-template.xlsx` template ships with neutral placeholder segments: "Segment 1", "Segment 2", "Segment 3", "Segment 4" (previously apparel-specific ones such as "Bloggers" and "Local brands"). The formulas on the "Model" sheet reference the segment structure.
 
-**Что делать:** замени «Сегмент 1–4» на реальные имена твоих сегментов (из Lean Canvas / BMC). Если сегментов меньше 4 — оставь лишние как неиспользуемые, либо обнули их значения.
+**What to do:** replace "Segment 1–4" with the real names of your segments (taken from the Lean Canvas / BMC). If you have fewer than 4 segments, either leave the extras unused or zero out their values.
 
-**Рекомендуемый подход — сделать P&L автономным от «Модели»:** задать план роста клиентов и GMV напрямую в P&L, не ссылаясь на `='Модель'!...`. Это называется «Вариант A» в [references/block-6-artifacts.md](references/block-6-artifacts.md) Шаг 2.6. Плюс: если ошибся в «Модели» — Summary всё равно корректный.
+**Recommended approach — make the P&L independent of the "Model" sheet:** set the customer growth plan and GMV directly in the P&L instead of referencing `='Model'!...`. This is called "Option A" in [references/block-6-artifacts.md](references/block-6-artifacts.md), Step 2.6. The upside: a mistake on the "Model" sheet no longer corrupts the Summary.
 
-**Failure mode:** если оставить "Сегмент 1–4" как есть без замены на реальные, но при этом подключить P&L через `='Модель'!...` — Summary покажет выручку по несуществующим сегментам. Инвестор не поймёт, о чём модель.
+**Failure mode:** leaving "Segment 1–4" as-is without substituting real names, while still wiring the P&L through `='Model'!...` — the Summary then reports revenue for segments that do not exist, and the investor cannot tell what the model is about.
 
-### Правило 6 — Word round-trip для docx-артефактов (STOP-GATE)
+### Rule 6 — Word round-trip for docx artifacts (STOP-GATE)
 
-**Когда срабатывает:** перед любым `cp *.docx /mnt/user-data/outputs/`.
+**Trigger:** before any `cp *.docx /mnt/user-data/outputs/`.
 
-**Что делать:** вместо `cp` запусти `finalize_docx.sh`:
+**What to do:** run `finalize_docx.sh` instead of `cp`:
 
 ```bash
 bash scripts/finalize_docx.sh /home/claude/interview-guide.docx /mnt/user-data/outputs/interview-guide-[slug].docx
 ```
 
-Скрипт делает LibreOffice round-trip через Microsoft Word 2007 XML filter + верификацию через python-docx. Гарантирует, что файл откроется в Word.
+The script performs a LibreOffice round-trip through the Microsoft Word 2007 XML filter plus verification through python-docx. It guarantees the file opens in Word.
 
-**Failure mode без этого шага:** библиотеки типа `docx` npm package создают технически валидные .docx файлы, которые LibreOffice, python-docx и Google Docs открывают без проблем, но Word отказывается открывать из-за битых ссылок на стили (≈30% параграфов с `style: None` при парсинге). Обнаруживается только когда пользователь открывает файл в Word и видит ошибку — слишком поздно.
+**Failure mode without this step:** libraries such as the `docx` npm package produce technically valid .docx files that LibreOffice, python-docx and Google Docs open without complaint, but Word refuses because of broken style references (≈30% of paragraphs parse with `style: None`). You only find out when the user opens the file in Word and hits an error — far too late.
 
-**Рекомендация по инструментам:** лучше использовать `python-docx` вместо `docx` npm package для генерации интервью-гайдов и других docx-артефактов. python-docx создаёт гарантированно валидную структуру для Word. Если npm используется для совместимости с другими частями pipeline — всегда прогоняй через `finalize_docx.sh` в конце.
+**Tooling recommendation:** prefer `python-docx` over the `docx` npm package for interview guides and other docx artifacts. python-docx produces a structure that is reliably valid for Word. If npm is used for compatibility with other parts of the pipeline, always finish with `finalize_docx.sh`.
 
-**Как понять, что правило соблюдено:** вывод `finalize_docx.sh` содержит `all styles resolved`. Если скрипт падает с `🚩 N paragraphs with broken style references` — docx реально поломан, нужно пересоздать через python-docx (извлечь текст из битого файла, вставить в новый doc через `python-docx`).
+**How to tell the rule was followed:** the output of `finalize_docx.sh` contains `all styles resolved`. If the script fails with `🚩 N paragraphs with broken style references`, the docx really is broken and has to be rebuilt through python-docx (extract the text from the broken file and write it into a fresh document with `python-docx`).
 
-## Границы скила
+## Scope of the skill
 
-PD делает: верифицирует рыночную гипотезу, находит целевой сегмент и Job-to-be-Done, формирует финансовую модель на основе допущений, выявляет рисковые гипотезы, создаёт план rapid testing, синтезирует данные из интервью или суррогатов.
+PD does: validate a market hypothesis, find the target segment and its Job-to-be-Done, build a financial model from stated assumptions, surface the risky hypotheses, produce a rapid testing plan, synthesise data from interviews or their surrogates.
 
-PD не делает: не строит продуктовый роадмап, не проводит A/B тесты на живом продукте, не заменяет бухгалтерский учёт, не делает технический due diligence, не проводит юридическую проверку рынка, не заменяет живые интервью (только суррогат через G2/отзовики).
+PD does not: build a product roadmap, run A/B tests on a live product, replace accounting, perform technical due diligence, perform a legal review of the market, or replace live interviews (only a surrogate via G2 and review sites).
 
-Если человек просит что-то из второго списка — объясни, где проходит граница, и предложи подходящую альтернативу.
+If someone asks for something from the second list, explain where the boundary runs and offer a suitable alternative.
 
-## Режимы работы: Light, Full, Geographic Expansion
+## Modes: Light, Full, Geographic Expansion
 
-PD адаптируется под ситуацию. Это не «тарифы» — это разные глубины исследования под разный контекст.
+PD adapts to the situation. These are not pricing tiers — they are different research depths for different contexts.
 
-**Light (~45 минут)** — для idea-стадии, когда ещё нет ни MVP, ни клиентов. Задачи: 1, 3, 5, 7, 10, 11, 12, 14 (адаптированная), 18a, 18b/c/d (адаптированные). Пропускаются: тренды (2), ключевой конкурент (4), PESTEL (6), CJM (8), интервью (9), альтернативные сценарии (13), пул гипотез (15), rapid testing (16), PMF-индикаторы (17).
+**Light (~45 minutes)** — for the idea stage, when there is neither an MVP nor customers. Tasks: 1, 3, 5, 7, 10, 11, 12, 14 (adapted), 18a, 18b/c/d (adapted). Skipped: trends (2), key competitor (4), PESTEL (6), CJM (8), interviews (9), alternative scenarios (13), hypothesis pool (15), rapid testing (16), PMF indicators (17).
 
-**Full (~2–3 часа)** — для MVP со стадии первых клиентов или подготовки к инвест-раунду. Все 18 задач.
+**Full (~2–3 hours)** — for an MVP from the first-customers stage onwards, or when preparing for an investment round. All 18 tasks.
 
-**Geographic Expansion (~2 часа)** — для продукта, который уже работает в одной гео и выходит в новую (другая страна, другой язык, другой регулятор). Все 18 задач, но с модификацией инвест-трекера и критериев:
-- Трекшн из «домашней» гео засчитывается с дисконтом 0.5× (клиенты и LOI из старой гео — **половинная** валидация для новой).
-- В Шаге 0 обязательно уточни у человека: «Продукт уже работает где-то? Сколько платящих клиентов? В каком диапазоне ARR?» → записывай это в KB отдельной секцией «Home-geo baseline».
-- Задача 1 (тип рынка) почти всегда = «Существующий» для целевой гео (потому что переносите известный продукт), но валидация нужна, что конкретный сегмент в новой гео готов покупать.
-- Задача 9 (интервью) — обязательна. Нельзя опираться на интервью из «домашней» гео — культурные и регуляторные различия критичны.
-- Задача 16 (rapid testing) — стартует с тест-маркетинга в новой гео через суррогат (Telegram/LinkedIn native speakers), не со Smoke Test на существующую аудиторию.
-- Красный флаг SAM смягчается, если в Шаге 0 озвучен **multi-geo roadmap** с TAM всей Phase 2 ≥ стандартного SAM-порога. Пример Bittrace Thailand: SAM TH $6.3M < 1 млрд ₽, но SEA-5 Phase 2 даёт $95M — красный флаг становится «жёлтым».
+**Geographic Expansion (~2 hours)** — for a product already running in one geography and entering another (different country, different language, different regulator). All 18 tasks, with the investment tracker and criteria modified:
+- Traction from the "home" geography counts at a 0.5× discount (customers and LOIs from the old geography are **half** validation for the new one).
+- In Step 0 you must ask: "Is the product already live somewhere? How many paying customers? What ARR range?" → record this in the KB under a separate "Home-geo baseline" section.
+- Task 1 (market type) is almost always "Existing" for the target geography (you are carrying over a known product), but you still need to validate that the specific segment in the new geography is ready to buy.
+- Task 9 (interviews) is mandatory. Interviews from the "home" geography cannot be relied on — cultural and regulatory differences are decisive.
+- Task 16 (rapid testing) starts with test marketing in the new geography through a surrogate (Telegram/LinkedIn native speakers), not with a Smoke Test on the existing audience.
+- The SAM red flag is softened when Step 0 states a **multi-geo roadmap** whose whole Phase 2 TAM is ≥ the standard SAM threshold. Example, Bittrace Thailand: SAM TH $6.3M < ₽1bn, but SEA-5 Phase 2 gives $95M — the red flag becomes amber.
 
-**Как выбрать режим:** сигналы для каждого:
-- Light: «быстро посмотреть», «оценить идею», нет MVP
-- Full: «нужна презентация для ангела», «есть клиенты, готовлю seed», MVP работает
-- Geographic Expansion: «продукт работает в РФ, хотим выйти в TH/UAE/SEA», «запускаем в новой стране», уже есть traction где-то
+**How to pick the mode:** signals for each:
+- Light: "just a quick look", "assess the idea", no MVP
+- Full: "I need a deck for an angel", "we have customers, preparing a seed", the MVP is live
+- Geographic Expansion: "the product works in Russia, we want to enter TH/UAE/SEA", "we are launching in a new country", traction already exists somewhere
 
-Если пользователь описывает «идею продукта, который мы хотим сделать для нового рынка» — это Full, не Geographic Expansion. GE применяется только когда продукт уже работает.
+If the user describes "an idea for a product we want to build for a new market", that is Full, not Geographic Expansion. GE applies only when the product is already running.
 
-## Красные флаги: когда прерывать PD
+## Red flags: when to interrupt PD
 
-PD может обнаружить сигналы, что продолжать нет смысла без перестройки гипотезы. Смысл их в том, что дальнейшая работа по исходной гипотезе даст артефакты, которые не отражают реальность — инвестору они покажутся неправдоподобными, команде дадут ложное чувство уверенности.
+PD can surface signals that continuing makes no sense without rebuilding the hypothesis. The point of these signals is that further work on the original hypothesis produces artifacts that do not reflect reality — an investor will find them implausible, and the team will get false confidence.
 
-| Сигнал | Порог | Почему важно | Действие |
-|--------|-------|--------------|----------|
-| SAM мал (Product/Service/Marketplace) | < 1 млрд ₽ | Даже 10% доли → 100 млн выручки — недостаточно для венчурной модели роста | Расширить сегмент или регион |
-| SAM мал (Hardware) | < 500 млн ₽ | У hardware ниши обычно уже, но и чек выше — 500 млн приемлемый порог | Расширить сегмент или регион |
-| OS низкий у всех outcomes | < 8 у всех | Нет ни одной болевой точки, за решение которой готовы платить — рынка нет | Пересмотреть JTBD и сегменты |
-| Интервью не подтверждают боль | < 5 из 10 | Боль воображаемая или сегмент не тот — продукт будет решать несуществующую проблему | Пересмотреть гипотезу потребности |
-| LTV/CAC не сходится даже в оптимисте | < 1.5x | Экономика unit-модели принципиально не складывается | Pivot по монетизации |
-| Нет дифференциации от 4 типов конкурентов | Все 4 закрыты | Продукт — копия существующих, без устойчивого преимущества | Пересмотреть Value Proposition |
-| Модель требует лицензии / сертификации, которой нет | PESTEL Legal: угроза c «Высокой» вероятностью | Инвестор проверяет regulatory compliance первым делом. Без лицензии/сертификации сделка не состоится ни на каком раунде — это блокер, а не риск | Перестроить модель (B2B вместо B2C с физлицами, лицензирование, партнёрство с лицензированным игроком) |
+| Signal | Threshold | Why it matters | Action |
+|--------|-----------|----------------|--------|
+| SAM too small (Product/Service/Marketplace) | < ₽1bn | Even a 10% share → ₽100M revenue, not enough for a venture growth model | Widen the segment or the region |
+| SAM too small (Hardware) | < ₽500M | Hardware niches are usually narrower but carry a higher ticket — ₽500M is an acceptable threshold | Widen the segment or the region |
+| OS low across all outcomes | < 8 everywhere | There is no pain point anyone will pay to solve — there is no market | Revisit the JTBD and the segments |
+| Interviews do not confirm the pain | < 5 out of 10 | The pain is imagined or the segment is wrong — the product would solve a problem nobody has | Revisit the need hypothesis |
+| LTV/CAC does not work even in the optimistic case | < 1.5x | The unit model fundamentally does not add up | Pivot on monetisation |
+| No differentiation from all 4 competitor types | All 4 covered | The product is a copy of what exists, with no durable advantage | Revisit the Value Proposition |
+| The model requires a licence or certification you do not have | PESTEL Legal: threat with "High" probability | Investors check regulatory compliance first. Without the licence or certification no deal closes at any round — this is a blocker, not a risk | Rebuild the model (B2B instead of B2C with individuals, licensing, partnership with a licensed player) |
 
-**Регуляторный красный флаг подробнее.** Возникает чаще всего в FoodTech, MedTech, FinTech, EdTech, LegalTech — там, где государство исторически активно регулирует. Примеры блокирующих ситуаций: продажа еды от частных поваров без санэпидлицензии кухни (Роспотребнадзор), финансовые услуги без лицензии ЦБ, медицинские советы без статуса медорганизации, образование без лицензии Минпросвещения/Рособрнадзора для дипломов. В задаче 6 (PESTEL) выдели Legal-фактор: если угроза «Лицензирование обязательно» имеет Значимость 3 и Вероятность 4+, и у команды нет лицензии / плана её получения — это автоматически блокирующий флаг, не просто риск. Запиши в главный вывод.
+**More on the regulatory red flag.** It shows up most often in FoodTech, MedTech, FinTech, EdTech and LegalTech — sectors the state has always regulated closely. Examples of blocking situations: selling food cooked by private chefs without a sanitary licence for the kitchen, financial services without a central-bank licence, medical advice without the status of a medical organisation, education issuing diplomas without an education-authority licence. In task 6 (PESTEL), single out the Legal factor: if the threat "licensing is mandatory" scores Significance 3 and Probability 4+, and the team has neither the licence nor a plan to obtain it, that is automatically a blocking flag rather than a risk. Write it into the main conclusion.
 
-При появлении красного флага — прерви работу и сообщи человеку. Продолжать без его решения нельзя: артефакты получатся отражением нежизнеспособной гипотезы.
+When a red flag appears, stop and tell the person. Continuing without their decision is not an option: the artifacts would be a portrait of an unviable hypothesis.
 
-### Pivot vs. Корректировка
+### Pivot vs. adjustment
 
-| Ситуация | Рекомендация |
-|----------|-------------|
-| SAM мал + OS < 8 у всех сегментов | **Pivot:** смени целевой сегмент или проблему |
-| SAM мал, но OS ≥ 10 в одном сегменте | **Корректировка:** сузь фокус на этом сегменте |
-| Интервью не подтверждают боль + OS < 8 | **Pivot:** вернись к Шагу 0, пересмотри проблему |
-| Интервью не подтверждают боль, но OS ≥ 10 | **Корректировка:** замени гипотезу потребности, не продукт |
-| LTV/CAC < 1.5x везде | **Pivot:** смени модель монетизации или целевой сегмент |
-| LTV/CAC < 1.5x только в пессимисте | **Корректировка:** оптимизируй CAC или повысь чек |
-| Нет дифференциации | **Корректировка:** пересмотри Value Proposition, не рынок |
+| Situation | Recommendation |
+|-----------|----------------|
+| SAM too small + OS < 8 across all segments | **Pivot:** change the target segment or the problem |
+| SAM too small, but OS ≥ 10 in one segment | **Adjustment:** narrow the focus to that segment |
+| Interviews do not confirm the pain + OS < 8 | **Pivot:** go back to Step 0 and revisit the problem |
+| Interviews do not confirm the pain, but OS ≥ 10 | **Adjustment:** replace the need hypothesis, not the product |
+| LTV/CAC < 1.5x everywhere | **Pivot:** change the monetisation model or the target segment |
+| LTV/CAC < 1.5x only in the pessimistic case | **Adjustment:** optimise CAC or raise the ticket |
+| No differentiation | **Adjustment:** revisit the Value Proposition, not the market |
 
-## Шаг 0: Сбор исходных данных
+## Step 0: gathering the inputs
 
-Перед стартом PD нужны ответы на 16 вопросов. Используй `ask_user_input_v0` для структурированного сбора — группируй по 3 связанных вопроса в один вызов, чтобы человек отвечал потоком, а не 16 отдельными тапами.
+PD needs answers to 16 questions before it starts. Use `ask_user_input_v0` to collect them in a structured way — group 3 related questions per call, so the person answers in a flow rather than through 16 separate taps.
 
-**Готовые JSON-шаблоны опросов:** [references/step-0-questions.md](references/step-0-questions.md). Там разбивка на 4 вызова `ask_user_input_v0` с готовыми options, плюс список вопросов в свободной форме. Бери оттуда, не пересобирай структуру вопросов с нуля.
+**Ready-made JSON survey templates:** [references/step-0-questions.md](references/step-0-questions.md). It breaks the questions into 4 `ask_user_input_v0` calls with prepared options, plus a free-form list. Take them from there instead of rebuilding the question structure from scratch.
 
-**Обязательные (1–8):** название проекта, описание (что предлагает и какую проблему решает), рынок (страна/регион), сегменты (кто клиент), конкуренты (2–3 названия), бизнес-модель (подписка/комиссия/разовые), B2B или B2C, бюджет на тестирование гипотез (в рублях).
+**Mandatory (1–8):** project name, description (what it offers and what problem it solves), market (country/region), segments (who the customer is), competitors (2–3 names), business model (subscription/commission/one-off), B2B or B2C, budget for testing hypotheses (in roubles).
 
-**Для финплана (9–12):** стадия (idea/MVP/клиенты/выручка), горизонт планирования (12 или 24 мес.), инвестиции (сумма или «нет»), первые клиенты/продажи.
+**For the financial plan (9–12):** stage (idea/MVP/customers/revenue), planning horizon (12 or 24 months), investment (amount or "none"), first customers and sales.
 
-**Для обновления PD (13–14):** данные из CRM/аналитики (если есть — приложит файл), проводился ли PD раньше (если да — приложит прошлый финплан).
+**For updating an earlier PD (13–14):** data from CRM or analytics (if any, they will attach a file), whether PD was run before (if yes, they will attach the previous financial plan).
 
-**Контекстные (15–16):**
-- Тип рынка (если человек знает): существующий / ресегментированный / новый / «определим в задаче 1»
-- Тип бизнеса: Product (SaaS, приложение) / Service (консалтинг, агентство) / Marketplace / Hardware — используется в задачах 10, 18c и инвест-трекере для выбора правильных шаблонов и порогов
+**Contextual (15–16):**
+- Market type (if the person knows): existing / resegmented / new / "we will determine it in task 1"
+- Business type: Product (SaaS, app) / Service (consulting, agency) / Marketplace / Hardware — used in tasks 10 and 18c and in the investment tracker to pick the right templates and thresholds
 
-**Про данные из CRM (вопрос 13):** для расчётов достаточно агрегированных метрик — количество клиентов, средний чек по сегменту, конверсии по этапам, churn по когортам. Имена, email, телефоны реальных клиентов не нужны. Если они есть в файле — человеку стоит их удалить перед отправкой; скил не блокирует обработку файлов с персональными данными, но честно отметит риск.
+**About the CRM data (question 13):** aggregated metrics are enough for the calculations — customer count, average ticket per segment, stage conversions, churn by cohort. Names, emails and phone numbers of real customers are not needed. If the file contains them, the person should strip them before sending; the skill does not block processing files with personal data, but it will say plainly that the risk exists.
 
-После ответов:
+Once the answers are in:
 
-1. **Запусти pre-flight check:** `bash scripts/preflight_check.sh`. Он за 10 секунд проверит `extract-text`, Python-библиотеки (`openpyxl`, `python-pptx`, `python-docx`), доступ к шаблонам в `assets/`. Если что-то недоступно — смотри таблицу fallback ниже.
-2. **Составь план выполнения** — список задач, сроки, порядок.
-3. **Если загружен предыдущий финплан (вопрос 14):** прочитай его через `extract-text` или `openpyxl`, определи, какие блоки устарели (обычно блок I — рынок/конкуренты, задачи 15–16 — гипотезы). Предложи: «Вижу предыдущий PD от [дата]. Обновим только блоки I и IV (~45 мин) или проведём полный PD?»
-4. **Выбери режим** — Light, Full или Geographic Expansion — по ответу пользователя.
-5. **Проверь совместимость горизонта и типа рынка:** если тип рынка «Новый» и горизонт 12 мес., предложи 24 мес. — на новом рынке 6 мес. уходит на Customer Discovery (см. `references/customer-development.md`), выручка первых 6 мес. близка к нулю, 12 мес. не хватит для Runway.
-6. **Инициализируй Knowledge Base:** `python3 scripts/init_kb.py --project "Название" --mode Light|Full|GeoExpansion`. Скрипт также создаст `/home/claude/.pd_env` с экспортом `PD_MODE` — `source /home/claude/.pd_env` перед запуском скриптов из Правила 1.
-7. Подтверди план с человеком и начинай с Задачи 1.
+1. **Run the pre-flight check:** `bash scripts/preflight_check.sh`. In 10 seconds it verifies `extract-text`, the Python libraries (`openpyxl`, `python-pptx`, `python-docx`) and access to the templates in `assets/`. If something is missing, see the fallback table below.
+2. **Write an execution plan** — the list of tasks, timings and order.
+3. **If a previous financial plan was uploaded (question 14):** read it through `extract-text` or `openpyxl`, work out which blocks are stale (usually block I — market and competitors — and tasks 15–16, the hypotheses). Then offer: "I see a previous PD from [date]. Shall we refresh only blocks I and IV (~45 min) or run a full PD?"
+4. **Pick the mode** — Light, Full or Geographic Expansion — from the person's answer.
+5. **Check that the horizon matches the market type:** if the market type is "New" and the horizon is 12 months, propose 24 — on a new market the first 6 months go to Customer Discovery (see `references/customer-development.md`), revenue in the first 6 months is near zero, and 12 months is not enough runway.
+6. **Initialise the Knowledge Base:** `python3 scripts/init_kb.py --project "Name" --mode Light|Full|GeoExpansion`. The script also writes `/home/claude/.pd_env` exporting `PD_MODE` — `source /home/claude/.pd_env` before running the scripts covered by Rule 1.
+7. Confirm the plan with the person and start with Task 1.
 
-### Fallback при провале pre-flight
+### Fallback when pre-flight fails
 
-| Что отсутствует | Последствия | Что делать |
+| What is missing | Consequence | What to do |
 |-----------------|-------------|------------|
-| `extract-text` | Нельзя быстро читать текст из .pptx/.xlsx | Использовать `openpyxl` / `python-pptx` напрямую. Для 18c Шаг 1: `openpyxl.load_workbook()` + `ws.iter_rows()`. Для 18b: цикл по `slide.shapes` |
-| `openpyxl` | Задача 18c (финплан) невозможна | Остановить PD, сообщить человеку: «Без openpyxl финплан не создать. Могу сделать one-pager и презентацию — финплан опишу в markdown как inputs для ручного заполнения» |
-| `python-pptx` | Задачи 18b, 18d невозможны | Вернуть результаты в markdown, человек соберёт презентацию сам |
-| `python-docx` | Задача 9 упрощается | Вывести гайд как markdown в `/mnt/user-data/outputs/` |
-| `assets/` недоступны | Нет шаблонов | PD невозможен как дизайнерский результат. Остановить, уточнить путь к скилу |
+| `extract-text` | No fast way to read text out of .pptx/.xlsx | Use `openpyxl` / `python-pptx` directly. For 18c Step 1: `openpyxl.load_workbook()` + `ws.iter_rows()`. For 18b: loop over `slide.shapes` |
+| `openpyxl` | Task 18c (financial plan) is impossible | Stop PD and tell the person: "Without openpyxl the financial plan cannot be built. I can produce the one-pager and the deck, and describe the plan in markdown as inputs for manual entry" |
+| `python-pptx` | Tasks 18b and 18d are impossible | Return the results as markdown; the person assembles the deck themselves |
+| `python-docx` | Task 9 is simplified | Write the guide out as markdown into `/mnt/user-data/outputs/` |
+| `assets/` unavailable | No templates | PD cannot produce a designed result. Stop and confirm the path to the skill |
 
-## Формат summary после каждого блока
+## Summary format after each block
 
-После завершения блока (I–V) показывай человеку структурированное резюме и жди подтверждения перед переходом к следующему. Это две вещи сразу: даёт человеку точку контроля (можно прервать без потери результатов) и фиксирует прогресс для Knowledge Base.
+Once a block (I–V) is finished, show the person a structured summary and wait for confirmation before moving to the next one. This does two things at once: it gives the person a control point (they can stop without losing results) and it records progress for the Knowledge Base.
 
 ```
-✅ БЛОК [N] ЗАВЕРШЁН — [Название блока]
+✅ BLOCK [N] COMPLETE — [Block name]
 ─────────────────────────────────────────
-📊 Ключевые находки:
-  • [Факт 1 с конкретными цифрами]
-  • [Факт 2 с конкретными цифрами]
-  • [Факт 3 с конкретными цифрами]
+📊 Key findings:
+  • [Fact 1 with concrete numbers]
+  • [Fact 2 with concrete numbers]
+  • [Fact 3 with concrete numbers]
 
-📎 Сгенерированные артефакты:
-  • [Имя файла или «нет артефактов в этом блоке»]
+📎 Artifacts produced:
+  • [File name, or "no artifacts in this block"]
 
-🚩 Красные флаги: [нет / описание если есть]
+🚩 Red flags: [none / description if any]
 
-⚠️ Достоверность данных: [Высокая / Средняя / Низкая]
-  Причина: [источники, на которые опирались]
+⚠️ Data confidence: [High / Medium / Low]
+  Reason: [the sources relied on]
 
-💡 Рекомендация перед следующим блоком:
-  [Конкретное действие или уточнение]
+💡 Recommendation before the next block:
+  [A concrete action or clarification]
 
-▶️ Продолжить → Блок [N+1]: [Название]?  Да / Нет / Скорректировать
+▶️ Continue → Block [N+1]: [Name]?  Yes / No / Adjust
 ─────────────────────────────────────────
 ```
 
-## Knowledge Base и сохранение прогресса
+## Knowledge Base and saving progress
 
-PD может длиться 2–3 часа и прерваться в любом месте. Knowledge Base в `/home/claude/pd-knowledge-base.md` — память скила, она же позволяет возобновить работу после паузы и передать контекст.
+PD can run for 2–3 hours and be interrupted anywhere. The Knowledge Base at `/home/claude/pd-knowledge-base.md` is the skill's memory; it is also what lets work resume after a pause and lets context be handed over.
 
-**Два уровня сохранения:**
-- **После каждой задачи (инкрементально):** короткая запись в «Журнал выполнения» — название задачи, 3–5 ключевых находок, статус `done` / `partial` / `blocked`. Занимает 30 секунд и страхует от потери контекста в середине блока.
-- **После каждого блока (полное):** обновляй раздел блока по шаблону из `init_kb.py`.
+**Two levels of saving:**
+- **After every task (incremental):** a short entry in the "Execution log" — task name, 3–5 key findings, status `done` / `partial` / `blocked`. It takes 30 seconds and insures against losing context mid-block.
+- **After every block (full):** update the block's section using the template from `init_kb.py`.
 
-**Возобновление:**
-Если человек возвращается к прерванному PD («давай продолжим»), прочитай KB и:
-1. Проверь режим в шапке (`mode: Light` или `mode: Full`). Если плейсхолдер не заполнен конкретным значением — KB повреждён, запроси режим у человека.
-2. Проверь `skill-version` — если она старее текущей, предупреди и отметь, что формат может отличаться.
-3. Найди последнюю запись `done`, скажи: «Последний завершённый шаг: [задача N] в режиме [M]. Следующий шаг: [задача N+1]. Продолжаем или нужно пересмотреть?»
-4. После подтверждения — продолжай с N+1 в том же режиме.
+**Resuming:**
+If the person returns to an interrupted PD ("let's continue"), read the KB and:
+1. Check the mode in the header (`mode: Light` or `mode: Full`). If the placeholder was never replaced with a real value, the KB is corrupt — ask the person for the mode.
+2. Check `skill-version` — if it is older than the current one, warn that the format may differ.
+3. Find the last `done` entry and say: "Last completed step: [task N] in [M] mode. Next step: [task N+1]. Continue, or do you want to revisit anything?"
+4. Once confirmed, continue from N+1 in the same mode.
 
-**Смена режима посреди PD:**
-- **Light → Full** — редкий случай, но реалистичный: человек увидел результаты Light и захотел глубже. Добери задачи 2, 4, 6, 8, 9, 13, 15, 16, 17 в порядке блоков. Артефакты пересоздай. Добавь в KB строку «Режим обновлён до Full: [дата]».
-- **Full → Light** — обычно означает, что человек спешит. Закрой PD текущим состоянием, создай артефакты из собранного, в финальной сводке пометь пропущенные задачи.
+**Switching modes mid-PD:**
+- **Light → Full** — rare but realistic: the person saw the Light results and wants more depth. Add tasks 2, 4, 6, 8, 9, 13, 15, 16, 17 in block order. Regenerate the artifacts. Add a line to the KB: "Mode upgraded to Full: [date]".
+- **Full → Light** — usually means the person is in a hurry. Close PD at its current state, build the artifacts from what was collected, and mark the skipped tasks in the final summary.
 
-## Работа с неопределённостью
+## Working with uncertainty
 
-Когда данных мало или рынок новый — несколько приёмов, которые помогают сохранить честность оценок без ухода в «ну, я ничего не знаю».
+When data is thin or the market is new, a few techniques keep the estimates honest without collapsing into "well, I cannot know".
 
-**Метод аналогий** (для нового рынка). Ищи похожий рынок в другой стране или другом временном периоде: нет данных по РФ → бери Бразилию/Польшу/Турцию с поправкой на ВВП и численность; новый технологический рынок → смотри, как развивался похожий 3–5 лет назад в США; новая ниша внутри существующей вертикали → бенчмарки из соседней вертикали (например, FinTech for nurses → FinTech for teachers). Фиксируй аналогию явно: «Используем данные по рынку X в стране Y как прокси, коэффициент Z».
+**Analogy method** (for a new market). Look for a comparable market in another country or another period: no data for Russia → take Brazil, Poland or Turkey and adjust for GDP and population; a new technology market → look at how a similar one developed in the US 3–5 years ago; a new niche inside an existing vertical → benchmarks from the neighbouring vertical (for example, FinTech for nurses → FinTech for teachers). State the analogy explicitly: "We use data for market X in country Y as a proxy, with coefficient Z".
 
-**Индикатор достоверности** (🟢/🟡/🔴) — присваивай каждой ключевой цифре. 🟢 — первичный источник, верифицирован через `web_fetch`. 🟡 — агрегатор (Statista), оценки аналитиков. 🔴 — экспертная оценка без подтверждения. В финплане ячейки с 🔴 помечай жёлтым фоном.
+**Confidence indicator** (🟢/🟡/🔴) — assign one to every key number. 🟢 — primary source, verified through `web_fetch`. 🟡 — an aggregator (Statista) or analyst estimates. 🔴 — an expert guess with no confirmation. In the financial plan, shade 🔴 cells yellow.
 
-**Когда ставить 🔴 на весь блок, а не отдельные цифры:** нет ни одного отраслевого отчёта, нет конкурентов с публичными данными, менее 3 интервью, рынок существует менее 2 лет. В таком случае пиши в KB явно: «Блок N: достоверность 🔴 — данных недостаточно, все цифры требуют проверки после 10+ интервью».
+**When to mark a whole block 🔴 rather than individual numbers:** there is not a single industry report, no competitors with public data, fewer than 3 interviews, or the market is less than 2 years old. In that case write it into the KB explicitly: "Block N: confidence 🔴 — insufficient data, every number needs re-checking after 10+ interviews".
 
-**Диапазоны вместо точных цифр:** «TAM 2–8 млрд ₽ (разброс 4x — данных мало)» лучше, чем «TAM 4.7 млрд ₽» без источника. Инвесторы ценят честность в оценках больше, чем псевдоточность.
+**Ranges instead of exact numbers:** "TAM ₽2–8bn (4x spread — data is thin)" beats "TAM ₽4.7bn" with no source. Investors value honest estimates more than false precision.
 
-**Для нового рынка** — читай `references/customer-development.md`. Там описан протокол Customer Development (Steve Blank) как альтернатива стандартному Smoke Test + Pre-sale, который на новом рынке работает плохо.
+**For a new market**, read `references/customer-development.md`. It describes the Customer Development protocol (Steve Blank) as an alternative to the standard Smoke Test plus pre-sale, which works badly on a new market.
 
-## Бюджет tool calls
+## Tool-call budget
 
-PD не должен уходить в «глубокое исследование» без конца. Ориентируйся на лимиты:
+PD must not drift into endless "deep research". Work to these limits:
 
-| Блок | Лимит `web_search` + `web_fetch` |
-|------|----------------------------------|
-| I. Рынок (задачи 1–6) | До 12 вызовов на блок, 3 на задачу |
-| II. Потребители (7–9) | До 6 вызовов (основной расход — задача 9C, суррогат интервью) |
-| III. Стратегия (10–14) | До 4 вызовов (проверка конкурентов в OST) |
-| IV. Валидация (15–17) | До 3 вызовов (бенчмарки по отрасли) |
-| Всего на полный PD | ~25 вызовов |
+| Block | Limit on `web_search` + `web_fetch` |
+|-------|-------------------------------------|
+| I. Market (tasks 1–6) | Up to 12 calls per block, 3 per task |
+| II. Customers (7–9) | Up to 6 calls (most of it goes to task 9C, the interview surrogate) |
+| III. Strategy (10–14) | Up to 4 calls (checking competitors in the OST) |
+| IV. Validation (15–17) | Up to 3 calls (industry benchmarks) |
+| Total for a full PD | ~25 calls |
 
-Если лимит близок к исчерпанию — суммаризируй собранное в KB, переходи дальше с пометкой достоверности 🟡 или 🔴. Дополнительные поиски «для полноты картины» обычно не меняют выводов. Исключение: человек явно просит углублённый анализ — тогда лимиты снимаются, но уведоми о возможном превышении.
+When the limit is nearly spent, summarise what you have into the KB and move on, marking confidence 🟡 or 🔴. Extra searches "for completeness" rarely change the conclusions. Exception: if the person explicitly asks for deeper analysis the limits are lifted, but say that they may be exceeded.
 
-**Работа с результатами `web_search`:** каждый поиск возвращает ~1500 слов × 10 источников. Если оставлять их в контексте целиком, за 25 вызовов накопится ~50k токенов только от поисковиков — это съедает бюджет контекста, который нужен под KB, артефакты и диалог. Поэтому:
+**Handling `web_search` results:** each search returns roughly 1500 words across 10 sources. Keeping them in context in full means ~50k tokens of search output alone over 25 calls — which eats the context budget needed for the KB, the artifacts and the conversation. So:
 
-1. **Сразу после `web_search`** — извлекай только конкретные цифры и факты, которые нужны для текущей задачи: объём рынка, CAGR, имя конкурента, цена, доля. Записывай их в KB или в ответ агента.
-2. **Не держи полный текст поисковой выдачи в контексте** между задачами. Один раз извлёк цифру, зафиксировал источник (URL + дата), забыл про сам текст.
-3. **Для `web_fetch`** — если статья длинная, читай только те секции, где упомянуты нужные цифры; остальное не загружай в контекст.
+1. **Right after `web_search`**, extract only the concrete numbers and facts the current task needs: market size, CAGR, a competitor's name, a price, a share. Write them into the KB or into the agent's answer.
+2. **Do not keep full search output in context** between tasks. Extract the number once, record the source (URL + date), forget the text.
+3. **For `web_fetch`**, if the article is long, read only the sections where the numbers appear; do not load the rest into context.
 
-Это не формальное правило, а практическая оптимизация: при 2–3 часах PD контекст — главный дефицит, и мусор от поисков оттесняет полезные данные (JTBD, интервью, финплан).
+This is not a formality but a practical optimisation: over a 2–3 hour PD, context is the scarce resource, and search debris crowds out the data that matters (JTBD, interviews, financial plan).
 
-## Завершение PD
+## Finishing PD
 
-Когда все три (или четыре в Full) артефакта созданы — не заканчивай разговор молча. Executive summary в чат нужен для того, чтобы человек за 30 секунд понял результат и следующие шаги.
+Once all three artifacts (or four in Full) exist, do not end the conversation in silence. The point of an executive summary in the chat is that the person grasps the result and the next steps in 30 seconds.
 
-**Алгоритм определения главного вывода:** посчитай активированные критерии.
+**How to determine the main conclusion:** count the criteria that fired.
 
-| Условие | Счёт |
-|---------|------|
-| Красных флагов из STOP/PIVOT-таблицы активировано | 0 / 1-2 / ≥3 |
-| Инвест-готовность (трекер после PD) | ≥ 6/8 / 4-5/8 / < 4/8 |
-| OS главной возможности | ≥ 15 / 10-14 / < 10 |
-| LTV/CAC в базовом сценарии | ≥ 3x / 1.5-3x / < 1.5x |
+| Condition | Score |
+|-----------|-------|
+| Red flags fired from the STOP/PIVOT table | 0 / 1-2 / ≥3 |
+| Investment readiness (tracker after PD) | ≥ 6/8 / 4-5/8 / < 4/8 |
+| OS of the main opportunity | ≥ 15 / 10-14 / < 10 |
+| LTV/CAC in the base scenario | ≥ 3x / 1.5-3x / < 1.5x |
 
-**Правила:**
-- **Автоматический No-go (regulatory blocker):** если активирован красный флаг «Модель требует лицензии, которой нет», то главный вывод — No-go независимо от остальных метрик. Даже идеальный OS, LTV/CAC и трекшн не компенсируют юридическую невозможность. Предложи 2–3 пути перестройки модели (B2B вместо B2C, лицензирование, партнёрство с лицензированным игроком) и возврат к Шагу 0.
-- **Go** — 0 красных флагов И инвест-готовность ≥ 6/8 И LTV/CAC ≥ 3x
-- **Go с рисками** — 1–2 красных флага (кроме LTV/CAC < 1.5x и regulatory blocker) И инвест-готовность ≥ 4/8. Указать риски и план их закрытия.
-- **Pivot** — 1–2 красных флага, включая LTV/CAC или отсутствие дифференциации, но OS ≥ 10 и SAM достаточный. Предложи конкретное направление pivot'а по таблице «Pivot vs. Корректировка».
-- **No-go** — ≥ 3 красных флагов ИЛИ SAM ниже порога ИЛИ OS < 8 у всех сегментов ИЛИ regulatory blocker. Рекомендуй остановку проекта или возврат к Шагу 0 с другой гипотезой.
+**Rules:**
+- **Automatic No-go (regulatory blocker):** if the red flag "the model requires a licence you do not have" fired, the main conclusion is No-go regardless of every other metric. A perfect OS, LTV/CAC and traction do not compensate for legal impossibility. Offer 2–3 ways to rebuild the model (B2B instead of B2C, licensing, partnership with a licensed player) and a return to Step 0.
+- **Go** — 0 red flags AND investment readiness ≥ 6/8 AND LTV/CAC ≥ 3x
+- **Go with risks** — 1–2 red flags (excluding LTV/CAC < 1.5x and the regulatory blocker) AND investment readiness ≥ 4/8. State the risks and the plan to close them.
+- **Pivot** — 1–2 red flags including LTV/CAC or a lack of differentiation, but OS ≥ 10 and SAM sufficient. Propose a concrete pivot direction using the "Pivot vs. adjustment" table.
+- **No-go** — ≥ 3 red flags OR SAM below the threshold OR OS < 8 across all segments OR a regulatory blocker. Recommend stopping the project or returning to Step 0 with a different hypothesis.
 
-Честность важнее оптимизма. Если данные говорят No-go — так и скажи, не смягчая. Но даже при No-go предлагай альтернативу, если видишь сигнал: «B2C не подтвердился, но в интервью есть сигнал для B2B SMB — стоит проверить отдельной гипотезой».
+Honesty beats optimism. If the data says No-go, say so without softening it. But even on a No-go, offer an alternative when you see a signal: "B2C did not hold up, but the interviews carry a signal for B2B SMB — worth testing as a separate hypothesis".
 
-**Шаблон сводки:**
+**Summary template:**
 
 ```
-✅ PRODUCT DISCOVERY ЗАВЕРШЁН — [Название проекта]
+✅ PRODUCT DISCOVERY COMPLETE — [Project name]
 ═══════════════════════════════════════════════
 
-📋 Выполнено: [N]/18 задач в режиме [Light/Full]
+📋 Completed: [N]/18 tasks in [Light/Full] mode
 
-📁 Артефакты:
+📁 Artifacts:
   • one-pager-[slug].pptx
   • financial-plan-[slug].xlsx
   • presentation-[slug].pptx
-  • interview-guide-[slug].docx (если Full)
+  • interview-guide-[slug].docx (Full only)
 
-🎯 Главный вывод: [Go / Go с рисками / Pivot / No-go]
-  Обоснование: [сколько красных флагов, инвест-готовность N/8, LTV/CAC, OS]
+🎯 Main conclusion: [Go / Go with risks / Pivot / No-go]
+  Rationale: [how many red flags, investment readiness N/8, LTV/CAC, OS]
 
-💡 Вердикт по ценности:
-  Value Proposition: «[из задачи 10]»
-  Главный сегмент:   [из задачи 18a]
-  Монетизация:       [модель, чек в ₽]
+💡 Value verdict:
+  Value Proposition: "[from task 10]"
+  Main segment:      [from task 18a]
+  Monetisation:      [model, ticket in ₽]
 
-📊 Ключевые метрики (базовый сценарий):
+📊 Key metrics (base scenario):
   • TAM / SAM / SOM:   [X / Y / Z]
   • LTV / CAC:         [N.Nx]
-  • Runway:            [N мес.]
-  • Break-even:        [мес. N]
+  • Runway:            [N months]
+  • Break-even:        [month N]
 
-🚩 Топ-3 риска:
-  1. [Гипотеза] — проверить методом: [метод] за [срок]
+🚩 Top 3 risks:
+  1. [Hypothesis] — test via: [method] within [timeframe]
   2. ...
   3. ...
 
-🎯 Инвест-готовность: [N/8 ✅]
-  Закрыть до раунда: [⚠️ и ❌ пункты из трекера]
+🎯 Investment readiness: [N/8 ✅]
+  Close before the round: [the ⚠️ and ❌ items from the tracker]
 
-▶️ Следующие 3 шага (на 2 недели):
-  1. [Действие] — владелец [роль] — срок [+N дней]
+▶️ Next 3 steps (over 2 weeks):
+  1. [Action] — owner [role] — due [+N days]
   2. ...
   3. ...
 
 ═══════════════════════════════════════════════
 ```
 
-Если блоки пропущены (Light), пометь явно: «NPS/Retention требует верификации — задача 17 пропущена в Light-режиме».
+If blocks were skipped (Light), mark it explicitly: "NPS/Retention needs verification — task 17 was skipped in Light mode".
 
-## Трекер инвест-готовности
+## Investment readiness tracker
 
-Пороги зависят от двух параметров: **тип бизнеса** (вопрос 16 из Шага 0) и **этап раунда**, к которому человек готовится. Инвесторы pre-seed/seed смотрят на валидацию гипотезы и ранний traction, Series A — на proof of scalable GTM и метрики роста, Series B — на operational efficiency и готовность к масштабу. Метрики одни, а пороги для каждого этапа радикально разные.
+The thresholds depend on two parameters: **business type** (question 16 from Step 0) and the **round stage** the person is preparing for. Pre-seed and seed investors look at hypothesis validation and early traction; Series A looks for proof of a scalable GTM and growth metrics; Series B looks at operational efficiency and readiness to scale. The metrics are the same; the thresholds per stage are radically different.
 
-**Определение этапа раунда:** в Шаге 0 агент должен уточнить у человека (если не ясно из контекста): «Какой раунд планируете — pre-seed/seed, Series A, Series B или позже?». Сигналы из первого сообщения: «готовлюсь к ангелу», «seed-раунд» → pre-seed/seed; «раунд A», «~$5M ARR», «расширяемся на новые рынки» → Series A; «уже есть $10M+ ARR», «масштабируем команду», «международный выход» → Series B.
+**Determining the round stage:** in Step 0 the agent should ask, if it is not clear from context: "Which round are you planning — pre-seed/seed, Series A, Series B or later?". Signals from the first message: "getting ready for an angel", "seed round" → pre-seed/seed; "round A", "~$5M ARR", "expanding into new markets" → Series A; "already at $10M+ ARR", "scaling the team", "going international" → Series B.
 
-### Пороги для pre-seed / seed
+### Thresholds for pre-seed / seed
 
-Это основной сценарий использования скила — стартапы, которые ищут первых-вторых чеков. Цель: доказать, что продукт решает реальную боль и есть ранний спрос.
+This is the skill's main use case — startups chasing their first or second cheque. The goal: prove the product solves a real pain and that early demand exists.
 
-| # | Критерий | Product | Service | Marketplace | Hardware | Geographic Expansion | Источник |
-|---|----------|---------|---------|-------------|----------|----------------------|----------|
-| 1 | Боль подтверждена, OS ≥ 12 | ✅/⚠️/❌ | ✅/⚠️/❌ | ✅/⚠️/❌ (обе стороны) | ✅/⚠️/❌ | OS ≥ 12 в **новой** гео (не засчитывается OS из home-geo) | Задачи 7, 9 |
-| 2 | TAM ≥ 5 млрд ₽, SAM ≥ 1 млрд ₽ | Стандарт | Стандарт | Стандарт | SAM ≥ 500 млн ₽ | SAM новой гео может быть < 1B ₽, ЕСЛИ multi-geo roadmap даёт combined SAM ≥ 3B ₽ | Задача 5 |
-| 3 | LTV/CAC ≥ 3x (базовый) | ≥ 3x | ≥ 3x от проекта | ≥ 3x по сторонам | ≥ 2x | ≥ 3x в home-geo **или** проектная модель новой гео | Финплан |
-| 4 | Retention 3-й мес. (когортный) | ≥ 30% B2C / ≥ 50% B2B | Repeat rate ≥ 40% | ≥ 40% liquidity | Repeat rate ≥ 20% | Из home-geo (Full-credit: данные уже есть) | Задача 17 |
-| 5 | Команда с релевантным опытом | Обязательно | +продажи B2B | +operations | +production & supply chain | +local BDM / лицензия / Thai entity + партнёр-лоббист | Задача 10 |
-| 6 | Трекшн | ≥ 10 платящих или LOI | ≥ 3 оплаченных | ≥ 20 + 5 транзакций | ≥ 50 pre-order | **≥ 2 платящих в новой гео** ИЛИ **≥ 10 в home-geo × 0.5 + LOI в новой** | Задача 16 |
-| 7 | Break-even в базовом | ≤ 18 мес. | ≤ 12 мес. | ≤ 24 мес. | ≤ 36 мес. | ≤ 24 мес. (длиннее — setup local team + subsidiary) | Финплан P&L |
-| 8 | Уникальный канал / advantage | Обязательно | Экспертиза/бренд | Якорные партнёры | IP/патенты | Local reference / endorsement (регулятор, крупный клиент) | Задача 10 |
+| # | Criterion | Product | Service | Marketplace | Hardware | Geographic Expansion | Source |
+|---|-----------|---------|---------|-------------|----------|----------------------|--------|
+| 1 | Pain confirmed, OS ≥ 12 | ✅/⚠️/❌ | ✅/⚠️/❌ | ✅/⚠️/❌ (both sides) | ✅/⚠️/❌ | OS ≥ 12 in the **new** geography (home-geo OS does not count) | Tasks 7, 9 |
+| 2 | TAM ≥ ₽5bn, SAM ≥ ₽1bn | Standard | Standard | Standard | SAM ≥ ₽500M | New-geo SAM may be < ₽1bn IF the multi-geo roadmap gives a combined SAM ≥ ₽3bn | Task 5 |
+| 3 | LTV/CAC ≥ 3x (base) | ≥ 3x | ≥ 3x per project | ≥ 3x per side | ≥ 2x | ≥ 3x in home-geo **or** a projected model for the new geography | Financial plan |
+| 4 | Month-3 retention (cohort) | ≥ 30% B2C / ≥ 50% B2B | Repeat rate ≥ 40% | ≥ 40% liquidity | Repeat rate ≥ 20% | From home-geo (full credit: the data already exists) | Task 17 |
+| 5 | Team with relevant experience | Required | + B2B sales | + operations | + production & supply chain | + local BDM / licence / local entity + lobbying partner | Task 10 |
+| 6 | Traction | ≥ 10 paying or LOI | ≥ 3 paid | ≥ 20 + 5 transactions | ≥ 50 pre-orders | **≥ 2 paying in the new geography** OR **≥ 10 in home-geo × 0.5 + an LOI in the new one** | Task 16 |
+| 7 | Break-even in the base case | ≤ 18 months | ≤ 12 months | ≤ 24 months | ≤ 36 months | ≤ 24 months (longer — setting up a local team and subsidiary) | Financial plan P&L |
+| 8 | Unique channel or advantage | Required | Expertise/brand | Anchor partners | IP/patents | Local reference or endorsement (regulator, major customer) | Task 10 |
 
-**Интерпретация:** 7–8 ✅ → готов к pre-seed/seed. 5–6 ✅ → закрой ⚠️ за 1–2 мес. до раунда. < 5 ✅ → рано, фокус на валидации (задачи 15–17).
+**Interpretation:** 7–8 ✅ → ready for pre-seed/seed. 5–6 ✅ → close the ⚠️ items 1–2 months before the round. < 5 ✅ → too early; focus on validation (tasks 15–17).
 
-**Для Geographic Expansion:** если 4+ критериев из 8 зелёные, и хотя бы один из критериев 6 или 8 зелёный — можно идти на pre-seed/seed для расширения. Home-geo traction как base, target-geo validation как promise. Цена раунда обычно дисконтируется на 20–30% vs. clean-idea стартап, потому что риск ниже.
+**For Geographic Expansion:** if 4+ of the 8 criteria are green and at least one of criteria 6 or 8 is green, you can go for a pre-seed/seed round to fund the expansion. Home-geo traction is the base, target-geo validation is the promise. The round is usually discounted 20–30% against a clean-idea startup, because the risk is lower.
 
-### Пороги для Series A
+### Thresholds for Series A
 
-Здесь инвесторы уже не проверяют «есть ли боль» — это должно быть доказано к моменту раунда. Их вопрос: «масштабируется ли ваш канал продаж при кратном увеличении затрат». Пороги не просто выше, а качественно другие.
+Here investors no longer check whether the pain exists — that has to be proven by the time of the round. Their question is: "does your sales channel scale when spend goes up several times". The thresholds are not merely higher, they are qualitatively different.
 
-| # | Критерий | Product (SaaS) | Service | Marketplace | Hardware | Источник |
-|---|----------|---------------|---------|-------------|----------|----------|
-| 1 | ARR / годовая выручка | ≥ $1M ARR (или ₽-эквивалент) | ≥ ₽100 млн/год | ≥ $1M GMV в мес. | ≥ 1000 шт. продано | Финплан |
-| 2 | Рост MoM / YoY | ≥ 10–15% MoM или 3x YoY | 2x YoY | 2x YoY GMV | 2–3x YoY | Финплан |
-| 3 | Gross Margin | ≥ 70% | ≥ 60% | ≥ 50% (после take rate) | ≥ 40% | Финплан |
-| 4 | Net Revenue Retention (NRR) | ≥ 110% B2B, ≥ 90% B2C | ≥ 80% repeat clients | ≥ 60% MAU retention | N/A — замеряй repeat rate | Задача 17 |
-| 5 | Payback period | ≤ 12 мес. | ≤ 6 мес. | ≤ 18 мес. | ≤ 18 мес. | Финплан |
-| 6 | Команда — закрыты key hires | CEO + CTO + VP Sales | CEO + Head of Delivery | CEO + Head of Ops + Growth | CEO + Head of Supply Chain | Задача 10 |
-| 7 | Воспроизводимый канал приобретения | ≥ 2 канала с предсказуемым CAC | Outbound SDR-процесс | Referral loop или paid acquisition | Retail-партнёры или DTC-канал | Задача 16 |
-| 8 | International / multi-market потенциал | Product-led expansion возможен | Replicable в другом регионе | Либо глубокий рынок, либо 2+ гео | SKU-расширение или гео | Задача 5, 12 |
+| # | Criterion | Product (SaaS) | Service | Marketplace | Hardware | Source |
+|---|-----------|----------------|---------|-------------|----------|--------|
+| 1 | ARR / annual revenue | ≥ $1M ARR (or the ₽ equivalent) | ≥ ₽100M/year | ≥ $1M GMV per month | ≥ 1000 units sold | Financial plan |
+| 2 | MoM / YoY growth | ≥ 10–15% MoM or 3x YoY | 2x YoY | 2x YoY GMV | 2–3x YoY | Financial plan |
+| 3 | Gross margin | ≥ 70% | ≥ 60% | ≥ 50% (after take rate) | ≥ 40% | Financial plan |
+| 4 | Net Revenue Retention (NRR) | ≥ 110% B2B, ≥ 90% B2C | ≥ 80% repeat clients | ≥ 60% MAU retention | N/A — measure repeat rate | Task 17 |
+| 5 | Payback period | ≤ 12 months | ≤ 6 months | ≤ 18 months | ≤ 18 months | Financial plan |
+| 6 | Key hires closed | CEO + CTO + VP Sales | CEO + Head of Delivery | CEO + Head of Ops + Growth | CEO + Head of Supply Chain | Task 10 |
+| 7 | Repeatable acquisition channel | ≥ 2 channels with predictable CAC | Outbound SDR process | Referral loop or paid acquisition | Retail partners or a DTC channel | Task 16 |
+| 8 | International / multi-market potential | Product-led expansion is possible | Replicable in another region | Either a deep market or 2+ geographies | SKU expansion or geography | Tasks 5, 12 |
 
-**Интерпретация:** 6–8 ✅ → готов к Series A. 4–5 ✅ → закрой пробелы за 3–6 мес. до раунда. < 4 ✅ → рано, фокус на скейле pre-seed/seed-результатов.
+**Interpretation:** 6–8 ✅ → ready for Series A. 4–5 ✅ → close the gaps 3–6 months before the round. < 4 ✅ → too early; focus on scaling the pre-seed/seed results.
 
-### Пороги для Series B и позже
+### Thresholds for Series B and later
 
-Series B редко обслуживается через PD — обычно у компании уже есть внутренний финансовый контроллер и стратеги. Но если PD нужен (для проверки нового сегмента, геоэкспансии или приобретения) — пороги ориентировочно: ARR ≥ $5–10M, рост ≥ 2x YoY, выход в EBITDA-break-even в горизонте 12–18 мес., операционная эффективность (Rule of 40: рост % + EBITDA margin % ≥ 40). Детальнее — заглядывай в индустриальные бенчмарки (a16z, Bessemer Cloud Index).
+Series B rarely runs through PD — by then the company usually has an in-house financial controller and strategists. But if PD is needed (to check a new segment, a geographic expansion or an acquisition), the rough thresholds are: ARR ≥ $5–10M, growth ≥ 2x YoY, EBITDA break-even within 12–18 months, operational efficiency (Rule of 40: growth % + EBITDA margin % ≥ 40). For more detail, consult industry benchmarks (a16z, Bessemer Cloud Index).
 
-### Если этап раунда не указан
+### If the round stage is not stated
 
-По умолчанию используй пороги pre-seed/seed — это покрывает большинство кейсов PD. В финальной сводке явно напиши: «Инвест-трекер оценён по критериям pre-seed/seed. Если готовитесь к Series A/B — пересмотри по соответствующей таблице».
+Default to the pre-seed/seed thresholds — they cover most PD cases. Say so explicitly in the final summary: "The investment tracker was scored against pre-seed/seed criteria. If you are preparing for Series A/B, re-score against the matching table".
 
-## Следующие шаги после PD
+## Next steps after PD
 
-| Действие | Владелец | Срок |
-|----------|----------|------|
-| 3–5 дополнительных интервью по уточнённым гипотезам | — | +1 нед. |
-| Smoke test / pre-sale по топ-1 гипотезе из OST | — | +1 нед. |
-| Разослать OS-опросник 20–50 респондентам | — | +2 нед. |
-| Заполнить финплан мес. 2–12 (или 2–24) | — | +2 нед. |
-| Синхронизировать команду по главному сценарию | — | +3 дня |
+| Action | Owner | Due |
+|--------|-------|-----|
+| 3–5 further interviews on the refined hypotheses | — | +1 week |
+| Smoke test / pre-sale on the top hypothesis from the OST | — | +1 week |
+| Send the OS questionnaire to 20–50 respondents | — | +2 weeks |
+| Fill in the financial plan for months 2–12 (or 2–24) | — | +2 weeks |
+| Align the team on the main scenario | — | +3 days |
 
-**Типичное распределение ролей:**
+**Typical split of ownership:**
 
-| Задача | Обычный владелец | Участники |
-|--------|-----------------|-----------|
-| Интервью и рекрутинг | CEO / CPO | Маркетинг |
-| Smoke Test, лендинг | Маркетинг | CEO |
-| Pre-sale, outreach | CEO / Sales | Маркетинг |
-| Финплан (мес. 2+) | CFO / CEO | — |
-| OST и гипотезы | CPO / CEO | Команда |
-| Разработка MVP | CTO | CPO |
+| Task | Usual owner | Contributors |
+|------|-------------|--------------|
+| Interviews and recruiting | CEO / CPO | Marketing |
+| Smoke Test, landing page | Marketing | CEO |
+| Pre-sale, outreach | CEO / Sales | Marketing |
+| Financial plan (month 2+) | CFO / CEO | — |
+| OST and hypotheses | CPO / CEO | The team |
+| MVP development | CTO | CPO |
 
-В команде 1–2 человек — по умолчанию CEO для всех блоков.
+In a team of 1–2 people, default to the CEO for every block.
 
-## Источники данных
+## Data sources
 
-Подбирай источники по географии проекта. Приоритет: локальные первичные источники → глобальные отчёты для контекста.
+Pick sources to match the project's geography. Priority: local primary sources first, then global reports for context.
 
-| Категория | Источники |
-|-----------|-----------|
-| Глобальные отчёты | Mary Meeker Internet Trends, Gartner Hype Cycle, CB Insights, PitchBook |
-| Консалтинг | McKinsey, BCG, Bain, Deloitte |
-| Статистика (мир) | Statista, SimilarWeb, World Bank Open Data, OECD Data |
-| Статистика (США) | US Census Bureau, Bureau of Labor Statistics, FRED |
-| Статистика (EU) | Eurostat, национальные статистические ведомства |
-| Статистика (РФ) | Росстат, РБК, Ведомости, АКРА, ЦБ РФ, Data Insight, «Яндекс», «Сбер» |
-| Статистика (Азия) | China Stats, India NSO, ASEAN Stats |
-| Классификаторы | G2, Capterra (мир); TAdviser, CNews (РФ) |
-| Новости / тренды | Product Hunt, TechCrunch, The Information, VC.ru, Habr |
-| Венчур | YCombinator, a16z, Sequoia, Index Ventures, ФРИИ |
-| Суррогат интервью (мир) | G2, App Store, Google Play, Reddit, Quora, Trustpilot |
-| Суррогат интервью (РФ) | Хабр, VC.ru, отзовики, Wildberries/Ozon |
-| Методологии | Continuous Discovery Habits (Torres), JTBD (Ulwick/Christensen), Lean Canvas (Maurya), Four Steps to the Epiphany (Blank), The Mom Test (Fitzpatrick) |
+| Category | Sources |
+|----------|---------|
+| Global reports | Mary Meeker Internet Trends, Gartner Hype Cycle, CB Insights, PitchBook |
+| Consulting | McKinsey, BCG, Bain, Deloitte |
+| Statistics (global) | Statista, SimilarWeb, World Bank Open Data, OECD Data |
+| Statistics (US) | US Census Bureau, Bureau of Labor Statistics, FRED |
+| Statistics (EU) | Eurostat, national statistics offices |
+| Statistics (Russia) | Rosstat, RBC, Vedomosti, ACRA, Bank of Russia, Data Insight, Yandex, Sber |
+| Statistics (Asia) | China Stats, India NSO, ASEAN Stats |
+| Software directories | G2, Capterra (global); TAdviser, CNews (Russia) |
+| News and trends | Product Hunt, TechCrunch, The Information, VC.ru, Habr |
+| Venture | YCombinator, a16z, Sequoia, Index Ventures, FRII |
+| Interview surrogate (global) | G2, App Store, Google Play, Reddit, Quora, Trustpilot |
+| Interview surrogate (Russia) | Habr, VC.ru, review sites, Wildberries/Ozon |
+| Methodology | Continuous Discovery Habits (Torres), JTBD (Ulwick/Christensen), Lean Canvas (Maurya), Four Steps to the Epiphany (Blank), The Mom Test (Fitzpatrick) |
 
-## Коммуникация с пользователем
+## Communicating with the user
 
-- Пиши план перед стартом, жди подтверждения
-- После каждой задачи — короткое резюме ключевых находок
-- Обновляй прогресс-трекер в начале ответа. Короткий формат лучше длинного списка: `🔄 Прогресс: 7/18 задач (39%) · Режим: Full · Блок II · Текущая: Задача 8 CJM`
-- При красном флаге — немедленно сообщай и жди решения
-- Используй `ask_user_input_v0` для структурированного сбора ответов с вариантами
-- При Early exit или пропуске задач — явно сообщай, какие задачи и почему
-- Общайся на русском языке
+- Write the plan before starting and wait for confirmation
+- After each task, give a short summary of the key findings
+- Refresh the progress tracker at the top of your reply. A short form beats a long list: `🔄 Progress: 7/18 tasks (39%) · Mode: Full · Block II · Current: Task 8 CJM`
+- On a red flag, report it immediately and wait for a decision
+- Use `ask_user_input_v0` to collect structured answers with options
+- On an early exit or skipped tasks, state explicitly which tasks were skipped and why
+- Reply in the user's language

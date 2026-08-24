@@ -3,34 +3,34 @@
 ## v3.8 (2026-04-22)
 
 ### Added
-- **`assets/interview-guide-template.docx`** — универсальный шаблон интервью-гайда с 8 готовыми секциями (как пользоваться гайдом, согласие, 3 гайда по сегментам, таблица инсайтов, красные флаги, шпаргалка по рынку). Плейсхолдеры: {{PROJECT_NAME}}, {{GEO}}, {{SEGMENT_1-3}}, {{PRODUCT_DESCRIPTION}}, {{PRODUCT_CATEGORY}}, {{MONTH_YEAR}}.
-- **`scripts/finalize_docx.sh`** — финализация docx-артефактов через LibreOffice round-trip + python-docx верификацию. Гарантирует Word-совместимость.
-- **Правило 6 (новое, STOP-GATE)** — Word round-trip для docx-артефактов. Срабатывает перед любым cp *.docx в outputs.
+- **`assets/interview-guide-template.docx`** — a general-purpose interview guide template with 8 ready-made sections (how to use the guide, consent, 3 per-segment guides, insight table, red flags, market cheat sheet). Placeholders: {{PROJECT_NAME}}, {{GEO}}, {{SEGMENT_1-3}}, {{PRODUCT_DESCRIPTION}}, {{PRODUCT_CATEGORY}}, {{MONTH_YEAR}}.
+- **`scripts/finalize_docx.sh`** — finalizes docx artifacts through a LibreOffice round-trip plus python-docx verification. Guarantees Word compatibility.
+- **Rule 6 (new, STOP-GATE)** — Word round-trip for docx artifacts. Fires before any `cp *.docx` into outputs.
 
 ### Changed
-- **Раздел «Задача 9» в `references/block-2-customers.md`** — обновлён под использование шаблона и python-docx (вместо docx npm package).
-- **Рекомендация по инструментам:** использовать python-docx, не docx npm. Причина: npm-библиотека создаёт файлы с битыми ссылками на стили (~30% параграфов с `style: None`) — LibreOffice и Google Docs их открывают, Word — нет.
+- **The "Task 9" section in `references/block-2-customers.md`** — updated to use the template and python-docx instead of the docx npm package.
+- **Tooling recommendation:** use python-docx, not the docx npm package. Reason: the npm library produces files with broken style references (~30% of paragraphs end up with `style: None`) — LibreOffice and Google Docs open them, Word does not.
 
 ### Fixed
-- Интервью-гайд теперь надёжно открывается в Microsoft Word. Проблема проявлялась в v3.6-3.7: файлы, сгенерированные через docx npm package, технически валидные для XML-парсера, но отклонялись Word.
+- The interview guide now opens reliably in Microsoft Word. The problem showed up in v3.6–3.7: files generated through the docx npm package were technically valid to an XML parser but rejected by Word.
 
 ---
 
 ## v3.7 (2026-04-22)
 
 ### Added
-- **Режим Geographic Expansion** для продуктов, выходящих в новую гео
-- **Таблица лимитов one-pager** в references/block-6-artifacts.md
-- **Экспорт PD_MODE** через /home/claude/.pd_env
+- **Geographic Expansion mode** for products entering a new geography
+- **One-pager limit table** in references/block-6-artifacts.md
+- **PD_MODE export** through /home/claude/.pd_env
 
 ### Changed
-- Правила 3, 4, 5 переписаны в формат STOP-GATE с явными triggers и failure modes
-- Шаблон financial-plan-template.xlsx: все 24 упоминания одежных данных заменены на нейтральные "Сегмент 1-4"
+- Rules 3, 4 and 5 rewritten in STOP-GATE form with explicit triggers and failure modes
+- `assets/financial-plan-template.xlsx`: all 24 references to apparel-specific data replaced with neutral "Segment 1-4" labels
 
 ---
 
-## v3.6 (предыдущая версия)
+## v3.6 (previous version)
 
-- Базовая методология 18 задач / 6 блоков
-- Режимы Light и Full
-- 5 правил безопасности
+- Baseline methodology: 18 tasks across 6 blocks
+- Light and Full modes
+- 5 safety rules
