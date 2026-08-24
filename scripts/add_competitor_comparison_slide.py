@@ -211,7 +211,21 @@ def cleanup_duplicate_notes_refs(pptx_path):
     tmp = tempfile.mkdtemp()
     try:
         with zipfile.ZipFile(pptx_path, 'r') as z:
-            z.extractall(tmp)
+            # Do not use extractall: a crafted archive can carry '../' or an
+            # absolute path in a member name and write outside tmp. Resolve each
+            # destination and refuse anything that escapes.
+            root = os.path.realpath(tmp)
+            for member in z.infolist():
+                dest = os.path.realpath(os.path.join(root, member.filename))
+                if dest != root and not dest.startswith(root + os.sep):
+                    raise ValueError(
+                        f"refusing to extract outside the temp directory: {member.filename!r}")
+                if member.is_dir():
+                    os.makedirs(dest, exist_ok=True)
+                    continue
+                os.makedirs(os.path.dirname(dest), exist_ok=True)
+                with z.open(member) as src, open(dest, 'wb') as out:
+                    shutil.copyfileobj(src, out)
 
         # 1. Remove the references from slide.xml.rels
         rels_dir = os.path.join(tmp, "ppt/slides/_rels")

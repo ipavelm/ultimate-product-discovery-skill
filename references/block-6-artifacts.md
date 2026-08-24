@@ -502,6 +502,11 @@ assert len(real) == 0, f"Still unfilled: {real}"
 
 Packaging a deck is a plain zip; validation is a separate step you must not skip:
 
+`extractall` is fine for a deck you built yourself. For an archive that arrived
+from anywhere else, resolve each member's destination first and refuse the ones
+that escape the target directory — a crafted member name containing `../` writes
+wherever it likes. `scripts/add_competitor_comparison_slide.py` shows the guarded form.
+
 ```bash
 python3 -c "import sys,zipfile; zipfile.ZipFile(sys.argv[1]).extractall('unpacked')" deck.pptx
 # edit unpacked/ppt/slides/slideN.xml
