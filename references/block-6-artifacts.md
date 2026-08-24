@@ -1,156 +1,156 @@
-## БЛОК VI: ФИНАЛЬНЫЕ АРТЕФАКТЫ
+## BLOCK VI: FINAL ARTIFACTS
 
-**Оглавление:**
-1. Стандарт именования выходных файлов
-2. Задача 18b: One-pager (.pptx)
-3. Задача 18c: Финансовый план (.xlsx) — 7 шагов заполнения
-4. Задача 18d: Презентация (.pptx) — маппинг 34 слайдов
-5. Завершение PD — финальная сводка в чат
+**Contents:**
+1. Output file naming standard
+2. Task 18b: one-pager (.pptx)
+3. Task 18c: financial plan (.xlsx) — the 7 filling steps
+4. Task 18d: presentation (.pptx) — the 34-slide mapping
+5. Finishing PD — the final summary in the chat
 
 ---
 
-**Стандарт именования выходных файлов.** Все финальные артефакты сохраняются в `/mnt/user-data/outputs/` по единой схеме: `[тип]-[slug-проекта].[расширение]`, где `slug-проекта` — транслитерация названия в нижнем регистре через дефисы (например, проект «TimeTag» → slug `timetag`, проект «Умный дом для пенсионеров» → slug `smart-home-seniors`). Итоговые имена:
+**Output file naming standard.** Every final artifact is saved into `/mnt/user-data/outputs/` under one scheme: `[type]-[project-slug].[extension]`, where `project-slug` is the name transliterated into lower case with hyphens (for example, the project "TimeTag" → slug `timetag`; the project "Smart home for pensioners" → slug `smart-home-seniors`). The resulting names:
 
-| Артефакт | Имя файла |
+| Artifact | File name |
 |----------|-----------|
 | One-pager | `one-pager-[slug].pptx` |
-| Финансовый план | `financial-plan-[slug].xlsx` |
-| Презентация | `presentation-[slug].pptx` |
-| Интервью-гайд (только Full) | `interview-guide-[slug].docx` |
+| Financial plan | `financial-plan-[slug].xlsx` |
+| Presentation | `presentation-[slug].pptx` |
+| Interview guide (Full only) | `interview-guide-[slug].docx` |
 
-Для рабочих копий в процессе используй `/home/claude/[тип].[расширение]` без slug'а (например, `/home/claude/one-pager.pptx`), а перед финальной выдачей копируй в `/mnt/user-data/outputs/` с правильным именем.
+For working copies along the way use `/home/claude/[type].[extension]` with no slug (for example `/home/claude/one-pager.pptx`), and copy into `/mnt/user-data/outputs/` under the proper name only at final delivery.
 
 ---
 
-### Задача 18b: One-pager (.pptx)
+### Task 18b: one-pager (.pptx)
 
-Читай скил `/mnt/skills/public/pptx/SKILL.md` перед созданием.
+Read the skill at `/mnt/skills/public/pptx/SKILL.md` before building it.
 
-**Шаблон One-pager:** файл `assets/one-pager-template.pptx` содержит готовый тёмный дизайн с 9 секциями на одном слайде. Используй как основу:
+**One-pager template:** the file `assets/one-pager-template.pptx` holds a finished dark design with 9 sections on a single slide. Use it as the base:
 
 ```bash
 cp /mnt/skills/user/product-discovery/assets/one-pager-template.pptx /home/claude/one-pager.pptx
 ```
 
-**Структура шаблона (один слайд 16:9):**
+**Template structure (one 16:9 slide):**
 
-| Секция | Содержимое | Источник данных |
-|--------|-----------|----------------|
-| **Header** | Название проекта, слоган, дата | Шаг 0 |
-| **Проблема** | Боль потребителя в 1–2 предложениях + OS | Задача 7 |
-| **Решение** | Как продукт закрывает боль, 2–3 фичи | Задача 10 |
-| **Рынок** | TAM / SAM / SOM | Задача 5 |
-| **Юнит-экономика** | CAC, LTV, LTV/CAC, Payback, Runway, Break-even | Финплан |
-| **Главный сценарий** | Монетизация, чеки, COGS, Gross Margin | Задача 18a |
-| **Топ-3 инсайта** | Паттерны из интервью с OS | Задача 9 |
-| **Топ-3 гипотезы** | Рисковые гипотезы + метод + срок | Задача 15 |
-| **Следующий шаг** | Конкретное действие + владелец + срок | Задача 18a |
+| Section | Content | Data source |
+|---------|---------|-------------|
+| **Header** | Project name, tagline, date | Step 0 |
+| **Problem** | The customer's pain in 1–2 sentences plus the OS | Task 7 |
+| **Solution** | How the product closes the pain, 2–3 features | Task 10 |
+| **Market** | TAM / SAM / SOM | Task 5 |
+| **Unit economics** | CAC, LTV, LTV/CAC, payback, runway, break-even | Financial plan |
+| **Main scenario** | Monetisation, tickets, COGS, gross margin | Task 18a |
+| **Top 3 insights** | Patterns from the interviews, with OS | Task 9 |
+| **Top 3 hypotheses** | The risky hypotheses + method + timeframe | Task 15 |
+| **Next step** | A concrete action + owner + deadline | Task 18a |
 
-**Заполнение:** замени все плейсхолдеры `[...]` через `python-pptx` или `pptxgenjs`. Используй `extract-text one-pager.pptx` чтобы найти все плейсхолдеры.
+**Filling it in:** replace every `[...]` placeholder through `python-pptx` or `pptxgenjs`. Use `extract-text one-pager.pptx` to find them all.
 
-**⚠️ Лимиты текста на секцию (v3.7).** Шаблон имеет фиксированные размеры секций. Если превысить — LibreOffice рендерит перекрытие, и one-pager выглядит сломанно. Используй эти лимиты при заполнении:
+**⚠️ Text limits per section (v3.7).** The template has fixed section sizes. Exceed them and LibreOffice renders overlapping text, so the one-pager looks broken. Work to these limits:
 
-| Секция | Max символов | Max шрифт (pt) | Примечание |
-|--------|-------------|----------------|------------|
-| Header — название проекта | 60 | 44 | Короткое, запоминающееся |
-| Header — слоган | 180 | 18 | Одно предложение |
-| Проблема | 400 | 10 | 2–3 предложения + OS-цифры |
-| Решение — ЦП | 200 | 9 | Value Proposition одной фразой |
-| Решение — фичи | 160 | 9 | 3–5 пунктов через «•» |
-| Рынок — цифры TAM/SAM/SOM | 40 каждая | 12 | Короткие значения с единицами |
-| Юнит-экономика — каждое поле | 20 | 14 | Только цифра + знак |
-| Главный сценарий — name | 80 | 14 | Короткое название |
-| Главный сценарий — каждое поле | 100 | 9 | Одна строка |
-| Топ-3 инсайта — каждый | 180 | 9 | 1 предложение + источник/OS |
-| Топ-3 гипотезы — формулировка | 180 | 10 | Заголовок гипотезы |
-| Топ-3 гипотезы — детали | 80 | 8 | Метод + срок + бюджет |
-| Следующий шаг — действие | 180 | 10 | Конкретное действие |
-| Следующий шаг — владелец/срок | 60 | 8 | Роль + диапазон дней |
+| Section | Max characters | Max font (pt) | Note |
+|---------|----------------|---------------|------|
+| Header — project name | 60 | 44 | Short and memorable |
+| Header — tagline | 180 | 18 | One sentence |
+| Problem | 400 | 10 | 2–3 sentences plus the OS numbers |
+| Solution — value proposition | 200 | 9 | The value proposition in one phrase |
+| Solution — features | 160 | 9 | 3–5 bullets separated by "•" |
+| Market — the TAM/SAM/SOM figures | 40 each | 12 | Short values with units |
+| Unit economics — each field | 20 | 14 | Just the number and its sign |
+| Main scenario — name | 80 | 14 | A short name |
+| Main scenario — each field | 100 | 9 | One line |
+| Top 3 insights — each | 180 | 9 | One sentence plus source/OS |
+| Top 3 hypotheses — statement | 180 | 10 | The hypothesis headline |
+| Top 3 hypotheses — detail | 80 | 8 | Method + timeframe + budget |
+| Next step — action | 180 | 10 | A concrete action |
+| Next step — owner/deadline | 60 | 8 | Role + day range |
 
-Если текст не помещается в лимит — сокращай **до** первой генерации, а не после. Перегенерация через preview + sizing иногда занимает 2–3 итерации (зафиксировано в v3.6 сессиях). Лучше сразу писать tight.
+If the text does not fit, cut it **before** the first generation, not after. Regenerating through preview and resizing sometimes takes 2–3 iterations (observed in v3.6 sessions). Better to write tight from the start.
 
-**Результат:** `.pptx` → `/mnt/user-data/outputs/one-pager-[название].pptx`
+**Output:** the `.pptx` → `/mnt/user-data/outputs/one-pager-[name].pptx`
 
 ---
 
-### Задача 18c: Финансовый план (.xlsx)
+### Task 18c: financial plan (.xlsx)
 
-Читай скил `/mnt/skills/public/xlsx/SKILL.md` перед созданием.
+Read the skill at `/mnt/skills/public/xlsx/SKILL.md` before building it.
 
-#### Шаг 1 — Подготовка
+#### Step 1 — preparation
 
 ```bash
 cp /mnt/skills/user/product-discovery/assets/financial-plan-template.xlsx /home/claude/financial-plan.xlsx
-# Копирование скриптов — idempotent (не падает если уже есть):
+# Copying the scripts is idempotent (it does not fail if they are already there):
 mkdir -p /home/claude/scripts
 cp -rn /mnt/skills/public/xlsx/scripts/. /home/claude/scripts/
-# Проверка что ключевой скрипт на месте:
-test -f /home/claude/scripts/recalc.py && echo "recalc.py OK" || echo "ERROR: recalc.py не найден"
-# Оценка размера перед чтением:
+# Check the key script is in place:
+test -f /home/claude/scripts/recalc.py && echo "recalc.py OK" || echo "ERROR: recalc.py not found"
+# Size it up before reading:
 TOTAL=$(extract-text /home/claude/financial-plan.xlsx | wc -l)
-echo "Финплан содержит $TOTAL строк текста"
-# Чтение с порогом: если шаблон маленький — весь; если большой — выводим структуру (заголовки листов)
+echo "The financial plan holds $TOTAL lines of text"
+# Read with a threshold: small template — read it all; large — print the structure (sheet headers)
 if [ "$TOTAL" -lt 500 ]; then
     extract-text /home/claude/financial-plan.xlsx
 else
     extract-text /home/claude/financial-plan.xlsx | head -200
-    echo "... [усечено; для деталей читай через openpyxl по конкретным листам]"
+    echo "... [truncated; for detail read specific sheets through openpyxl]"
 fi
 ```
 
-**Первый лист шаблона — `Summary`**. Это executive-view для инвестора/CEO, которое открывается первым при просмотре файла. Содержит ключевые цифры главного сценария: Value Proposition, TAM/SAM/SOM, LTV/CAC, Runway, Break-even, топ-3 риска, главный вывод PD. Заполняй Summary **после** всех остальных листов — он агрегирует цифры из них. Если по какой-то причине Summary оказался не первым (например, при пересоздании через openpyxl новые листы добавляются в конец) — используй `scripts/reorder_summary_first.py <path-to-xlsx>` для восстановления правильного порядка.
+**The template's first sheet is `Summary`.** It is the executive view for the investor or CEO, and the first thing they see when they open the file. It carries the main scenario's key figures: value proposition, TAM/SAM/SOM, LTV/CAC, runway, break-even, top 3 risks and the PD's main conclusion. Fill Summary in **after** every other sheet — it aggregates their numbers. If Summary ends up not being first for some reason (openpyxl appends new sheets at the end when recreating them), use `scripts/reorder_summary_first.py <path-to-xlsx>` to restore the correct order.
 
-#### Шаг 2 — Принципы
+#### Step 2 — principles
 
-- 🔵 Синий текст — вводить вручную
-- ⚫ Чёрный текст — формулы, не трогать
-- 🟢 Зелёный текст — ссылки, не трогать
-- Начинай с **«Допущений»** — источник всех расчётов
-- Мес. 1 заполнен примером; мес. 2–12 (и 13–24 если горизонт 24 мес.) — пустые
+- 🔵 Blue text — enter by hand
+- ⚫ Black text — formulas, do not touch
+- 🟢 Green text — references, do not touch
+- Start with **Assumptions** — it is the source of every calculation
+- Month 1 is filled in as an example; months 2–12 (and 13–24 when the horizon is 24 months) are empty
 
-> **Горизонт 24 мес.:** если пользователь выбрал 24 мес. в Шаге 0, заполни также мес. 13–24 в листе «Модель» (колонки уже есть в шаблоне).
+> **A 24-month horizon:** if the user chose 24 months in Step 0, also fill months 13–24 on the Model sheet (the columns already exist in the template).
 
-> **Если бизнес — Маркетплейс:** ключевые отличия P&L:
-> - **Выручка** = GMV × take rate (%), НЕ GMV напрямую
-> - **GMV** = кол-во транзакций × средний чек — отражай отдельной строкой для понимания объёма
-> - **COGS** = платёжная инфраструктура + поддержка + хостинг (обычно 5–15% от Выручки)
-> - **Два типа CAC:** CAC поставщика и CAC покупателя — считай и оптимизируй отдельно
-> - В листе «Допущения» добавь: Take rate (%), Кол-во активных поставщиков мес.1, Кол-во транзакций на поставщика в мес.
-> - Chicken-and-egg риск фиксируй в листе «Пул гипотез» как гипотезу масштабируемости с методом проверки (Concierge: вручную заполни первую сторону до запуска платформы)
+> **If the business is a marketplace:** the key P&L differences are:
+> - **Revenue** = GMV × take rate (%), NOT GMV directly
+> - **GMV** = number of transactions × average ticket — keep it on its own row so the volume is legible
+> - **COGS** = payment infrastructure + support + hosting (usually 5–15% of revenue)
+> - **Two kinds of CAC:** supplier CAC and buyer CAC — model and optimise them separately
+> - On the Assumptions sheet, add: take rate (%), active suppliers in month 1, transactions per supplier per month
+> - Record the chicken-and-egg risk on the Hypothesis pool sheet as a scalability hypothesis with its test method (Concierge: fill the first side by hand before launching the platform)
 
-> **Если бизнес — Сервис / Услуга:** ключевые отличия P&L:
-> - **Выручка** = кол-во проектов × средняя стоимость проекта
-> - **COGS** = ФОТ исполнителей × (1 − utilization) + прямые расходы на проект
-> - **Gross Margin** = Выручка − COGS исполнителей (цель ≥ 40% для агентства, ≥ 60% для консалтинга)
-> - **Ключевые допущения:** Utilization rate (цель ≥ 70%), average billable rate (руб./час), среднее число одновременных проектов
-> - В листе «Допущения» замени блок «ЦЕНЫ» на: Utilization rate, Billable rate, Avg. project duration, Avg. project value
+> **If the business is a service:** the key P&L differences are:
+> - **Revenue** = number of projects × average project value
+> - **COGS** = delivery payroll × (1 − utilisation) + direct project costs
+> - **Gross margin** = revenue − delivery COGS (target ≥ 40% for an agency, ≥ 60% for consulting)
+> - **Key assumptions:** utilisation rate (target ≥ 70%), average billable rate (₽/hour), average number of concurrent projects
+> - On the Assumptions sheet, replace the 💰 PRICES block with: utilisation rate, billable rate, average project duration, average project value
 
-> **Если бизнес — Hardware / физическое устройство:** ключевые отличия P&L:
-> - COGS включает себестоимость производства, логистику и возвраты. Целевой диапазон 40–60% от цены продажи — это норма для hardware, SaaS-бенчмарки тут не применимы
-> - Регулярного дохода по умолчанию нет: выручка — разовые продажи плюс повторные заказы, если есть расходники или обновления
-> - Первый производственный заказ требует предоплаты за весь объём (MOQ-риск). В Cash Flow отрази задаток производителю как CAPEX мес. 1–3, ещё до получения дохода
-> - Цикл до MVP зависит от сложности: IoT на готовых компонентах — 4–6 мес., consumer electronics с кастомной электроникой — 12–18 мес. В P&L первые N мес. — только расходы, Runway должен покрывать этот период + 3 мес. буфер
-> - В листе «Допущения» добавь: Себестоимость единицы (руб.), MOQ (мин. партия), Цена продажи, Логистика на единицу, % возвратов
-> - **Продажи через маркетплейсы (Wildberries / Ozon для РФ, Amazon для мир):** если это основной или значимый канал — учти специфику отдельной строкой в P&L:
->   - Комиссия маркетплейса 15–25% от цены продажи (конкретный % зависит от категории и объёма — уточни у человека или из текущих выгрузок)
->   - FBS (fulfillment by seller, хранение у продавца) vs FBO (на складе маркетплейса) — разные модели: FBO требует больше CAPEX на предварительные отгрузки, но быстрее оборачиваемость; FBS — меньше CAPEX, но медленнее доставка и хуже рейтинг карточки
->   - Внутренняя реклама маркетплейса (продвижение карточки, автотаргет) — это не классический CAC через Google/Яндекс, а отдельная статья. Соотношение затрат на продвижение к выручке обычно 8–15% на старте
->   - Процент возвратов на WB/Ozon (особенно WB) часто 10–30% из-за модели «забрал-посмотрел-вернул», что выше чем на собственном сайте
->   - Если продажи через маркетплейс >50% выручки — это канальный риск (изменение правил площадки может убить экономику). Фиксируй в задаче 15 как гипотезу «Диверсификация каналов».
+> **If the business is hardware / a physical device:** the key P&L differences are:
+> - COGS includes manufacturing, logistics and returns. The 40–60% of sale price range is normal for hardware; SaaS benchmarks do not apply here
+> - There is no recurring revenue by default: revenue is one-off sales plus repeat orders where consumables or upgrades exist
+> - The first production order requires prepayment for the whole batch (MOQ risk). In Cash Flow, book the manufacturer's deposit as CAPEX in months 1–3, before any revenue arrives
+> - The cycle to MVP depends on complexity: IoT on off-the-shelf components — 4–6 months; consumer electronics with custom hardware — 12–18 months. The first N months of the P&L are pure cost, and runway has to cover that period plus a 3-month buffer
+> - On the Assumptions sheet, add: unit cost (₽), MOQ (minimum batch), sale price, logistics per unit, % returns
+> - **Selling through marketplaces (Wildberries / Ozon in Russia, Amazon globally):** if this is the main or a significant channel, model its specifics on separate P&L rows:
+>   - Marketplace commission of 15–25% of sale price (the exact % depends on category and volume — confirm with the person or from current exports)
+>   - FBS (fulfilment by seller, stock held by the seller) vs FBO (stock in the marketplace's warehouse) are different models: FBO needs more CAPEX for advance shipments but turns over faster; FBS needs less CAPEX but delivers slower and hurts the listing's rating
+>   - The marketplace's internal advertising (listing promotion, auto-targeting) is not classic CAC through Google or Yandex but a line of its own. Promotion spend usually runs at 8–15% of revenue at launch
+>   - Return rates on WB and Ozon (WB especially) are often 10–30% because of the "collect it, look at it, send it back" model — higher than on your own site
+>   - If marketplace sales exceed 50% of revenue, that is a channel risk (a rule change on the platform can destroy the economics). Record it in task 15 as the hypothesis "channel diversification".
 
-#### Шаг 2.5 — КРИТИЧНО: раскатай формулы на мес. 2–12
+#### Step 2.5 — CRITICAL: expand the formulas into months 2–12
 
-Шаблон `financial-plan-template.xlsx` содержит формулы **только в колонке C (мес. 1)**. Колонки D–N (мес. 2–12) на листах **P&L** и **Cash Flow** пустые. Без этого шага финплан показывает выручку только за 1-й месяц — для инвестора бесполезно.
+The `financial-plan-template.xlsx` template carries formulas **only in column C (month 1)**. Columns D–N (months 2–12) on the **P&L** and **Cash Flow** sheets are empty. Without this step the plan shows revenue for month 1 only, which is useless to an investor.
 
-**Способ 1 (рекомендуется):** использовать готовый скрипт:
+**Method 1 (recommended):** use the ready-made script:
 
 ```bash
 python3 scripts/roll_formulas.py /home/claude/financial-plan.xlsx
 ```
 
-Скрипт пройдёт по листам P&L и Cash Flow, найдёт строки с формулами в колонке C и раскатает их в D–N со сдвигом ссылок.
+The script walks the P&L and Cash Flow sheets, finds the rows holding formulas in column C and expands them into D–N with the references shifted.
 
-**Способ 2 (ручной, если скрипт недоступен):**
+**Method 2 (manual, if the script is unavailable):**
 
 ```python
 from openpyxl.utils import get_column_letter, column_index_from_string
@@ -167,33 +167,33 @@ def shift_formula(formula, delta):
         return f"{get_column_letter(new_col)}{row_num}"
     return re.sub(r'\$?([A-Z]+)(\d+)', shift, formula)
 
-# P&L — раскатать формулы из C в D..N
+# P&L — expand the formulas from C into D..N
 for row in range(1, ws.max_row + 1):
     c_value = ws.cell(row=row, column=3).value
     if isinstance(c_value, str) and c_value.startswith("="):
-        for col in range(4, 15):  # D..N = мес. 2..12
+        for col in range(4, 15):  # D..N = months 2..12
             if ws.cell(row=row, column=col).value is None:
                 ws.cell(row=row, column=col).value = shift_formula(c_value, col - 3)
 ```
 
-**Особые случаи — не формулы, а план роста:**
+**Special cases — a growth plan rather than a formula:**
 
-1. **GMV (P&L R5)** — задай план роста клиентов напрямую, не ссылаясь на лист «Модель»:
+1. **GMV (P&L row 5)** — set the customer growth plan directly instead of referencing the Model sheet:
    ```python
    new_clients = [3, 4, 5, 7, 9, 12, 16, 20, 25, 32, 40, 45]
-   avg_check = 240000  # из Допущений
+   avg_check = 240000  # from Assumptions
    for i, n in enumerate(new_clients):
        ws.cell(row=5, column=3+i).value = n * avg_check
    ```
 
-2. **Cash Flow R4 (остаток на начало):** для мес. 2+ = остаток конца предыдущего месяца:
+2. **Cash Flow row 4 (opening balance):** for month 2 onwards it is the previous month's closing balance:
    ```python
    for col in range(4, 15):
        prev = get_column_letter(col - 1)
        ws.cell(row=4, column=col).value = f"={prev}25"
    ```
 
-3. **Накопительные итоги P&L (R40 GMV накоп, R41 Net Profit накоп):**
+3. **Cumulative P&L totals (row 40 cumulative GMV, row 41 cumulative net profit):**
    ```python
    for col in range(4, 15):
        prev, letter = get_column_letter(col - 1), get_column_letter(col)
@@ -201,246 +201,246 @@ for row in range(1, ws.max_row + 1):
        ws.cell(row=41, column=col).value = f"={prev}41+{letter}36"
    ```
 
-**Проверка:** запусти `python3 scripts/recalc.py /home/claude/financial-plan.xlsx` — ожидаемый результат: `"status": "success", "total_errors": 0`. Посмотри значения P&L R5 (GMV) и R41 (Net Profit накоп.) — они должны расти от мес. 1 к мес. 12, а не быть одинаковыми/пустыми.
+**Verification:** run `python3 scripts/recalc.py /home/claude/financial-plan.xlsx` — the expected result is `"status": "success", "total_errors": 0`. Look at P&L row 5 (GMV) and row 41 (cumulative net profit) — they must grow from month 1 to month 12, not be identical or empty.
 
-#### Шаг 2.6 — КРИТИЧНО: очисти «одежные» данные из шаблона
+#### Step 2.6 — CRITICAL: clear the example data out of the template
 
-Листы **«Допущения»** и **«Модель»** в `financial-plan-template.xlsx` содержат пример-данные одежного бизнеса — сегменты «Локальные бренды», «Блогеры», «Дизайн одежды», «Футболки с кастомным дизайном». Формулы «Модели» ссылаются на эти сегменты.
+The **Assumptions** and **Model** sheets in `financial-plan-template.xlsx` carry example data from an apparel business — the segments "Local brands", "Bloggers", "Clothing design", "T-shirts with custom prints". The Model sheet's formulas reference those segments.
 
-**Если эти данные не заменить** — «Модель» продолжит считать одежный бизнес, а твой блок допущений сверху будет игнорироваться формулами. Summary покажет смешанную картину.
+**If that data is not replaced**, Model keeps calculating an apparel business while the assumptions block you filled in above it is ignored by the formulas. Summary then shows a mixed picture.
 
-**Вариант A (рекомендуется):** Сделай P&L автономным от «Модели».
+**Option A (recommended):** make the P&L independent of Model.
 
-- В P&L задай план GMV напрямую (как в Шаге 2.5 пункт 1 «Особые случаи»), не используй `='Модель'!C41`
-- Лист «Модель» оставь как reference, но не ссылайся на него из Summary
-- В Summary используй только формулы вида `='P&L'!N5`, `='P&L'!N36` и т.д.
+- In the P&L, set the GMV plan directly (as in Step 2.5, special case 1) instead of using `='Model'!C41`
+- Leave the Model sheet as a reference but do not point Summary at it
+- In Summary use only formulas of the form `='P&L'!N5`, `='P&L'!N36` and so on
 
-**Вариант B (если нужно сохранить связь с Моделью):** Переписать лист «Допущения» полностью:
-- Переименовать сегменты в строках 18+ листа «Модель»
-- Заменить средние чеки NEW/RETURN
-- Заменить Churn rate под luxury/premium/mass в зависимости от бизнеса
-- Заменить маркетинг-бюджет
-- Пересчитать `python3 scripts/recalc.py`: убедись что нет `#REF!` и `#DIV/0!`
+**Option B (when the link to Model must be kept):** rewrite the Assumptions sheet completely:
+- Rename the segments in row 18 onwards of the Model sheet
+- Replace the NEW/RETURN average tickets
+- Replace the churn rate for luxury/premium/mass depending on the business
+- Replace the marketing budget
+- Recalculate with `python3 scripts/recalc.py`: confirm there are no `#REF!` or `#DIV/0!`
 
-Если выбрал Вариант A — добавь в Summary блок «живых метрик» со ссылками на P&L:
+If you chose option A, add a "live metrics" block to Summary referencing the P&L:
 
 ```python
 live_metrics = [
-    ("GMV мес.1", "='P&L'!C5"),
-    ("GMV мес.12", "='P&L'!N5"),
-    ("GMV накоп. год 1", "='P&L'!N40"),
-    ("Net Profit накоп. год 1", "='P&L'!N41"),
-    ("Break-even month", "=IFERROR(MATCH(TRUE,'P&L'!C41:N41>=0,0),\"не достигнут\")"),
+    ("GMV month 1", "='P&L'!C5"),
+    ("GMV month 12", "='P&L'!N5"),
+    ("Cumulative GMV, year 1", "='P&L'!N40"),
+    ("Cumulative net profit, year 1", "='P&L'!N41"),
+    ("Break-even month", "=IFERROR(MATCH(TRUE,'P&L'!C41:N41>=0,0),\"not reached\")"),
 ]
 ```
 
-#### Шаг 3 — Заполнение финансовых листов
+#### Step 3 — filling in the financial sheets
 
-> **Если пользователь загрузил данные из CRM / аналитики (вопрос 13 из Шага 0):**
-> Перед заполнением Допущений — прочитай файл через `openpyxl` или `pandas`.
-> Извлеки: реальные конверсии по этапам воронки, retention rate (по когортам если есть), средний чек, churn rate, CAC по каналам.
-> Используй эти значения вместо экспертных оценок. Пометь ячейки с реальными данными зелёным фоном и припиши источник («CRM, выгрузка [дата]»). Это автоматически повышает достоверность до 🟢 Высокая.
+> **If the user uploaded CRM or analytics data (question 13 in Step 0):**
+> Read the file through `openpyxl` or `pandas` before filling in Assumptions.
+> Extract: the real stage-by-stage funnel conversions, retention rate (by cohort where available), average ticket, churn rate, CAC by channel.
+> Use those values instead of expert estimates. Shade the cells holding real data green and note the source ("CRM, export of [date]"). That automatically raises confidence to 🟢 High.
 
-**1. «Допущения»**
+**1. Assumptions**
 
-В зависимости от типа бизнеса (определён в задаче 10) заполняй соответствующий блок 💰 ЦЕНЫ:
+Depending on the business type (determined in task 10), fill the matching 💰 PRICES block:
 
-> **Если бизнес — Продукт:** заполняй блок «ЦЕНЫ (Продукт)» в таблице ниже полностью. Блок 📊 ВОРОНКА — стандартный.
+> **If the business is a product:** fill the "PRICES (Product)" block in the table below in full. The 📊 FUNNEL block is the standard one.
 >
-> **Если бизнес — Сервис / Услуга:** заполняй блок «ЦЕНЫ (Сервис)»: Utilization rate (цель ≥ 70%), Billable rate (руб./час), Avg. project duration (мес.), Avg. project value (руб.). Блок 📊 ВОРОНКА — сохрани как есть, но «лиды» интерпретируй как «запросы на проект».
+> **If the business is a service:** fill the "PRICES (Service)" block: utilisation rate (target ≥ 70%), billable rate (₽/hour), average project duration (months), average project value (₽). Keep the 📊 FUNNEL block as it is, but read "leads" as "project enquiries".
 >
-> **Если бизнес — Маркетплейс:** заполняй блок «ЦЕНЫ (Маркетплейс)»: GMV мес.1, Take rate (%), CAC поставщика, CAC покупателя, COGS% (платёжная инфраструктура + хостинг + поддержка, 5–15% выручки). Важно: воронка — **две** параллельные (поставщики и покупатели), каждая со своими лидами и конверсиями. Выручка = GMV × Take rate, НЕ GMV напрямую.
+> **If the business is a marketplace:** fill the "PRICES (Marketplace)" block: GMV month 1, take rate (%), supplier CAC, buyer CAC, COGS% (payment infrastructure + hosting + support, 5–15% of revenue). Important: there are **two** parallel funnels (suppliers and buyers), each with its own leads and conversions. Revenue = GMV × take rate, NOT GMV directly.
 >
-> **Если бизнес — Hardware:** заполняй блок «ЦЕНЫ (Hardware)»: Себестоимость единицы, MOQ (мин. партия производителя), Цена продажи, Логистика на единицу, % возвратов. COGS обычно 40–60% от цены продажи. Воронка: первый заказ — pre-order или задаток, не просто «лид → клиент». Добавь в OPEX: задаток производителю как CAPEX мес. 1–3 (до получения дохода), Runway должен покрывать этот период + 3 мес. буфер.
+> **If the business is hardware:** fill the "PRICES (Hardware)" block: unit cost, MOQ (the manufacturer's minimum batch), sale price, logistics per unit, % returns. COGS is usually 40–60% of the sale price. The funnel: the first order is a pre-order or a deposit, not simply "lead → customer". Add to OPEX: the manufacturer's deposit as CAPEX in months 1–3 (before any revenue), and runway must cover that period plus a 3-month buffer.
 
-| Блок | Поле | Источник |
-|------|------|----------|
-| 🌍 РЫНОК | TAM, SAM, SOM год 1, Рост рынка | Задача 5, 1 |
-| 💰 ЦЕНЫ (Продукт) | Средний чек NEW/RETURN по сегментам, COGS%, Комиссия | Задача 18a, 10 |
-| 💰 ЦЕНЫ (Сервис) | Utilization rate, Billable rate, Avg. project value, COGS%=ФОТ/Выручка | Задача 18a, 10 |
-| 💰 ЦЕНЫ (Маркетплейс) | GMV мес.1, Take rate (%), CAC поставщика, CAC покупателя, COGS% | Задача 18a, 10 |
-| 💰 ЦЕНЫ (Hardware) | Себестоимость единицы, MOQ, Цена продажи, Логистика на ед., % возвратов | Задача 18a, 10 |
-| 📊 ВОРОНКА | Лиды мес.1, Конверсии, Churn | Задача 18a (из 16), 10, 17 |
-| 🔬 UNIT ECON | CPL, LTV, LTV/CAC, Payback | Задача 18a |
-| 🏗️ OPEX | Маркетинг, ФОТ, Инфра, Dev CAPEX | Задача 18a |
-| 🏛️ НАЛОГИ | Режим: УСН 15% если COGS > 60%, иначе УСН 6% | Авто |
+| Block | Field | Source |
+|-------|-------|--------|
+| 🌍 MARKET | TAM, SAM, SOM year 1, market growth | Tasks 5, 1 |
+| 💰 PRICES (Product) | NEW/RETURN average ticket per segment, COGS%, commission | Tasks 18a, 10 |
+| 💰 PRICES (Service) | Utilisation rate, billable rate, average project value, COGS% = payroll/revenue | Tasks 18a, 10 |
+| 💰 PRICES (Marketplace) | GMV month 1, take rate (%), supplier CAC, buyer CAC, COGS% | Tasks 18a, 10 |
+| 💰 PRICES (Hardware) | Unit cost, MOQ, sale price, logistics per unit, % returns | Tasks 18a, 10 |
+| 📊 FUNNEL | Leads month 1, conversions, churn | Task 18a (from 16), 10, 17 |
+| 🔬 UNIT ECON | CPL, LTV, LTV/CAC, payback | Task 18a |
+| 🏗️ OPEX | Marketing, payroll, infrastructure, dev CAPEX | Task 18a |
+| 🏛️ TAXES | Regime: 15% simplified if COGS > 60%, otherwise 6% simplified | Automatic |
 
-**2. «Модель»** — синие ячейки мес. 1: TAM/SAM/SOM, лиды, конверсии, чеки, затраты
+**2. Model** — the blue cells for month 1: TAM/SAM/SOM, leads, conversions, tickets, costs
 
-**3. «P&L» и «Cash Flow»** — мес. 1:
-- P&L: GMV = Модель→Total GMV; COGS = GMV×COGS%; OPEX из Допущений
-- Cash Flow: остаток начало = инвестиции; поступления = GMV с учётом отсрочки
+**3. P&L and Cash Flow** — month 1:
+- P&L: GMV = Model → total GMV; COGS = GMV × COGS%; OPEX from Assumptions
+- Cash Flow: opening balance = the investment; receipts = GMV allowing for payment terms
 
-**4. «Unit Economics»** — CAC, чеки, COGS%, avg. заказов; LTV / LTV/CAC / Payback → автоформулы
+**4. Unit Economics** — CAC, tickets, COGS%, average orders; LTV / LTV/CAC / payback are automatic formulas
 
-**5. «Сценарии»**
+**5. Scenarios**
 
-| Параметр | Пессимист | Базовый | Оптимист |
-|----------|-----------|---------|----------|
-| Лиды мес.1 | −40% | из Допущений | +75% |
-| Конверсия | −30% | базовая | +50% |
-| Чек NEW | −20% | базовый | +25% |
-| Churn | +20% | базовый | −25% |
+| Parameter | Pessimistic | Base | Optimistic |
+|-----------|-------------|------|------------|
+| Leads month 1 | −40% | from Assumptions | +75% |
+| Conversion | −30% | base | +50% |
+| NEW ticket | −20% | base | +25% |
+| Churn | +20% | base | −25% |
 
-**6. «Cost»** — Команда СП (строки 100+): роль, ЗП gross, часы по неделям (из задачи 10)
+**6. Cost** — the joint-venture team (row 100 onwards): role, gross salary, hours per week (from task 10)
 
-**7. «Total S&M»** — воронка по каналам: каналы/бюджет из задачи 10; конверсии/CPL из задачи 16; воронка по сегментам ЦА из задач 7, 10. Этот лист объединяет то, что раньше было в отдельных «Маркетинг & Продажи» и вороночной части.
+**7. Total S&M** — the funnel by channel: channels and budget from task 10; conversions and CPL from task 16; the funnel by audience segment from tasks 7 and 10. This sheet merges what used to live in a separate "Marketing & Sales" sheet and the funnel section.
 
-#### Шаг 4 — Runway в Cash Flow
+#### Step 4 — runway in Cash Flow
 
-Добавь строку после «Остаток на конец периода»:
+Add a row after "closing balance":
 
 ```
-Runway (мес.) = остаток на конец / среднемесячный burn rate
-Burn rate = Итого выплаты − поступления от клиентов (без инвестиций)
+Runway (months) = closing balance / average monthly burn rate
+Burn rate = total payments − receipts from customers (excluding investment)
 ```
 
-#### Шаг 5 — Sensitivity analysis
+#### Step 5 — sensitivity analysis
 
-> **Защита:** перед началом убедись, что скрипт `recalc.py` на месте:
+> **Guard:** before starting, confirm that `recalc.py` is in place:
 > ```bash
 > test -f /home/claude/scripts/recalc.py || cp -r /mnt/skills/public/xlsx/scripts /home/claude/scripts
 > ```
 
-В лист «Сценарии» добавь таблицу чувствительности через `openpyxl`.
+Add a sensitivity table to the Scenarios sheet through `openpyxl`.
 
-**Алгоритм расчёта (Python через openpyxl):**
-1. Для каждого из 5 параметров и каждого отклонения (−30%, −15%, +15%, +30%):
-   - Сохрани базовое значение из листа «Допущения»
-   - Запиши новое значение в соответствующую ячейку листа «Допущения»
-   - Запусти `python3 /home/claude/scripts/recalc.py /home/claude/financial-plan.xlsx 60` для пересчёта P&L
-   - Открой пересчитанный файл, найди первый месяц где накопленный P&L ≥ 0 → это новый Break-even
-   - Запиши разницу с базовым Break-even в месяцах в ячейку таблицы (отрицательное = раньше, положительное = позже)
-   - Восстанови базовое значение параметра
-2. Повтори для каждого параметра
-3. Рычаг строки = max(|сдвиг|) по всем отклонениям
+**Calculation algorithm (Python via openpyxl):**
+1. For each of the 5 parameters and each deviation (−30%, −15%, +15%, +30%):
+   - Store the base value from the Assumptions sheet
+   - Write the new value into the matching cell on Assumptions
+   - Run `python3 /home/claude/scripts/recalc.py /home/claude/financial-plan.xlsx 60` to recompute the P&L
+   - Open the recomputed file and find the first month where cumulative P&L ≥ 0 → that is the new break-even
+   - Write the difference from the base break-even, in months, into the table cell (negative = earlier, positive = later)
+   - Restore the parameter's base value
+2. Repeat for each parameter
+3. The row's leverage = max(|shift|) across all deviations
 
-Записывай числовые результаты в таблицу (не Excel-формулы — значения рассчитаны Python-скриптом):
+Write numeric results into the table (not Excel formulas — the values are computed by the Python script):
 
-| Параметр | Базовое значение | −30% | −15% | Базовый | +15% | +30% | Рычаг (макс. сдвиг, мес.) |
-|----------|-----------------|------|------|---------|------|------|---------------------------|
-| Средний чек NEW | [из Допущений] | | | 0 | | | |
-| Конверсия воронки | [из Допущений] | | | 0 | | | |
-| Churn rate | [из Допущений] | | | 0 | | | |
-| Бюджет маркетинга | [из Допущений] | | | 0 | | | |
-| COGS % | [из Допущений] | | | 0 | | | |
+| Parameter | Base value | −30% | −15% | Base | +15% | +30% | Leverage (max shift, months) |
+|-----------|-----------|------|------|------|------|------|------------------------------|
+| NEW average ticket | [from Assumptions] | | | 0 | | | |
+| Funnel conversion | [from Assumptions] | | | 0 | | | |
+| Churn rate | [from Assumptions] | | | 0 | | | |
+| Marketing budget | [from Assumptions] | | | 0 | | | |
+| COGS % | [from Assumptions] | | | 0 | | | |
 
-Последняя колонка «Рычаг» = max(|сдвиг|) по строке. Параметр с наибольшим рычагом — приоритет для оптимизации.
+The last column, "leverage", is max(|shift|) across the row. The parameter with the largest leverage is the priority for optimisation.
 
-Добавь под таблицей вывод: **«Главный рычаг: [параметр] — изменение на ±30% сдвигает Break-even на ±[N] мес.»**
+Add a conclusion under the table: **"Main lever: [parameter] — a ±30% change moves break-even by ±[N] months."**
 
-#### Шаг 6 — Аналитические листы PD
+#### Step 6 — the PD analysis sheets
 
-Новый шаблон v3.3 размещает листы в таком порядке: **Summary → финансовые (Сценарии, P&L, Cash Flow, Unit Economics, Модель, Total S&M, Cost) → аналитические (Рынок, Тренды, Конкуренция, PESTEL, Потребители, CJM, Интервью, Бизнес-модель, Продукт, SWOT, OST, Пул гипотез, PMF-метрики) → Допущения (в конце, потому что туда удобно возвращаться для тюнинга)**. Агент заполняет аналитические листы данными из соответствующих задач, сохраняя существующий порядок — пересоздавать их через `openpyxl` **не нужно**.
+The v3.3 template orders the sheets like this: **Summary → financial (Scenarios, P&L, Cash Flow, Unit Economics, Model, Total S&M, Cost) → analysis (Market, Trends, Competition, PESTEL, Customers, CJM, Interviews, Business model, Product, SWOT, OST, Hypothesis pool, PMF metrics) → Assumptions (last, because that is where you keep coming back to tune things)**. The agent fills the analysis sheets with data from the matching tasks and keeps the existing order — there is **no need** to recreate them through `openpyxl`.
 
-Стиль существующих листов: Arial 10, заголовки #1F3864, данные #2E75B6, границы #BFBFBF. Если создаёшь новые строки — используй те же параметры.
+The existing sheets' style: Arial 10, headers #1F3864, data #2E75B6, borders #BFBFBF. Match those settings if you add rows.
 
-| Лист | Содержимое | Задача |
-|------|-----------|--------|
-| **Summary** (первый) | Executive-view: Value Proposition, TAM/SAM/SOM, LTV/CAC, Runway, Break-even, топ-3 риска, главный вывод PD. Заполняется **последним** — агрегирует цифры со всех остальных листов | 18a + все |
-| Рынок | TAM/SAM/SOM + карточка рынка | 1, 5 |
-| Тренды | Таблица 5+ трендов + value chain | 2 |
-| Конкуренция | Feature matrix + карточки конкурентов | 3, 4 |
-| PESTEL | Таблица факторов | 6 |
-| Потребители | JTBD, Job Map, OS, карточки персон | 7 |
+| Sheet | Content | Task |
+|-------|---------|------|
+| **Summary** (first) | Executive view: value proposition, TAM/SAM/SOM, LTV/CAC, runway, break-even, top 3 risks, the PD's main conclusion. Filled in **last** — it aggregates figures from every other sheet | 18a + all |
+| Market | TAM/SAM/SOM plus the market card | 1, 5 |
+| Trends | The table of 5+ trends plus the value chain | 2 |
+| Competition | Feature matrix plus competitor cards | 3, 4 |
+| PESTEL | The factor table | 6 |
+| Customers | JTBD, Job Map, OS, persona cards | 7 |
 | CJM | Customer Journey Map | 8 |
-| Интервью | Таблица инсайтов | 9 |
-| Бизнес-модель | Lean Canvas или BMC + PAC (все сценарии) | 10, 13 |
-| Продукт | PAC детально (Product World) | 10 |
-| SWOT | Матрица + 9 рисков | 11 |
+| Interviews | The insight table | 9 |
+| Business model | Lean Canvas or BMC plus PAC (every scenario) | 10, 13 |
+| Product | The PAC in detail (Product World) | 10 |
+| SWOT | The matrix plus the 9 risks | 11 |
 | OST | Opportunity Solution Tree | 12 |
-| Пул гипотез | Скоринг + RICE + гипотезы + план тестирования | 14, 15, 16 |
-| PMF-метрики | PMF по фазам + OS финальный | 17 |
+| Hypothesis pool | Scoring + RICE + hypotheses + the testing plan | 14, 15, 16 |
+| PMF metrics | PMF by phase plus the final OS | 17 |
 
-#### Шаг 7 — Чек-лист качества
+#### Step 7 — quality checklist
 
-- [ ] Все синие ячейки мес. 1 заполнены
-- [ ] LTV/CAC ≥ 3x в базовом сценарии (цель для инвест-готовности). Если 1.5–3x — пометь как «приемлемо для стадии idea/MVP, цель к инвест-раунду 3x». Если < 1.5x даже в оптимисте — это красный флаг, Pivot по монетизации.
-- [ ] Runway ≥ 6 мес. (если нет — предупредить)
-- [ ] Все 13 аналитических листов добавлены
-- [ ] Лист «Продукт» (PAC) создан
-- [ ] Sensitivity analysis заполнен (5 параметров)
-- [ ] Runway добавлен в Cash Flow
-- [ ] Горизонт 24 мес.: мес. 13–24 в «Модели» заполнены (если нужно)
-- [ ] Формулы: `python3 /home/claude/scripts/recalc.py /home/claude/financial-plan.xlsx 60` → `"status": "success"`
-- [ ] Налоговый режим выбран корректно
-- [ ] Light-режим: вводные 18a помечены жёлтым
+- [ ] Every blue month-1 cell is filled in
+- [ ] LTV/CAC ≥ 3x in the base scenario (the investment-readiness target). At 1.5–3x, mark it "acceptable at idea/MVP stage, target 3x by the round". Below 1.5x even in the optimistic case it is a red flag — pivot on monetisation.
+- [ ] Runway ≥ 6 months (warn if not)
+- [ ] All 13 analysis sheets are present
+- [ ] The Product sheet (PAC) exists
+- [ ] The sensitivity analysis is filled in (5 parameters)
+- [ ] Runway has been added to Cash Flow
+- [ ] 24-month horizon: months 13–24 on Model are filled in (where required)
+- [ ] Formulas: `python3 /home/claude/scripts/recalc.py /home/claude/financial-plan.xlsx 60` → `"status": "success"`
+- [ ] The tax regime is chosen correctly
+- [ ] Light mode: the task 18a inputs are shaded yellow
 
 ---
 
-### Задача 18d: Презентация (.pptx)
+### Task 18d: presentation (.pptx)
 
-Читай скил `/mnt/skills/public/pptx/SKILL.md` перед созданием.
+Read the skill at `/mnt/skills/public/pptx/SKILL.md` before building it.
 
 ```bash
 cp /mnt/skills/user/product-discovery/assets/presentation-template.pptx /home/claude/presentation.pptx
 ```
 
-> ⚠️ **Light-режим:** удали слайды без источника данных — 5, 6, 9, 10, 13, 14, 27, 28, 29, 30, 31, 32, 33. Итог: 21 слайд вместо 34. Используй готовый скрипт:
+> ⚠️ **Light mode:** delete the slides that have no data source — 5, 6, 9, 10, 13, 14, 27, 28, 29, 30, 31, 32, 33. The result is 21 slides instead of 34. Use the ready-made script:
 > ```bash
 > python3 scripts/delete_light_slides.py /home/claude/presentation.pptx
 > ```
-> Он удалит пустые слайды и напомнит обновить слайд 2 (Содержание).
+> It removes the empty slides and reminds you to update slide 2 (Contents).
 
-#### Маппинг слайд → данные
+#### Slide → data mapping
 
-**Карточный дизайн (v3.6).** 8 слайдов шаблона переработаны из монотонных синих блоков в многоколоночный карточный дизайн. При заполнении **не пиши весь текст в один `<a:t>` тег** — шаблон уже содержит отдельные shape-ы для каждой карточки. Находи плейсхолдеры внутри каждой карточки отдельно и заполняй точечно.
+**Card-based design (v3.6).** 8 slides of the template were reworked from monotone blue blocks into a multi-column card design. When filling them in, **do not write all the text into a single `<a:t>` tag** — the template already contains a separate shape per card. Find the placeholder inside each card and fill it individually.
 
-| Слайд | Название | Дизайн шаблона | Данные |
-|-------|----------|----------------|--------|
-| 1 | Обложка | Полный шаблон | Название, дата |
-| 2 | Содержание | Список разделов | В Light-режиме обязательно обнови содержание после удаления слайдов |
-| **РАЗДЕЛ 01 — РЫНОК** | | | |
-| 3 | Объём рынка | 3 уровня TAM/SAM/SOM | TAM/SAM/SOM — Задача 5 |
-| 4 | Динамика рынка | Информационный блок | CAGR — Задача 1 |
-| 5 | Тренды | Сетка 4 трендов | Топ-5 — Задача 2 |
-| **6** | **Value Chain** | **5 карточек цепочки** (цвета от светло-синего к тёмному; Ритейл — красный, если обходится). Плашка маржи снизу каждой карточки, стрелки между. Вывод-блок внизу. | 5 звеньев цепочки + маржа на каждом + вывод про незакрытое звено — Задача 2 |
-| 7 | Конкурентный ландшафт | 4 колонки типов конкурентов | Прямые / косвенные / вытеснители / канальные — Задача 3 |
-| 8 | **Сравнение конкурентов** | Таблица 5 игроков × 7 колонок | Таблица feature matrix — Задачи 3, 4 |
-| 9 | Ключевой конкурент | 5 блоков AARRR | Карточка AARRR — Задача 4 |
-| 10 | PESTEL | 6 факторов с оценками | — Задача 6 |
-| **РАЗДЕЛ 02 — ПОТРЕБИТЕЛИ** | | | |
-| 11 | Раздел 02 | Заголовок раздела | — |
-| 12 | JTBD | 3 типа работ + 3 Job Stories | Job Stories — Задача 7 |
-| **13** | **CJM** | **Таблица 4×7**: строки (Действия/Эмоции/Боли/Возможн.) × 7 этапов. **Шапка колонок выровнена** по data-колонкам (x=1.30..8.41, w=1.15) | 28 ячеек таблицы — Задача 8 |
-| 14 | Инсайты интервью | 5 паттернов с счётчиками | Топ-5 + цитаты — Задача 9 |
-| 15 | Opportunity Score | Таблица 5 outcomes | Топ-5 — Задачи 7, 17 |
-| **16** | **Персоны / сегменты** | **3 карточки персон** (синие оттенки). Каждая: шапка → секции «Контекст / Jobs / Боль» → цитата + OS снизу | 3 персоны с секциями — Задачи 7, 9 |
-| **РАЗДЕЛ 03 — ТЕКУЩИЙ СЦЕНАРИЙ** | | | |
-| 17 | Раздел 03 | Заголовок раздела | — |
-| 18 | Цели компании | 3 KPI + 3 цели | Outcomes на 12–24 мес. — Задача 12 |
-| **19** | **Lean Canvas / BMC** | **9 блоков классической Lean Canvas**. Верхний ряд (1–5) — заголовки на тёмном фоне + контент на светлом (h=1.25 дюйма). Нижний ряд 2×2 (6–9) — блоки h=1.08 с цветной полосой сверху | 9 блоков — Задача 10 |
-| 20 | PAC | 4 мира | Customer / Competitor / Distribution / Product — Задача 10 |
-| 21 | SWOT | Матрица 2×2 | 4 квадранта — Задача 11 |
-| **22** | **Консистентность** | **3 цветные карточки критериев** (✅ зелёная / ⚠️ оранжевая / ✅ зелёная). Шапка с названием + «Обоснование / Метрики» + плашка статуса. Итог внизу | 3 критерия — Задача 11 |
-| 23 | Юнит-экономика | 3 KPI + список метрик | CAC/LTV/Payback — Финплан |
-| **РАЗДЕЛ 04 — OST** | | | |
-| 24 | Раздел 04 | Заголовок раздела | — |
-| 25 | OST уровни 1–2 | Иерархия цель → возможности → решения | Цель + возможности — Задача 12 |
-| **26** | **OST уровни 3–4** | **3 колонки решений**. Каждая: шапка «РЕШЕНИЕ A/B/C» → описание → блок «ЭКСПЕРИМЕНТ» (тёмно-синий) → блок критерий/срок/бюджет (светло-серый) | 3 решения × эксперимент × критерии — Задача 12 |
-| **РАЗДЕЛ 05 — АЛЬТЕРНАТИВНЫЙ СЦЕНАРИЙ** | | | |
-| 27 | Раздел 05 | Заголовок раздела | — |
-| 28 | Ключевые изменения | Таблица «Текущий vs альтернативный» | Сравнение по 4 параметрам — Задачи 13, 14 |
-| 29 | RICE | 3 возможности с формулой | Приоритизация — Задача 14 |
-| **30** | **Пул гипотез + тесты** | **3 блока гипотез** в колонку. Каждый: шапка с тегом риска (🔴 красный / 🟠 оранжевый) → «Формулировка / Метод / Критерий ✅» → плашка срок+бюджет. Правило проверки внизу | 3 гипотезы × риск × метод — Задачи 15, 16 |
-| **РАЗДЕЛ 06 — PMF И СЛЕДУЮЩИЕ ШАГИ** | | | |
-| 31 | Раздел 06 | Заголовок раздела | — |
-| 32 | PMF по фазам | 3 фазы с Sean Ellis Test | — Задача 17 |
-| **33** | **OS финальный** | **Полноценная таблица 10 outcomes** с цветными OS-бейджами (красный=критический → зелёный=низкий) и приоритетами. Чередование белый/серый фон строк | Топ-10 — Задача 17 |
-| 34 | Следующие шаги | 5 шагов Value Validation | — Задачи 16, 17 |
+| Slide | Title | Template design | Data |
+|-------|-------|-----------------|------|
+| 1 | Cover | Full template | Name, date |
+| 2 | Contents | Section list | In Light mode you must update the contents after deleting slides |
+| **SECTION 01 — MARKET** | | | |
+| 3 | Market size | 3 levels: TAM/SAM/SOM | TAM/SAM/SOM — task 5 |
+| 4 | Market dynamics | Information block | CAGR — task 1 |
+| 5 | Trends | A grid of 4 trends | Top 5 — task 2 |
+| **6** | **Value chain** | **5 chain cards** (colours running from light blue to dark; Retail in red when it is being bypassed). A margin strip under each card, arrows between them. A conclusion block at the bottom. | The 5 links of the chain, the margin on each, plus the conclusion about the unclosed link — task 2 |
+| 7 | Competitive landscape | 4 columns of competitor types | Direct / indirect / displacers / channel-based — task 3 |
+| 8 | **Competitor comparison** | A table of 5 players × 7 columns | The feature matrix table — tasks 3, 4 |
+| 9 | Key competitor | 5 AARRR blocks | The AARRR card — task 4 |
+| 10 | PESTEL | 6 factors with scores | — task 6 |
+| **SECTION 02 — CUSTOMERS** | | | |
+| 11 | Section 02 | Section title | — |
+| 12 | JTBD | 3 job types plus 3 Job Stories | Job Stories — task 7 |
+| **13** | **CJM** | **A 4×7 table**: rows (actions / emotions / pains / opportunities) × 7 stages. **The column header is aligned** to the data columns (x=1.30..8.41, w=1.15) | The table's 28 cells — task 8 |
+| 14 | Interview insights | 5 patterns with counters | Top 5 plus quotes — task 9 |
+| 15 | Opportunity Score | A table of 5 outcomes | Top 5 — tasks 7, 17 |
+| **16** | **Personas / segments** | **3 persona cards** (shades of blue). Each: header → the sections "Context / Jobs / Pain" → quote and OS at the bottom | 3 personas with their sections — tasks 7, 9 |
+| **SECTION 03 — CURRENT SCENARIO** | | | |
+| 17 | Section 03 | Section title | — |
+| 18 | Company goals | 3 KPIs plus 3 goals | Outcomes over 12–24 months — task 12 |
+| **19** | **Lean Canvas / BMC** | **The 9 blocks of the classic Lean Canvas**. Top row (1–5) — headers on a dark background with content on light (h=1.25 in). Bottom 2×2 (6–9) — blocks of h=1.08 with a coloured strip on top | The 9 blocks — task 10 |
+| 20 | PAC | The 4 worlds | Customer / Competitor / Distribution / Product — task 10 |
+| 21 | SWOT | A 2×2 matrix | The 4 quadrants — task 11 |
+| **22** | **Consistency** | **3 coloured criterion cards** (✅ green / ⚠️ orange / ✅ green). A header with the name plus "Rationale / Metrics" and a status strip. Conclusion at the bottom | The 3 criteria — task 11 |
+| 23 | Unit economics | 3 KPIs plus a metric list | CAC/LTV/payback — financial plan |
+| **SECTION 04 — OST** | | | |
+| 24 | Section 04 | Section title | — |
+| 25 | OST levels 1–2 | The hierarchy outcome → opportunities → solutions | Outcome plus opportunities — task 12 |
+| **26** | **OST levels 3–4** | **3 solution columns**. Each: a "SOLUTION A/B/C" header → description → an "EXPERIMENT" block (dark blue) → a criterion/timeframe/budget block (light grey) | 3 solutions × experiment × criteria — task 12 |
+| **SECTION 05 — ALTERNATIVE SCENARIO** | | | |
+| 27 | Section 05 | Section title | — |
+| 28 | Key changes | A "current vs alternative" table | A comparison across 4 parameters — tasks 13, 14 |
+| 29 | RICE | 3 opportunities with the formula | Prioritisation — task 14 |
+| **30** | **Hypothesis pool + tests** | **3 hypothesis blocks** in a column. Each: a header with a risk tag (🔴 red / 🟠 orange) → "Statement / Method / Criterion ✅" → a timeframe-and-budget strip. The verification rule at the bottom | 3 hypotheses × risk × method — tasks 15, 16 |
+| **SECTION 06 — PMF AND NEXT STEPS** | | | |
+| 31 | Section 06 | Section title | — |
+| 32 | PMF by phase | 3 phases with the Sean Ellis Test | — task 17 |
+| **33** | **Final OS** | **A full table of 10 outcomes** with coloured OS badges (red = critical → green = low) and priorities. Alternating white and grey row backgrounds | Top 10 — task 17 |
+| 34 | Next steps | The 5 steps of Value Validation | — tasks 16, 17 |
 
-#### Правила оформления
+#### Design rules
 
-- Заголовок = краткий вывод (нарратив по заголовкам)
-- Ключевые слова — **жирным**
-- Источники на каждом информационном слайде
-- Палитра: `#FFFFFF`, `#000000`, `#94A3F6`, `#457E4A`, `#F5939E`
+- The title is the takeaway (the narrative runs through the titles)
+- Key words in **bold**
+- Sources on every information slide
+- Palette: `#FFFFFF`, `#000000`, `#94A3F6`, `#457E4A`, `#F5939E`
 
-#### Заполнение плейсхолдеров: технические нюансы
+#### Filling in placeholders: the technical details
 
-**Шаг 1 — Построить маппинг «номер слайда → файл `slideN.xml`»**
+**Step 1 — build a "slide number → `slideN.xml`" mapping**
 
-После любой манипуляции со слайдами (`delete_light_slides.py`, `add_competitor_comparison_slide.py`) нумерация в `extract-text` расходится с номерами файлов. Например, после удаления 13 слайдов в Light-режиме файл `slide7.xml` может соответствовать «Слайду 5» из extract-text. Читай `presentation.xml.rels`:
+After any slide manipulation (`delete_light_slides.py`, `add_competitor_comparison_slide.py`), the numbering in `extract-text` diverges from the file numbers. For example, after deleting 13 slides in Light mode, `slide7.xml` may correspond to "Slide 5" in extract-text. Read `presentation.xml.rels`:
 
 ```python
 import re
@@ -449,187 +449,187 @@ with open("unpacked/ppt/presentation.xml") as f:
 with open("unpacked/ppt/_rels/presentation.xml.rels") as f:
     rels = f.read()
 
-# Порядок rId в sldIdLst = порядок слайдов в презентации
+# The order of rIds in sldIdLst is the order of slides in the deck
 sld_ids = re.findall(r'<p:sldId[^/]*r:id="([^"]+)"', pres)
-# rId → файл
+# rId → file
 rid_to_file = dict(re.findall(r'Id="([^"]+)"[^>]*Target="([^"]+)"', rels))
 
-# Маппинг: «Slide N в extract-text» → «slideK.xml»
+# Mapping: "Slide N in extract-text" → "slideK.xml"
 slide_num_to_file = {
     i+1: rid_to_file[rid]
     for i, rid in enumerate(sld_ids)
     if rid in rid_to_file
 }
-# Теперь slide_num_to_file[5] даст правильный slide7.xml (а не slide5.xml)
+# Now slide_num_to_file[5] gives the correct slide7.xml (not slide5.xml)
 ```
 
-**Шаг 2 — Regex должен учитывать атрибуты `xml:space="preserve"`**
+**Step 2 — the regex has to allow for the `xml:space="preserve"` attribute**
 
-Текст с ведущими пробелами или переносами в XML оборачивается в `<a:t xml:space="preserve">...</a:t>`. **Неправильный** regex пропускает такие теги:
+Text with leading spaces or line breaks is wrapped in XML as `<a:t xml:space="preserve">...</a:t>`. The **wrong** regex skips those tags:
 
 ```python
-# ❌ Пропускает <a:t xml:space="preserve">
+# ❌ Misses <a:t xml:space="preserve">
 re.findall(r'<a:t>([^<]*)</a:t>', xml)
 ```
 
-**Правильный** regex учитывает опциональные атрибуты:
+The **right** regex allows for optional attributes:
 
 ```python
-# ✅ Ловит и <a:t>, и <a:t xml:space="preserve">
+# ✅ Catches both <a:t> and <a:t xml:space="preserve">
 re.findall(r'<a:t(?:\s[^>]*)?>([^<]*)</a:t>', xml)
 
-# Замена с сохранением атрибутов:
+# Replacement that preserves the attributes:
 def replace_run(xml, old_text, new_text, count=1):
     def xe(s): return s.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
     pattern = r'(<a:t(?:\s[^>]*)?>)' + re.escape(xe(old_text)) + r'(</a:t>)'
     return re.subn(pattern, lambda m: m.group(1) + xe(new_text) + m.group(2), xml, count=count)
 ```
 
-**Шаг 3 — Проверка после заполнения**
+**Step 3 — check after filling in**
 
 ```python
 import subprocess
 result = subprocess.run(['extract-text', 'output.pptx'], capture_output=True, text=True)
 placeholders = re.findall(r'\[[^\]]{1,80}\]', result.stdout)
-# Отфильтровать эмодзи-префиксы и легитимные вхождения [...]
+# Filter out emoji prefixes and legitimate [...] occurrences
 real = [p for p in placeholders if not any(x in p for x in ['✅','⚠️','🔴','🟠','🟡','🟢'])]
-assert len(real) == 0, f"Осталось незаполнено: {real}"
+assert len(real) == 0, f"Still unfilled: {real}"
 ```
 
 #### Troubleshooting pack.py
 
-**НИКОГДА не используй `pack.py --validate false`.** Этот флаг обходит проверки, которые PowerPoint применяет при открытии файла. Результат — файл проходит твой pack.py, но не открывается у пользователя.
+**NEVER use `pack.py --validate false`.** That flag bypasses the very checks PowerPoint applies when opening a file. The result: the file passes your pack.py and will not open for the user.
 
-Типичные ошибки и как чинить:
+Common errors and how to fix them:
 
-**Ошибка «Notes slide referenced by multiple slides»** — возникает после запуска `add_competitor_comparison_slide.py` или при ручном копировании слайдов. Несколько `_rels` файлов указывают на один `notesSlide.xml`. Починка:
+**"Notes slide referenced by multiple slides"** — appears after running `add_competitor_comparison_slide.py` or after copying slides by hand. Several `_rels` files point at the same `notesSlide.xml`. The fix:
 
 ```python
 import re, os, shutil
 
-# 1. Удали все ссылки на notesSlides из slide rels
+# 1. Remove every notesSlides reference from the slide rels
 rels_dir = "unpacked/ppt/slides/_rels"
 for f in os.listdir(rels_dir):
     path = f"{rels_dir}/{f}"
     with open(path) as fp: content = fp.read()
-    # ВАЖНО: [^>]*? — не-жадный матч, иначе Target с '/' не схватывается
+    # IMPORTANT: [^>]*? — a non-greedy match, otherwise a Target containing '/' is missed
     new = re.sub(r'\s*<Relationship[^>]*?notesSlide[^>]*?/>', '', content)
     if new != content:
         with open(path, "w") as fp: fp.write(new)
 
-# 2. Удали папку notesSlides целиком
+# 2. Delete the notesSlides folder entirely
 notes_dir = "unpacked/ppt/notesSlides"
 if os.path.exists(notes_dir):
     shutil.rmtree(notes_dir)
 ```
 
-Notes в презентации для инвестора не нужны — их удаление безопасно.
+An investor deck does not need notes — removing them is safe.
 
-**Ошибка «Missing required file» или «Invalid Content_Types»** — обычно после ручной правки `[Content_Types].xml`. Откати правку, не трогай этот файл напрямую — `pack.py` сам его корректно пересоздаёт.
+**"Missing required file" or "Invalid Content_Types"** — usually the result of editing `[Content_Types].xml` by hand. Revert the edit and leave that file alone; `pack.py` regenerates it correctly on its own.
 
-#### Финальный шаг: PowerPoint round-trip через LibreOffice
+#### Final step: the PowerPoint round-trip through LibreOffice
 
-После успешного `pack.py` OOXML-валидный файл может всё равно не открыться в PowerPoint из-за особенностей манифестов. Фиксируется пересохранением через LibreOffice, который экспортирует через Microsoft Impress Office Open XML filter:
+Even after `pack.py` succeeds, an OOXML-valid file may still fail to open in PowerPoint because of manifest quirks. Re-saving through LibreOffice fixes it, because LibreOffice exports through the Microsoft Impress Office Open XML filter:
 
 ```bash
 bash scripts/finalize_pptx.sh /home/claude/presentation.pptx /mnt/user-data/outputs/presentation-[slug].pptx
 ```
 
-Скрипт делает три шага:
-1. `pack.py` с полной валидацией
-2. LibreOffice round-trip (`libreoffice --headless --convert-to pptx`)
-3. Верификация через `python-pptx` (файл действительно открывается)
+The script does three things:
+1. `pack.py` with full validation
+2. The LibreOffice round-trip (`libreoffice --headless --convert-to pptx`)
+3. Verification through `python-pptx` (the file really does open)
 
-Без шага 2 презентация может открываться в LibreOffice и Google Slides, но **не** открываться в PowerPoint. Это критично если пользователь отправит файл инвестору.
+Without step 2 the deck may open in LibreOffice and Google Slides but **not** in PowerPoint. That is fatal if the user sends the file to an investor.
 
-#### Чек-лист качества
+#### Quality checklist
 
-- [ ] Нет `[...]` в слайдах 3, 7, 8, 12, 19, 23 (ключевые информационные слайды)
-- [ ] Нет вообще незаполненных `[плейсхолдеров]` в презентации — проверь через `extract-text` + `re.findall(r'\[[^\]]{1,80}\]', text)`
-- [ ] Все числа имеют источник
-- [ ] Слайд 8: таблица сравнения конкурентов заполнена минимум по 5 игрокам, каждая ячейка содержит либо цифру либо «н/д» с пометкой достоверности
-- [ ] Слайд 23: есть Runway
-- [ ] Слайд 16: карточки персон из задачи 7
-- [ ] Слайд 18: горизонт соответствует ответу из Шага 0 (12 или 24 мес.)
-- [ ] Слайд 22: все 3 критерия консистентности заполнены (Желательность / Жизнеспособность / Реализуемость)
-- [ ] Слайд 33: OS финальный содержит топ-10 outcomes из задачи 17
-- [ ] Финальный `pack.py` прошёл **без** `--validate false`
-- [ ] Выполнен `scripts/finalize_pptx.sh` — PowerPoint round-trip через LibreOffice
-- [ ] Проверка открытия через `python-pptx`: `Presentation(path)` не падает, `len(pres.slides)` соответствует ожидаемому (21 для Light, 34 для Full)
+- [ ] No `[...]` left on slides 3, 7, 8, 12, 19, 23 (the key information slides)
+- [ ] No unfilled `[placeholders]` anywhere in the deck — check with `extract-text` plus `re.findall(r'\[[^\]]{1,80}\]', text)`
+- [ ] Every number has a source
+- [ ] Slide 8: the competitor comparison table covers at least 5 players, and every cell holds either a number or "n/a" with a confidence marker
+- [ ] Slide 23: runway is present
+- [ ] Slide 16: the persona cards come from task 7
+- [ ] Slide 18: the horizon matches the answer from Step 0 (12 or 24 months)
+- [ ] Slide 22: all 3 consistency criteria are filled in (desirability / viability / feasibility)
+- [ ] Slide 33: the final OS holds the top 10 outcomes from task 17
+- [ ] The final `pack.py` ran **without** `--validate false`
+- [ ] `scripts/finalize_pptx.sh` has been run — the PowerPoint round-trip through LibreOffice
+- [ ] Opening check through `python-pptx`: `Presentation(path)` does not raise and `len(pres.slides)` matches expectations (21 for Light, 34 for Full)
 
 ---
 
-### Завершение PD — финальная сводка в чат
+### Finishing PD — the final summary in the chat
 
-После создания всех трёх (или четырёх в Full) артефактов — **не завершай разговор тихо**. Выдай пользователю структурированную сводку в чат.
+Once all three artifacts (or four in Full) exist, **do not end the conversation in silence**. Give the user a structured summary in the chat.
 
-**Алгоритм определения главного вывода (Go / Pivot / No-go):**
+**How to determine the main conclusion (Go / Pivot / No-go):**
 
-Применяй по всем PD-результатам. Считай активированные критерии:
+Apply it across all the PD results. Count the criteria that fired:
 
-| Условие | Сигнал |
-|---------|--------|
-| Красных флагов (из раздела «STOP / PIVOT») активировано | 0 / 1-2 / ≥ 3 |
-| Инвест-готовность (трекер после PD) | ≥ 6/8 / 4-5/8 / < 4/8 |
-| OS главной возможности | ≥ 15 / 10-14 / < 10 |
-| LTV/CAC в базовом сценарии | ≥ 3x / 1.5-3x / < 1.5x |
+| Condition | Signal |
+|-----------|--------|
+| Red flags fired (from the "STOP / PIVOT" section) | 0 / 1-2 / ≥ 3 |
+| Investment readiness (tracker after PD) | ≥ 6/8 / 4-5/8 / < 4/8 |
+| OS of the main opportunity | ≥ 15 / 10-14 / < 10 |
+| LTV/CAC in the base scenario | ≥ 3x / 1.5-3x / < 1.5x |
 
-**Правило решения:**
-- **Go (продолжаем):** 0 красных флагов И инвест-готовность ≥ 6/8 И LTV/CAC ≥ 3x
-- **Go с рисками:** 1-2 красных флага (кроме LTV/CAC < 1.5x), инвест-готовность ≥ 4/8. Указать риски и план их закрытия.
-- **Pivot (нужны серьёзные изменения, но рынок есть):** 1-2 красных флага включая LTV/CAC или нет дифференциации, но OS ≥ 10 и SAM достаточный. Предложить конкретное направление pivot'а (сегмент / модель монетизации / Value Proposition — см. таблицу «Pivot vs. Корректировка»).
-- **No-go (рынок не подтверждается):** ≥ 3 красных флагов ИЛИ SAM ниже порога ИЛИ OS < 8 у всех сегментов. Рекомендовать остановку проекта или возврат к Шагу 0 с другой проблемной гипотезой.
+**Decision rule:**
+- **Go (carry on):** 0 red flags AND investment readiness ≥ 6/8 AND LTV/CAC ≥ 3x
+- **Go with risks:** 1–2 red flags (excluding LTV/CAC < 1.5x), investment readiness ≥ 4/8. State the risks and the plan to close them.
+- **Pivot (serious changes needed, but the market is there):** 1–2 red flags including LTV/CAC or a lack of differentiation, but OS ≥ 10 and SAM sufficient. Propose a concrete pivot direction (segment / monetisation model / value proposition — see the "Pivot vs adjustment" table).
+- **No-go (the market is not confirmed):** ≥ 3 red flags OR SAM below the threshold OR OS < 8 across all segments. Recommend stopping the project or returning to Step 0 with a different problem hypothesis.
 
-**Принципы:**
-- Честность важнее оптимизма. Если данные говорят No-go — агент **обязан** сказать No-go, не смягчая.
-- Цитируй конкретные числа, которые привели к выводу.
-- Предлагай альтернативу, даже при No-go (например, «рынок B2C не подтвердился, но в данных есть сигнал для B2B SMB — стоит проверить»).
+**Principles:**
+- Honesty beats optimism. If the data says No-go, the agent **must** say No-go without softening it.
+- Quote the specific numbers that led to the conclusion.
+- Offer an alternative even on a No-go (for example, "the B2C market did not hold up, but the data carries a signal for B2B SMB — worth checking").
 
-**Шаблон вывода:**
+**Output template:**
 
 ```
-✅ PRODUCT DISCOVERY ЗАВЕРШЁН — [Название проекта]
+✅ PRODUCT DISCOVERY COMPLETE — [Project name]
 ═══════════════════════════════════════════════
 
-📋 ВЫПОЛНЕНО ЗАДАЧ: [N из 18] в режиме [Light / Full]
+📋 TASKS COMPLETED: [N of 18] in [Light / Full] mode
 
-📁 АРТЕФАКТЫ:
-  • One-pager:       one-pager-[slug-проекта].pptx
-  • Финплан:         financial-plan-[slug-проекта].xlsx
-  • Презентация:     presentation-[slug-проекта].pptx
-  • Интервью-гайд:   interview-guide-[slug-проекта].docx (если Full)
+📁 ARTIFACTS:
+  • One-pager:       one-pager-[project-slug].pptx
+  • Financial plan:  financial-plan-[project-slug].xlsx
+  • Presentation:    presentation-[project-slug].pptx
+  • Interview guide: interview-guide-[project-slug].docx (Full only)
 
-🎯 ГЛАВНЫЙ ВЫВОД: [Go / Go с рисками / Pivot / No-go]
-  Обоснование: [числа — сколько красных флагов, инвест-готовность N/8, LTV/CAC, OS]
-  [Если Pivot/No-go: что конкретно менять или почему проект не стоит продолжать]
+🎯 MAIN CONCLUSION: [Go / Go with risks / Pivot / No-go]
+  Rationale: [the numbers — how many red flags, investment readiness N/8, LTV/CAC, OS]
+  [If Pivot or No-go: exactly what to change, or why the project should not continue]
 
-💡 ВЕРДИКТ ПО ЦЕННОСТИ:
-  Value Proposition: «[формулировка из задачи 10]»
-  Главный сегмент:   [из задачи 18a]
-  Монетизация:       [модель, чек в рублях]
+💡 VALUE VERDICT:
+  Value Proposition: "[the wording from task 10]"
+  Main segment:      [from task 18a]
+  Monetisation:      [model, ticket in roubles]
 
-📊 КЛЮЧЕВЫЕ МЕТРИКИ (базовый сценарий):
-  • TAM / SAM / SOM:   [X / Y / Z млрд руб.]
+📊 KEY METRICS (base scenario):
+  • TAM / SAM / SOM:   [X / Y / Z ₽bn]
   • LTV / CAC:         [N.Nx]
-  • Runway:            [N мес.]
-  • Break-even:        [мес. N]
+  • Runway:            [N months]
+  • Break-even:        [month N]
 
-🚩 ТОП-3 РИСКА:
-  1. [Гипотеза с риском Высокий] — проверить методом: [метод] за [срок]
+🚩 TOP 3 RISKS:
+  1. [A hypothesis carrying High risk] — test via: [method] within [timeframe]
   2. ...
   3. ...
 
-🎯 ИНВЕСТ-ГОТОВНОСТЬ: [N / 8 ✅] — [Высокая / Средняя / Низкая]
-  Закрыть до раунда: [пункты с ⚠️ и ❌ из трекера]
+🎯 INVESTMENT READINESS: [N / 8 ✅] — [High / Medium / Low]
+  Close before the round: [the ⚠️ and ❌ items from the tracker]
 
-▶️ СЛЕДУЮЩИЕ 3 ШАГА (на ближайшие 2 недели):
-  1. [Действие] — владелец [роль] — срок [+N дней]
+▶️ NEXT 3 STEPS (over the coming 2 weeks):
+  1. [Action] — owner [role] — due [+N days]
   2. ...
   3. ...
 
 ═══════════════════════════════════════════════
 ```
 
-Если какие-то блоки PD пропущены (Light) — явно пометь: «NPS / Retention: требует верификации (Light-режим, пропущена задача 17)».
+If any PD blocks were skipped (Light), mark it explicitly: "NPS / retention: needs verification (Light mode, task 17 skipped)".
 
 ---
