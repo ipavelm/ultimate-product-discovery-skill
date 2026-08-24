@@ -1,169 +1,169 @@
-## БЛОК I: АНАЛИЗ РЫНКА
+## BLOCK I: MARKET ANALYSIS
 
-### Задача 1: Анализ рынка
+### Task 1: market analysis
 
-**Цель:** Собрать данные о рынке из открытых источников.
+**Goal:** collect market data from open sources.
 
-**Действия:**
-- `web_search`: `"название рынка" market research [текущий и следующий годы]`, `"отрасль" statistics report`. Подставляй текущий год и следующий (например, если сейчас 2026 — ищи «2026 2027»).
-- Глобальные: Gartner, McKinsey, BCG, Statista, Deloitte, SimilarWeb
-- Россия: Росстат, РБК, Ведомости, АКРА, ЦБ РФ, Data Insight, Nielsen Russia, «Сбер», «Яндекс»
+**Actions:**
+- `web_search`: `"market name" market research [current and next year]`, `"industry" statistics report`. Substitute the current year and the next one (for example, if it is 2026, search for "2026 2027").
+- Global: Gartner, McKinsey, BCG, Statista, Deloitte, SimilarWeb
+- Russia: Rosstat, RBC, Vedomosti, ACRA, Bank of Russia, Data Insight, Nielsen Russia, Sber, Yandex
 
-**Верификация ключевых цифр:** для каждой критически важной цифры (объём рынка, CAGR, доля топ-игроков) — используй `web_fetch` для открытия оригинального источника и подтверждения точности. Не принимай данные только из сниппета поиска. Фиксируй прямую ссылку на источник в карточке рынка.
+**Verifying the key numbers:** for every critical figure (market size, CAGR, share of the top players), use `web_fetch` to open the original source and confirm it. Never accept data from a search snippet alone. Record the direct source link in the market card.
 
-**Когда данных именно по твоей нише мало** (что характерно для узких вертикалей или новых рынков): бери соседнюю широкую категорию и оценивай долю ниши от неё как допущение. Пример: если ищешь «рынок тайм-трекеров для фрилансеров в РФ» и находишь только общие цифры по рынку фриланса (19 млн чел., $41 млрд) — прикинь долю: из 19 млн условно 10% используют платные B2C-инструменты автоматизации → 1.9 млн потенциальных пользователей. Фиксируй это явно: «Исходная оценка: доля X% от рынка Y. Проверить через интервью на шаге задачи 9». Это лучше, чем либо псевдоточные цифры, либо отказ оценить.
+**When there is little data on your exact niche** (typical for narrow verticals and new markets): take the neighbouring broad category and estimate the niche's share of it as an assumption. Example: if you are looking for "the market for time trackers for freelancers in Russia" and only find general freelance figures (19M people, $41bn), work out the share: of 19M, say 10% use paid B2C automation tools → 1.9M potential users. State it explicitly: "Initial estimate: X% share of market Y. To be checked through interviews in task 9." That beats both false precision and refusing to estimate at all.
 
-**Результат:** Карточка рынка — объём, динамика, структура (лист «Рынок» в финплане).
+**Output:** the market card — size, dynamics, structure (the "Market" sheet in the financial plan).
 
-**Классификация типа рынка** — определи перед переходом к задаче 3, так как это влияет на методологию задач 7 и 16:
+**Market type classification** — determine it before moving to task 3, because it changes the methodology in tasks 7 and 16:
 
-| Тип рынка | Признаки | Следствия для PD |
-|-----------|----------|-----------------|
-| **Существующий** | Конкуренты есть, клиенты знают проблему | Фокус на дифференциации; Smoke Test работает хорошо |
-| **Ресегментированный** | Новая ниша внутри существующего рынка | JTBD помогает найти недообслуженный сегмент; бенчмарки ниже |
-| **Новый** | Клиенты не осознают проблему или рынок только формируется | Интервью критичны; Smoke Test даёт низкую конверсию — это норма; горизонт длиннее. **Для нового рынка читай [customer-development.md](customer-development.md)** — там протокол Steve Blank (Four Steps to the Epiphany) и The Mom Test как адаптация методологии под этот кейс |
+| Market type | Signs | Consequences for PD |
+|-------------|-------|---------------------|
+| **Existing** | Competitors exist, customers know the problem | Focus on differentiation; the Smoke Test works well |
+| **Resegmented** | A new niche inside an existing market | JTBD helps find the underserved segment; benchmarks run lower |
+| **New** | Customers do not recognise the problem, or the market is only forming | Interviews are critical; the Smoke Test converts badly and that is normal; the horizon is longer. **For a new market, read [customer-development.md](customer-development.md)** — it carries the Steve Blank protocol (Four Steps to the Epiphany) and The Mom Test as the adaptation of the methodology to this case |
 
-Фиксируй тип рынка в Knowledge Base — он используется при интерпретации результатов задач 3, 7 и 16.
+Record the market type in the Knowledge Base — it is used when interpreting the results of tasks 3, 7 and 16.
 
-⚠️ **Красный флаг:** SAM < 1 млрд руб. (Product/Service/Marketplace) или < 500 млн руб. (Hardware) → сообщи немедленно.
-
----
-
-### Задача 2: Анализ трендов
-
-**Цель:** Выявить тренды, влияющие на рынок.
-
-- Тренд = изменение свойств объектов рынка во времени
-- Типы: технологические, поведенческие, регуляторные, демографические, экономические
-
-**Формат (минимум 5 трендов):**
-
-| # | Тренд | Тип | Статистика / источник | Следствие для рынка | Следствие для продукта |
-|---|-------|-----|-----------------------|---------------------|------------------------|
-
-**Результат:** Таблица трендов + value chain-схема (лист «Тренды» в финплане).
+⚠️ **Red flag:** SAM < ₽1bn (Product/Service/Marketplace) or < ₽500M (Hardware) → report it immediately.
 
 ---
 
-### Задача 3: Конкурентный ландшафт
+### Task 2: trend analysis
 
-**4 типа конкурентов:**
-1. **Прямые** — та же потребность, тот же способ
-2. **Косвенные** — та же потребность, другой способ
-3. **Вытеснители** — конкурируют за бюджет или время
-4. **По каналам** — преимущество в дистрибуции / performance marketing
+**Goal:** identify the trends affecting the market.
 
-`web_search`: `топ конкуренты [ниша]`, `[category] alternatives [текущий год]`. Источники: G2, Capterra, TAdviser, ProductHunt, TechCrunch, VC.ru.
+- A trend is a change in the properties of the market's objects over time
+- Types: technological, behavioural, regulatory, demographic, economic
 
-**Формат — feature matrix (минимум 5 конкурентов):**
+**Format (5 trends minimum):**
 
-| Конкурент | Тип | Позиционирование | Цена | Каналы | Доля рынка | Слабость |
-|-----------|-----|-----------------|------|--------|-----------|----------|
+| # | Trend | Type | Statistic / source | Consequence for the market | Consequence for the product |
+|---|-------|------|--------------------|----------------------------|-----------------------------|
 
-**Карта позиционирования 2×2 (опционально, но рекомендуется):**
+**Output:** the trend table plus a value chain diagram (the "Trends" sheet in the financial plan).
 
-Выбери две наиболее значимые оси дифференциации для этого рынка (примеры: «цена — качество», «простота — функциональность», «скорость — надёжность», «B2B — B2C охват»). Для каждого конкурента из feature matrix определи позицию на этих осях. Это позволяет визуально найти «белое пятно» — незанятую позицию, где может существовать новый продукт.
+---
 
-Формат вывода:
+### Task 3: competitive landscape
+
+**4 types of competitor:**
+1. **Direct** — same need, same method
+2. **Indirect** — same need, different method
+3. **Displacers** — competing for the budget or the time
+4. **Channel-based** — an advantage in distribution or performance marketing
+
+`web_search`: `top competitors [niche]`, `[category] alternatives [current year]`. Sources: G2, Capterra, TAdviser, ProductHunt, TechCrunch, VC.ru.
+
+**Format — feature matrix (5 competitors minimum):**
+
+| Competitor | Type | Positioning | Price | Channels | Market share | Weakness |
+|------------|------|-------------|-------|----------|--------------|----------|
+
+**2×2 positioning map (optional but recommended):**
+
+Pick the two most meaningful axes of differentiation for this market (examples: "price — quality", "simplicity — functionality", "speed — reliability", "B2B — B2C reach"). Place every competitor from the feature matrix on those axes. This is what makes the "white space" visible — an unoccupied position where a new product could live.
+
+Output format:
 ```
-Ось X: [название, например «Цена: низкая → высокая»]
-Ось Y: [название, например «Простота → Функциональность»]
+X axis: [name, e.g. "Price: low → high"]
+Y axis: [name, e.g. "Simplicity → Functionality"]
 
-Позиции:
-- [Конкурент А]: X=низкая, Y=высокая функциональность → верхний-левый квадрант
-- [Конкурент Б]: X=высокая, Y=низкая → нижний-правый квадрант
+Positions:
+- [Competitor A]: X=low, Y=high functionality → upper-left quadrant
+- [Competitor B]: X=high, Y=low → lower-right quadrant
 ...
-Белое пятно: [описание незанятой позиции]
+White space: [description of the unoccupied position]
 ```
 
-**Результат:** Карта конкурентов + feature matrix (лист «Конкуренция» в финплане).
+**Output:** the competitor map plus the feature matrix (the "Competition" sheet in the financial plan).
 
 ---
 
-### Задача 4: Анализ ключевого конкурента
+### Task 4: key competitor analysis
 
-**AARRR-анализ:** Acquisition, Activation, Retention, Revenue, Referral.
+**AARRR analysis:** Acquisition, Activation, Retention, Revenue, Referral.
 
-**Дополнительно:** раунды инвестиций (Crunchbase), отзывы (G2, App Store), провалы.
+**Also:** funding rounds (Crunchbase), reviews (G2, App Store), failures.
 
-**Формат — карточка конкурента:**
+**Format — competitor card:**
 
 ```
-Конкурент:      [Название]
-Тип:            [Прямой / Косвенный / etc.]
-Acquisition:    [каналы, оценочный CAC]
-Activation:     [онбординг, aha-moment]
-Retention:      [механизмы, retention rate если известен]
-Revenue:        [модель, средний чек, ARR если известен]
-Referral:       [программы, NPS если известен]
-Слабости:       [из отзывов пользователей]
-Инвестиции:     [раунды, суммы]
-Ключевой вывод: [главное преимущество / уязвимость]
+Competitor:     [Name]
+Type:           [Direct / Indirect / etc.]
+Acquisition:    [channels, estimated CAC]
+Activation:     [onboarding, aha moment]
+Retention:      [mechanisms, retention rate if known]
+Revenue:        [model, average ticket, ARR if known]
+Referral:       [programmes, NPS if known]
+Weaknesses:     [from user reviews]
+Funding:        [rounds, amounts]
+Key takeaway:   [the main advantage or vulnerability]
 ```
 
-**Результат:** Карточки конкурентов (лист «Конкуренция» в финплане).
+**Output:** competitor cards (the "Competition" sheet in the financial plan).
 
 ---
 
-### Задача 5: TAM / SAM / SOM
+### Task 5: TAM / SAM / SOM
 
-- **TAM** = число потребителей × частота × средний чек
-- **SAM** = доля TAM с учётом конкурентов и географии
-- **SOM** = ограничение ресурсами на горизонте 1–3 лет
+- **TAM** = number of customers × frequency × average ticket
+- **SAM** = the share of TAM once competitors and geography are accounted for
+- **SOM** = what resources allow over a 1–3 year horizon
 
-Считай в деньгах (руб./год) **и** в количестве покупателей.
+Calculate it in money (₽/year) **and** in number of buyers.
 
-**Верификация SAM двумя методами (обязательно):**
+**Verify SAM with both methods (mandatory):**
 
-| Метод | Формула | Когда применять |
-|-------|---------|----------------|
-| **Top-down** | TAM × доля доступного сегмента (%) | Всегда |
-| **Bottom-up** | Кол-во доступных клиентов × средний чек × частота | Всегда |
+| Method | Formula | When to use |
+|--------|---------|-------------|
+| **Top-down** | TAM × share of the accessible segment (%) | Always |
+| **Bottom-up** | Number of accessible customers × average ticket × frequency | Always |
 
-Если результаты двух методов расходятся **более чем в 3 раза** — пересчитай допущения. Точная формула: `max(Top-down, Bottom-up) / min(Top-down, Bottom-up) > 3`. Пример: Top-down = 10 млрд, Bottom-up = 35 млрд → 35/10 = 3.5x → расхождение критическое, пересчитай. При 10 млрд vs 25 млрд (2.5x) — допустимо, но укажи оба значения и поясни, какому больше доверяешь.
+If the two results differ by **more than 3x**, recalculate the assumptions. The exact test: `max(Top-down, Bottom-up) / min(Top-down, Bottom-up) > 3`. Example: top-down = ₽10bn, bottom-up = ₽35bn → 35/10 = 3.5x → the divergence is critical, recalculate. At ₽10bn vs ₽25bn (2.5x) it is acceptable, but state both values and explain which one you trust more.
 
-**Прокси-рынок для продуктов с hardware-зависимостью.** Если продукт требует у конечного пользователя специфического устройства (VR-гарнитура, AR-очки, IoT-контроллер, специализированный сенсор, премиум-смартфон для AR-функций и т.п.), реальный SAM равен **не общему объёму целевой аудитории, а пересечению аудитории с владельцами необходимого устройства**. Примеры:
+**Proxy market for products with a hardware dependency.** If the product requires the end user to own a specific device (VR headset, AR glasses, IoT controller, a specialised sensor, a premium smartphone for AR features and so on), the real SAM is **not the whole target audience but the intersection of that audience with owners of the required device**. Examples:
 
-| Продукт | Общий TAM | Прокси-ограничение | Реальный SAM |
-|---------|-----------|---------------------|--------------|
-| VR-платформа для школьников РФ | ~15 млн школьников | ~1% семей с VR-гарнитурой (~150k) | Расчёт от 150k, не от 15 млн |
-| AI-ассистент для AirPods Pro | Все владельцы смартфонов | Только AirPods Pro/Pro 2 | От числа AirPods Pro |
-| IoT-приложение для Tesla | Все автовладельцы | Только владельцы Tesla | От числа Tesla на рынке |
+| Product | Overall TAM | Proxy constraint | Real SAM |
+|---------|-------------|------------------|----------|
+| VR platform for Russian schoolchildren | ~15M schoolchildren | ~1% of families own a VR headset (~150k) | Calculate from 150k, not 15M |
+| AI assistant for AirPods Pro | Every smartphone owner | AirPods Pro / Pro 2 only | From the number of AirPods Pro |
+| IoT app for Tesla | Every car owner | Tesla owners only | From the number of Teslas on the market |
 
-Действие: если продукт предполагает hardware-зависимость, явно спроси человека «Какое оборудование должно быть у конечного пользователя?» и оцени SAM через пересечение. Если пересечение < 10% общего TAM и при этом оборудование дорогое (> 30k ₽) — это самостоятельный риск, который фиксируй в задаче 15 как гипотезу: «Аудитория с нужным оборудованием достаточно велика для целевого SAM».
+Action: if the product carries a hardware dependency, ask the person outright "What equipment does the end user need to own?" and size SAM through the intersection. If that intersection is < 10% of the overall TAM and the equipment is expensive (> ₽30k), that is a risk in its own right — record it in task 15 as a hypothesis: "The audience owning the required equipment is large enough for the target SAM".
 
-**Индикатор достоверности данных** — присваивай каждой ключевой цифре уровень уверенности:
+**Data confidence indicator** — assign a confidence level to every key figure:
 
-| Уровень | Когда применять | Маркировка |
-|---------|----------------|-----------|
-| 🟢 Высокая | Данные из первичного источника (отчёт McKinsey, Росстат, SEC filing), верифицированы через `web_fetch` | ✓ |
-| 🟡 Средняя | Данные из агрегаторов (Statista, SimilarWeb), оценки аналитиков, форумы | ~ |
-| 🔴 Низкая | Экспертные оценки, расчёты «снизу вверх» без подтверждённых данных | ? |
+| Level | When to use | Marker |
+|-------|-------------|--------|
+| 🟢 High | Data from a primary source (a McKinsey report, Rosstat, an SEC filing), verified through `web_fetch` | ✓ |
+| 🟡 Medium | Data from aggregators (Statista, SimilarWeb), analyst estimates, forums | ~ |
+| 🔴 Low | Expert guesses, bottom-up calculations with no confirmed inputs | ? |
 
-Применяй этот индикатор ко всем ключевым числам во всех задачах: TAM/SAM/SOM, среднему чеку, конверсиям, retention. В финплане ячейки с 🔴 данными помечай жёлтым фоном — это точки риска, требующие проверки.
+Apply this indicator to every key number in every task: TAM/SAM/SOM, average ticket, conversions, retention. In the financial plan, shade cells holding 🔴 data yellow — those are the risk points that need checking.
 
-**Результат:** Таблица TAM/SAM/SOM с индикаторами достоверности (лист «Рынок» + лист «Допущения» в финплане).
+**Output:** the TAM/SAM/SOM table with confidence indicators (the "Market" and "Assumptions" sheets in the financial plan).
 
-⚠️ **Красный флаг:** SAM < 1 млрд руб. (Product/Service/Marketplace) или < 500 млн руб. (Hardware) → сообщи немедленно.
+⚠️ **Red flag:** SAM < ₽1bn (Product/Service/Marketplace) or < ₽500M (Hardware) → report it immediately.
 
 ---
 
-### Задача 6: PESTEL-анализ
+### Task 6: PESTEL analysis
 
-Для каждого фактора — Значимость (1–3) × Вероятность изменения (1–5).
+For each factor: Significance (1–3) × Probability of change (1–5).
 
-| Категория | Фактор | Значимость | Вероятность | Оценка | Угроза / Возможность |
-|-----------|--------|-----------|-------------|--------|----------------------|
+| Category | Factor | Significance | Probability | Score | Threat / Opportunity |
+|----------|--------|--------------|-------------|-------|----------------------|
 
-**Результат:** Таблица PESTEL (лист «PESTEL» в финплане).
+**Output:** the PESTEL table (the "PESTEL" sheet in the financial plan).
 
-**Risk adjustment в финплан:** после заполнения таблицы — выбери топ-3 угрозы с наивысшей оценкой (Значимость × Вероятность). Для каждой опиши сценарий влияния на P&L:
+**Risk adjustment into the financial plan:** once the table is filled in, pick the top 3 threats by score (Significance × Probability). For each, describe the scenario's effect on the P&L:
 
-| Угроза (из PESTEL) | Вероятность реализации | Влияние на выручку / затраты | Сдвиг Break-even (мес.) |
-|---------------------|----------------------|------------------------------|-------------------------|
-| [Угроза 1] | Высокая / Средняя | −X% GMV или +Y% OPEX | +N мес. |
+| Threat (from PESTEL) | Probability of occurring | Effect on revenue / costs | Break-even shift (months) |
+|----------------------|--------------------------|---------------------------|---------------------------|
+| [Threat 1] | High / Medium | −X% GMV or +Y% OPEX | +N months |
 
-Добавь эти строки в лист «Сценарии» финплана как «Стресс-сценарий: [Название угрозы]». Это превращает PESTEL из академического упражнения в практический инструмент для инвесторов.
+Add these rows to the "Scenarios" sheet of the financial plan as "Stress scenario: [threat name]". That is what turns PESTEL from an academic exercise into a practical instrument for investors.
 
 ---
 
