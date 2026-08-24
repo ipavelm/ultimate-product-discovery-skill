@@ -1,145 +1,145 @@
-# Примеры заполнения холстов и диаграмм
+# Worked examples of canvases and diagrams
 
-Этот модуль содержит реалистичные заполненные примеры для Lean Canvas, BMC, PAC, OST и Job Map. Используй их как референс, чтобы агент не генерировал поверхностные шаблоны.
+This module holds realistic, filled-in examples for the Lean Canvas, BMC, PAC, OST and Job Map. Use them as a reference so the agent does not produce shallow templates.
 
-**Условный проект-пример для всех холстов:** «TimeTag» — Telegram-бот для автоматического трекинга времени фрилансеров по проектам. B2C SaaS, подписка 490 руб./мес., сегмент — IT-фрилансеры РФ.
-
----
-
-## Пример 1: Lean Canvas (idea/MVP-стадия)
-
-| Блок | Заполнение |
-|------|-----------|
-| **Проблема** | 1. Фрилансеры занижают часы на 15–20% при ручном учёте в Excel<br>2. Забывают переключать таймер между проектами — нет точных данных для счёта<br>3. Тратят 2–4 часа в неделю на восстановление трекинга по памяти |
-| **Сегменты** | Ранние последователи: IT-фрилансеры с 3+ параллельными проектами, доход 150–500k руб./мес., активные пользователи Telegram |
-| **Уникальное ЦП** | «Автотрекинг в Telegram без переключения контекста — фиксирует время по командам в рабочих чатах клиентов» |
-| **Решение** | 1. Бот слушает команды `/start`, `/stop`, `/switch [проект]` в личке<br>2. Автоматическое распознавание контекста из пересылаемых сообщений клиентских чатов<br>3. Еженедельный отчёт с возможностью выгрузки в CSV для счёта |
-| **Каналы** | Telegram-каналы для фрилансеров (4–6 штук, ~50k подписчиков), habr.com, vc.ru гостевые посты, реферальная программа |
-| **Потоки дохода** | Freemium: 2 проекта бесплатно, безлимит — 490 руб./мес. или 4900 руб./год |
-| **Структура затрат** | Хостинг (3k руб./мес.), разработка MVP (200k руб. разово), маркетинг (20k руб./мес.), платёжная инфраструктура (2,5% GMV) |
-| **Ключевые метрики** | DAU/MAU ≥ 40%, конверсия Free→Paid ≥ 5%, Retention M1 ≥ 60%, CAC ≤ 800 руб. |
-| **Нечестное преимущество** | Интеграция с клиентскими Telegram-чатами через webhook — конкуренты работают только в отдельном приложении, что и есть источник проблемы «забывают переключить» |
+**The illustrative project used across every canvas:** "TimeTag" — a Telegram bot that automatically tracks freelancers' time by project. B2C SaaS, ₽490/month subscription, segment: IT freelancers in Russia.
 
 ---
 
-## Пример 2: Business Model Canvas (есть клиенты/выручка)
+## Example 1: Lean Canvas (idea / MVP stage)
 
-| Блок | Заполнение |
-|------|-----------|
-| **Customer Segments** | 1. Solo IT-фрилансеры (500 клиентов, 70% выручки)<br>2. Малые агентства 3–10 чел. (120 клиентов, 25% выручки)<br>3. Консультанты-бухгалтеры (20 клиентов, 5% — используют для учёта billable hours клиентам) |
-| **Value Propositions** | Для Solo: экономия 3 ч/нед + рост доходов на 15% за счёт точного учёта.<br>Для Агентств: прозрачность загрузки команды + автоматическая аналитика рентабельности проектов.<br>Для Бухгалтеров: выгрузка в 1С-совместимом формате. |
-| **Customer Relationships** | Acquisition: контент-маркетинг, партнёрка.<br>Activation: онбординг-бот за 3 шага, aha-moment — первый автоматический отчёт в конце недели.<br>Retention: еженедельный digest, триггерные сообщения при падении активности.<br>Revenue: freemium → paid через уведомление о лимите 2 проектов.<br>Referral: месяц бесплатно за привлечённого оплатившего. |
-| **Channels** | Информационный: Telegram-каналы, Habr, vc.ru.<br>Оценочный: бесплатный тариф (2 проекта).<br>Продажный: in-app upgrade.<br>Доставка: Telegram (WebApp).<br>Постпродажный: бот-поддержка + чат с founder в первые 30 дней. |
-| **Key Activities** | Разработка и поддержка бота, контент-маркетинг, партнёрские интеграции, саппорт в первой линии — founder лично первые 6 мес. |
-| **Key Resources** | Codebase (Python + Telegram Bot API + PostgreSQL), база из 640 пользователей, контентная библиотека (48 публикаций), бренд «TimeTag» в RU-Telegram |
-| **Key Partners** | Платёжный провайдер (ЮKassa), облачный хостинг (Selectel), 3 Telegram-канала с эксклюзивным промо-кодом |
-| **Revenue Streams** | Подписка (94% выручки): 490 руб./мес., 4900 руб./год<br>White-label для агентств (6%): 15k руб./мес. за команду до 20 чел. |
-| **Cost Structure** | Фикс: ФОТ 250k (1 фулстак + 0.5 маркетолога), хостинг 8k, инструменты 15k.<br>Переменные: эквайринг 2.5% GMV, реклама 50–80k/мес. (меняется по плану) |
+| Block | Content |
+|-------|---------|
+| **Problem** | 1. Freelancers under-report hours by 15–20% when tracking manually in Excel<br>2. They forget to switch the timer between projects — no accurate data to invoice from<br>3. They spend 2–4 hours a week reconstructing time records from memory |
+| **Segments** | Early adopters: IT freelancers with 3+ concurrent projects, earning ₽150–500k/month, active Telegram users |
+| **Unique value proposition** | "Automatic tracking inside Telegram with no context switching — it logs time from commands in the client's working chats" |
+| **Solution** | 1. The bot listens for `/start`, `/stop`, `/switch [project]` in direct messages<br>2. Automatic context recognition from forwarded messages out of client chats<br>3. A weekly report that exports to CSV for invoicing |
+| **Channels** | Telegram channels for freelancers (4–6 of them, ~50k subscribers), habr.com and vc.ru guest posts, a referral programme |
+| **Revenue streams** | Freemium: 2 projects free, unlimited for ₽490/month or ₽4,900/year |
+| **Cost structure** | Hosting (₽3k/month), MVP development (₽200k one-off), marketing (₽20k/month), payment infrastructure (2.5% of GMV) |
+| **Key metrics** | DAU/MAU ≥ 40%, Free→Paid conversion ≥ 5%, month-1 retention ≥ 60%, CAC ≤ ₽800 |
+| **Unfair advantage** | Integration with client Telegram chats through a webhook — competitors work only inside a separate app, which is the very source of the "forgot to switch" problem |
 
 ---
 
-## Пример 3: Product Attribute Canvas (PAC) — 4 мира
+## Example 2: Business Model Canvas (has customers / revenue)
+
+| Block | Content |
+|-------|---------|
+| **Customer Segments** | 1. Solo IT freelancers (500 customers, 70% of revenue)<br>2. Small agencies of 3–10 people (120 customers, 25% of revenue)<br>3. Accountant-consultants (20 customers, 5% — they use it to track billable hours for their own clients) |
+| **Value Propositions** | For solos: 3 hours a week saved plus a 15% income increase from accurate tracking.<br>For agencies: visibility into team load plus automatic project profitability analytics.<br>For accountants: export in a 1C-compatible format. |
+| **Customer Relationships** | Acquisition: content marketing, affiliates.<br>Activation: a 3-step onboarding bot; the aha moment is the first automatic report at the end of the week.<br>Retention: a weekly digest and triggered messages when activity drops.<br>Revenue: freemium → paid, prompted by hitting the 2-project limit.<br>Referral: a free month for every referred paying customer. |
+| **Channels** | Awareness: Telegram channels, Habr, vc.ru.<br>Evaluation: the free tier (2 projects).<br>Sales: in-app upgrade.<br>Delivery: Telegram (WebApp).<br>After-sales: bot support plus a chat with the founder for the first 30 days. |
+| **Key Activities** | Building and running the bot, content marketing, partner integrations, first-line support — done personally by the founder for the first 6 months |
+| **Key Resources** | The codebase (Python + Telegram Bot API + PostgreSQL), a base of 640 users, a content library (48 publications), the "TimeTag" brand in Russian-language Telegram |
+| **Key Partners** | The payment provider (YooKassa), cloud hosting (Selectel), 3 Telegram channels with an exclusive promo code |
+| **Revenue Streams** | Subscription (94% of revenue): ₽490/month, ₽4,900/year<br>White-label for agencies (6%): ₽15k/month for a team of up to 20 |
+| **Cost Structure** | Fixed: payroll ₽250k (1 full-stack engineer + 0.5 marketer), hosting ₽8k, tooling ₽15k.<br>Variable: payment processing 2.5% of GMV, advertising ₽50–80k/month (varies with the plan) |
+
+---
+
+## Example 3: Product Attribute Canvas (PAC) — the 4 worlds
 
 ### Customer World
-- **Сегменты:** Solo IT-фрилансеры (основной), агентства 3–10 чел. (растущий)
-- **Jobs (топ-3 по OS):**
-  - «Когда я закрываю неделю, я хочу знать точные часы по каждому клиенту, чтобы выставить корректный счёт» (OS = 16)
-  - «Когда я работаю над несколькими проектами одновременно, я хочу не забывать переключать таймер, чтобы не терять 15–20% времени» (OS = 14)
-  - «Когда клиент спрашивает отчёт за месяц, я хочу выгрузить его за 30 секунд, чтобы не тратить час на сборку в Excel» (OS = 12)
+- **Segments:** solo IT freelancers (primary), agencies of 3–10 people (growing)
+- **Jobs (top 3 by OS):**
+  - "When I close out the week, I want to know the exact hours per client, so that I can invoice correctly" (OS = 16)
+  - "When I work on several projects at once, I want to not forget to switch the timer, so that I do not lose 15–20% of my time" (OS = 14)
+  - "When a client asks for the monthly report, I want to export it in 30 seconds, so that I do not spend an hour assembling it in Excel" (OS = 12)
 - **Value Propositions:**
-  - «Автоматический трекинг без переключения приложений» → закрывает Job №1 и №2
-  - «Отчёт в 1 клик» → закрывает Job №3
+  - "Automatic tracking with no app switching" → covers jobs 1 and 2
+  - "One-click report" → covers job 3
 
 ### Competitor World
-- **Прямые:** Toggl (глобал), Kaiten (RU) — отдельные приложения, требуют ручного переключения
-- **Косвенные:** Excel + Google Calendar — «работает, но больно»
-- **Дифференциация:** интеграция в Telegram — там, где фрилансер уже общается с клиентом. Ни у одного конкурента нет встроенного трекинга в мессенджер клиентов.
-- **Где проигрывают:** глубокая аналитика по проектам (Toggl), team features (Harvest). Осознанно не фокусируемся — ЦА Solo.
+- **Direct:** Toggl (global), Kaiten (Russia) — separate apps that require manual switching
+- **Indirect:** Excel + Google Calendar — "it works, but it hurts"
+- **Differentiation:** the integration lives in Telegram, where the freelancer already talks to the client. No competitor has tracking built into the client's messenger.
+- **Where we lose:** deep per-project analytics (Toggl), team features (Harvest). Deliberately out of focus — the audience is solo.
 
 ### Distribution World
-- **Aha Moment:** первый автоматический еженедельный отчёт — «ого, я не знал что потратил 14 часов на Клиента X»
-- **Активация:** онбординг 3 шага: подключил → создал 2 проекта → получил отчёт через 7 дней
-- **Петля роста:** фрилансер пересылает отчёт клиенту для обоснования счёта → клиент видит TimeTag-бренд → приглашает в свой другой проект → регистрируется как новый пользователь. Целевой K-factor ≥ 0.3.
+- **Aha moment:** the first automatic weekly report — "wow, I did not realise I spent 14 hours on Client X"
+- **Activation:** 3-step onboarding — connect → create 2 projects → receive a report after 7 days
+- **Growth loop:** the freelancer forwards the report to the client to justify the invoice → the client sees the TimeTag brand → invites it into another project of theirs → signs up as a new user. Target K-factor ≥ 0.3.
 
 ### Product World
-- **Фичи под Job Stories:**
-  - Автотрекинг по ключевым словам в чате → Job №2
-  - Автоматический еженедельный отчёт → Job №1 и №3
-  - Выгрузка CSV/1С → Job №3
-- **Уникальные свойства:** работает без установки приложения (клиент — сам Telegram), данные синхронизируются между устройствами через Telegram-аккаунт, шифрование на уровне чатов.
+- **Features mapped to Job Stories:**
+  - Automatic tracking from keywords in the chat → job 2
+  - Automatic weekly report → jobs 1 and 3
+  - CSV / 1C export → job 3
+- **Unique properties:** it works without installing an app (the client is Telegram itself), data syncs across devices through the Telegram account, encryption at chat level.
 
 ---
 
-## Пример 4: Opportunity Solution Tree (OST)
+## Example 4: Opportunity Solution Tree (OST)
 
 ```
-БИЗНЕС-ЦЕЛЬ:
-Retention M3 (когортный) 35% → 50% за 6 месяцев
-(сейчас теряем половину клиентов за 3 месяца — критично для LTV)
+BUSINESS OUTCOME:
+Month-3 retention (cohort) 35% → 50% within 6 months
+(we currently lose half our customers in 3 months — critical for LTV)
 
-├── ВОЗМОЖНОСТЬ 1: Усилить aha-moment на 1-й неделе (OS = 16)
-│   ├── Под-возможность 1.1: Сократить time-to-first-report
-│   │   ├── Решение A: Генерировать первый отчёт через 3 дня, не 7
-│   │   │   └── Эксперимент A1: A/B тест на 200 новых пользователях — 7 дн. vs 3 дн.
-│   │   │       Критерий: Retention W2 выше на ≥10%
-│   │   └── Решение B: Интерактивный онбординг с мгновенным mini-отчётом
-│   │       └── Эксперимент B1: Wizard of Oz — показать заготовленный отчёт после
-│   │           первых 3 трекингов (50 пользователей, 1 неделя)
-│   │           Критерий: ≥70% досматривают онбординг до конца
-│   └── Под-возможность 1.2: Показать ценность в деньгах
-│       └── Решение C: В отчёте указывать «вы сэкономили X часов = Y руб.»
-│           (рассчитано по введённой часовой ставке)
-│           └── Эксперимент C1: Добавить фичу на 50% пользователей, измерить
-│               отличие в конверсии Free→Paid через 14 дней
-│               Критерий: конверсия выше на ≥20%
+├── OPPORTUNITY 1: strengthen the aha moment in week 1 (OS = 16)
+│   ├── Sub-opportunity 1.1: shorten time-to-first-report
+│   │   ├── Solution A: generate the first report after 3 days, not 7
+│   │   │   └── Experiment A1: A/B test on 200 new users — 7 days vs 3 days
+│   │   │       Criterion: week-2 retention higher by ≥10%
+│   │   └── Solution B: interactive onboarding with an instant mini-report
+│   │       └── Experiment B1: Wizard of Oz — show a prepared report after the
+│   │           first 3 tracked sessions (50 users, 1 week)
+│   │           Criterion: ≥70% finish the onboarding
+│   └── Sub-opportunity 1.2: show the value in money
+│       └── Solution C: state in the report "you saved X hours = ₽Y"
+│           (calculated from the hourly rate the user entered)
+│           └── Experiment C1: ship the feature to 50% of users and measure the
+│               difference in Free→Paid conversion after 14 days
+│               Criterion: conversion higher by ≥20%
 │
-├── ВОЗМОЖНОСТЬ 2: Снизить friction при переключении (OS = 14)
-│   ├── Под-возможность 2.1: Автоматическое определение контекста
-│   │   ├── Решение D: ML-классификатор проектов по тексту сообщений
-│   │   │   └── Эксперимент D1: Разметить 500 сообщений вручную, обучить baseline,
-│   │   │       измерить точность на holdout — цель ≥85%
-│   │   └── Решение E: Кнопки быстрого переключения в фиксированном сообщении бота
-│   │       └── Эксперимент E1: Раскатить на 100 пользователей, измерить % ручных
-│   │           переключений через кнопки vs команды — цель 70% через кнопки
+├── OPPORTUNITY 2: reduce the friction of switching (OS = 14)
+│   ├── Sub-opportunity 2.1: automatic context detection
+│   │   ├── Solution D: an ML classifier that assigns projects from message text
+│   │   │   └── Experiment D1: label 500 messages by hand, train a baseline and
+│   │   │       measure accuracy on a holdout — target ≥85%
+│   │   └── Solution E: quick-switch buttons on a pinned bot message
+│   │       └── Experiment E1: roll out to 100 users and measure the share of manual
+│   │           switches made through buttons vs commands — target 70% via buttons
 │
-└── ВОЗМОЖНОСТЬ 3: Включить социальное давление (OS = 11)
-    └── Под-возможность 3.1: Сравнение с аналогичными фрилансерами
-        └── Решение F: Анонимная статистика «вы в топ-30% по точности учёта»
-            └── Эксперимент F1: Показать 50 пользователям, измерить retention W4
-                vs контрольная группа. Критерий: +15% Retention M1
+└── OPPORTUNITY 3: bring in social pressure (OS = 11)
+    └── Sub-opportunity 3.1: comparison with similar freelancers
+        └── Solution F: anonymous statistics — "you are in the top 30% for tracking accuracy"
+            └── Experiment F1: show it to 50 users and measure week-4 retention
+                against a control group. Criterion: +15% month-1 retention
 ```
 
-**Ключевые правила при построении OST:**
-- Бизнес-цель всегда измерима (метрика + текущее значение → целевое + срок)
-- Минимум 3 возможности на верхнем уровне — предотвращает tunnel vision
-- Минимум 2 решения на каждую возможность — предотвращает confirmation bias
-- Эксперимент должен иметь чёткий критерий подтверждения/опровержения с числом
-- Приоритизация по OS из задачи 7 — делаешь сначала возможность с наивысшим OS
+**Key rules when building an OST:**
+- The business outcome is always measurable (metric + current value → target + deadline)
+- At least 3 opportunities at the top level — this prevents tunnel vision
+- At least 2 solutions per opportunity — this prevents confirmation bias
+- Every experiment needs a clear confirm/refute criterion with a number in it
+- Prioritise by the OS from task 7 — start with the opportunity carrying the highest OS
 
 ---
 
-## Пример 5: Job Map — 8 этапов
+## Example 5: Job Map — the 8 stages
 
-Пример для TimeTag. Выделены этапы с наибольшей болью.
+An example for TimeTag. The most painful stages are highlighted.
 
-| Этап | Действие фрилансера | Боль / Затраты |
-|------|---------------------|----------------|
-| 1. Define | Распределить время на неделю между 3–5 проектами | Нет объективной базы — оценка по ощущениям, ошибается в ±30% |
-| 2. Locate | Найти инструмент учёта | Перепробовал 3 приложения, все забросил из-за необходимости переключать контекст |
-| 3. Prepare | Настроить проекты в трекере | 15 минут на каждом новом клиенте — настройка, импорт, интеграции |
-| 4. Confirm | Убедиться, что всё работает | Регулярная проверка — «не забыл ли запустить?» |
-| **5. Execute** ⚠️ | **Работать и переключаться между задачами** | **Забывает запускать/останавливать в 40% случаев — теряет 2–4 часа в неделю** |
-| 6. Monitor | Проверять текущие часы | Открывает трекер 5–10 раз в день — friction |
-| **7. Modify** ⚠️ | **Корректировать по памяти забытые сессии** | **2 часа в неделю на реконструкцию — неточно, стресс** |
-| **8. Conclude** ⚠️ | **Выставить счёт клиенту** | **Занижает на 15–20% из-за неуверенности в точности учёта → −30k руб./мес.** |
+| Stage | Freelancer's action | Pain / cost |
+|-------|---------------------|-------------|
+| 1. Define | Allocate the week across 3–5 projects | No objective baseline — it is done by feel, off by ±30% |
+| 2. Locate | Find a tracking tool | Tried 3 apps, abandoned them all because of the context switching |
+| 3. Prepare | Set the projects up in the tracker | 15 minutes per new client — configuration, imports, integrations |
+| 4. Confirm | Check that everything works | Constant checking — "did I remember to start it?" |
+| **5. Execute** ⚠️ | **Work and switch between tasks** | **Forgets to start or stop it 40% of the time — loses 2–4 hours a week** |
+| 6. Monitor | Check the hours so far | Opens the tracker 5–10 times a day — friction |
+| **7. Modify** ⚠️ | **Reconstruct the forgotten sessions from memory** | **2 hours a week reconstructing — inaccurate and stressful** |
+| **8. Conclude** ⚠️ | **Invoice the client** | **Under-reports by 15–20% out of doubt about the records → −₽30k/month** |
 
-**Вывод:** основные боли на этапах 5, 7, 8 — туда направляем решения в PAC Product World.
+**Conclusion:** the main pains sit at stages 5, 7 and 8 — that is where the solutions in the PAC Product World should point.
 
 ---
 
-## Как использовать эти примеры
+## How to use these examples
 
-1. **Не копируй дословно** — подстраивай под проект пользователя.
-2. **Сохраняй уровень детализации** — если в примере числа и конкретика, давай то же самое. Заполнять «общими словами» ≠ заполнять холст.
-3. **Сохраняй связность** — один и тот же проект проходит через все холсты. Job №2 в PAC должен отражать боль этапа 5 в Job Map.
-4. **Проверяй логику** — если в Lean Canvas «нечестное преимущество» = Telegram-интеграция, в PAC Distribution должна быть петля роста через Telegram, а не через рекламу в Google.
+1. **Do not copy them verbatim** — adapt them to the user's project.
+2. **Keep the level of detail** — where the example gives numbers and specifics, give the same. Filling a canvas with generalities is not filling a canvas.
+3. **Keep it coherent** — one project runs through every canvas. Job 2 in the PAC has to reflect the pain of stage 5 in the Job Map.
+4. **Check the logic** — if the Lean Canvas says the unfair advantage is the Telegram integration, the PAC's Distribution world must show a growth loop through Telegram, not through Google Ads.

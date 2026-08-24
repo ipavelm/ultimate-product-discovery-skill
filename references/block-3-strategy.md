@@ -1,204 +1,204 @@
-## БЛОК III: СТРАТЕГИЧЕСКИЕ СЦЕНАРИИ
+## BLOCK III: STRATEGIC SCENARIOS
 
-> 📋 **Примеры заполнения** Lean Canvas, BMC, PAC и OST — в [examples.md](examples.md). Перед заполнением холстов прочитай соответствующий раздел примера, чтобы сохранить уровень детализации.
+> 📋 **Worked examples** of the Lean Canvas, BMC, PAC and OST are in [examples.md](examples.md). Read the matching example section before filling a canvas, to keep the level of detail consistent.
 
-### Задача 10: Текущий стратегический сценарий
+### Task 10: the current strategic scenario
 
-**Цель:** Формализовать гипотезу бизнес-модели.
+**Goal:** formalise the business model hypothesis.
 
-**Выбор холста:** спроси пользователя:
-- **Lean Canvas** — стартап на стадии idea / MVP (проблема ещё не решена, гипотезы не проверены)
-- **BMC** — есть клиенты / выручка (модель уже работает, описываем как есть)
+**Choosing the canvas:** ask the user:
+- **Lean Canvas** — a startup at idea or MVP stage (the problem is not solved yet, the hypotheses are untested)
+- **BMC** — there are customers or revenue (the model already works, so describe it as it is)
 
-**Тип бизнес-модели:** спроси дополнительно:
-- **Продукт** — продаётся результат (SaaS, физический товар, приложение). Ключевые метрики: средний чек, COGS производство/разработка, gross margin.
-- **Сервис / Услуга** — продаётся время и экспертиза (консалтинг, агентство, аутстаффинг). Ключевые метрики: billable hours, utilization rate (цель ≥ 70%), average project value, gross margin = выручка − ФОТ исполнителей.
-- **Маркетплейс** — двусторонняя платформа, соединяющая поставщиков и покупателей. Ключевые метрики: GMV, take rate (%), Выручка = GMV × take rate. Важно: JTBD и персоны описываются отдельно для каждой стороны (поставщик и покупатель). **Для Lean Canvas / BMC составь два отдельных холста — один для стороны поставщика, один для стороны покупателя.** У них разные проблемы, УЦП, каналы и метрики — попытка уложить обе стороны в один холст даёт поверхностный результат. В задаче 18a выбирай ведущую сторону (обычно та, которую сложнее привлечь — supply в большинстве случаев) и строй финплан вокруг неё, но в трекере liquidity учитывай обе. Главная проблема старта — chicken-and-egg: без поставщиков нет покупателей и наоборот. Фиксируй в задаче 15 как отдельную гипотезу масштабируемости.
+**Business model type:** ask this as well:
+- **Product** — you sell an outcome (SaaS, a physical good, an app). Key metrics: average ticket, COGS of production or development, gross margin.
+- **Service** — you sell time and expertise (consulting, agency, outstaffing). Key metrics: billable hours, utilisation rate (target ≥ 70%), average project value, gross margin = revenue − delivery payroll.
+- **Marketplace** — a two-sided platform connecting suppliers and buyers. Key metrics: GMV, take rate (%), Revenue = GMV × take rate. Important: the JTBD and the personas are described separately for each side (supplier and buyer). **For the Lean Canvas / BMC, build two separate canvases — one for the supply side, one for the demand side.** They have different problems, value propositions, channels and metrics; trying to fit both sides on one canvas produces a shallow result. In task 18a pick the leading side (usually the one that is harder to acquire — supply, in most cases) and build the financial plan around it, but count both sides in the liquidity tracker. The core problem at launch is chicken-and-egg: no suppliers means no buyers and vice versa. Record it in task 15 as a separate scalability hypothesis.
 
-  **Геолокальность маркетплейсов.** Если сделка требует физического контакта (доставка еды, услуги на дом, транспорт, аренда жилья) — liquidity считается **не глобально**, а **в географической ячейке** (район, город в пределах 30-минутного доступа). 100 поваров и 500 клиентов по всей Москве — это не liquidity, если повар в Бутово, а клиент в Химках. Правильная метрика: «в каждой плотной ячейке радиусом N км должно быть ≥ 10 поставщиков и ≥ 20 транзакций в неделю». Действие: в задаче 5 (TAM/SAM/SOM) оцени размер одной плотной ячейки и определи, сколько ячеек нужно для достижения целевого SAM. В задаче 16 (rapid testing) проверяй liquidity на одной ячейке перед геоэкспансией — classic Uber/DoorDash playbook. Для не-физических маркетплейсов (SaaS-интеграции, цифровые услуги, фриланс-биржи) география не важна, liquidity можно считать глобально.
-- **Hardware / физическое устройство** — продаётся физический продукт (IoT, устройства, носимая электроника). Ключевые отличия: COGS = производство + логистика + возвраты (обычно 40–60% — намного выше SaaS); нет подписки — только разовые и повторные продажи; цикл разработки до MVP зависит от сложности (4–6 мес. для IoT на готовых компонентах, 12–18 мес. для consumer electronics с кастомной электроникой); MOQ (minimum order quantity) создаёт cash flow риски на старте. Фиксируй в задаче 15 как отдельные гипотезы: «Производство в нужном объёме по целевой себестоимости» и «Канал дистрибуции с приемлемым CAC».
+  **Geographic locality of marketplaces.** If the transaction requires physical contact (food delivery, at-home services, transport, short-term rentals), liquidity is measured **not globally** but **per geographic cell** (a district, or a city area within 30 minutes' reach). 100 cooks and 500 customers spread across Moscow is not liquidity if the cook is in Butovo and the customer is in Khimki. The correct metric: "each dense cell of radius N km must have ≥ 10 suppliers and ≥ 20 transactions a week". Action: in task 5 (TAM/SAM/SOM), size a single dense cell and work out how many cells are needed to reach the target SAM. In task 16 (rapid testing), prove liquidity in one cell before expanding geographically — the classic Uber/DoorDash playbook. For non-physical marketplaces (SaaS integrations, digital services, freelance exchanges) geography does not matter and liquidity can be counted globally.
+- **Hardware / physical device** — you sell a physical product (IoT, devices, wearables). The key differences: COGS = manufacturing + logistics + returns (usually 40–60%, far above SaaS); no subscription, only one-off and repeat sales; the development cycle to MVP depends on complexity (4–6 months for IoT on off-the-shelf components, 12–18 months for consumer electronics with custom hardware); MOQ (minimum order quantity) creates cash flow risk at launch. Record these in task 15 as separate hypotheses: "manufacturing at the required volume and target unit cost" and "a distribution channel with acceptable CAC".
 
-**A) Lean Canvas** (для idea/MVP):
+**A) Lean Canvas** (for idea/MVP):
 
-| Блок | Что заполнить |
-|------|--------------|
-| Проблема | Топ-3 проблемы целевых клиентов |
-| Сегменты | Ранние последователи — кто они? |
-| Уникальное ЦП | Почему именно ты, почему сейчас |
-| Решение | Фичи, закрывающие топ-3 проблемы |
-| Каналы | Как достигаешь клиентов |
-| Потоки дохода | Модель монетизации, средний чек |
-| Структура затрат | Фиксированные + переменные |
-| Ключевые метрики | Как измеряешь прогресс |
-| Нечестное преимущество | Что сложно скопировать |
+| Block | What to fill in |
+|-------|-----------------|
+| Problem | The top 3 problems of the target customers |
+| Segments | The early adopters — who are they? |
+| Unique value proposition | Why you, and why now |
+| Solution | The features that close the top 3 problems |
+| Channels | How you reach customers |
+| Revenue streams | The monetisation model, average ticket |
+| Cost structure | Fixed + variable |
+| Key metrics | How you measure progress |
+| Unfair advantage | What is hard to copy |
 
-**B) Business Model Canvas** (для клиентов/выручки):
+**B) Business Model Canvas** (when there are customers or revenue):
 
-| Блок | Что заполнить |
-|------|--------------|
-| Customer Segments | Разные при разных потребностях / каналах / суммах |
-| Value Propositions | Количественные (цена, скорость) или качественные (эмоции) |
-| Customer Relationships | По AARRR: Acquisition → Activation → Retention → Referral → Revenue |
-| Channels | Информационный → Оценочный → Продажный → Доставка → Постпродажный |
-| Key Activities | По Value Chain Портера |
-| Key Resources | Материальные, финансовые, интеллектуальные, человеческие |
-| Key Partners | Сотрудничество / coopetition (сотрудничество с конкурентами) / совместные предприятия / поставщики |
-| Revenue Streams | Разовые vs. регулярные. Подписка, комиссия, аренда, freemium |
-| Cost Structure | Фиксированные / переменные |
+| Block | What to fill in |
+|-------|-----------------|
+| Customer Segments | Different when needs, channels or amounts differ |
+| Value Propositions | Quantitative (price, speed) or qualitative (emotion) |
+| Customer Relationships | Along AARRR: Acquisition → Activation → Retention → Referral → Revenue |
+| Channels | Awareness → Evaluation → Sales → Delivery → After-sales |
+| Key Activities | Along Porter's value chain |
+| Key Resources | Physical, financial, intellectual, human |
+| Key Partners | Collaboration / coopetition (working with competitors) / joint ventures / suppliers |
+| Revenue Streams | One-off vs recurring. Subscription, commission, rental, freemium |
+| Cost Structure | Fixed / variable |
 
-**Для B2B:** в Channels отрази длинный цикл сделки (лид → квалификация → демо → пилот → договор → онбординг → renewal, 1–12 мес.).
+**For B2B:** reflect the long sales cycle in Channels (lead → qualification → demo → pilot → contract → onboarding → renewal, 1–12 months).
 
 **C) Product Attribute Canvas (PAC)**
 
-- **Customer World:** сегменты, Jobs, ценностные предложения
-- **Competitor World:** конкуренты, дифференциация, OS — где проигрывают
-- **Distribution World:** Aha Moment, активация, петля роста
-- **Product World:** фичи под Job Stories, уникальные свойства
+- **Customer World:** segments, jobs, value propositions
+- **Competitor World:** competitors, differentiation, OS — where they lose
+- **Distribution World:** aha moment, activation, growth loop
+- **Product World:** features mapped to Job Stories, unique properties
 
-**Верификация консистентности:**
-- **Желательность** — ЦП ↔ Jobs?
-- **Жизнеспособность** — модель масштабируема?
-- **Реализуемость** — достаточно ресурсов?
+**Consistency check:**
+- **Desirability** — do the value propositions match the jobs?
+- **Viability** — is the model scalable?
+- **Feasibility** — are the resources sufficient?
 
-**Формула Value Proposition (финальная формулировка для One-pager и слайда):**
+**Value Proposition formula (the final wording for the one-pager and the slide):**
 
-После заполнения холста сформулируй ценностное предложение в одном предложении:
+Once the canvas is filled in, state the value proposition in a single sentence:
 
-*«Мы помогаем [кому — сегмент] [сделать что — Job-to-be-Done], в отличие от [главный конкурент / текущее решение], потому что [нечестное преимущество / уникальный механизм].»*
+*"We help [whom — the segment] [do what — the Job-to-be-Done], unlike [the main competitor / the current solution], because [the unfair advantage / unique mechanism]."*
 
-Пример: «Мы помогаем фрилансерам автоматически отслеживать время на проектах, в отличие от ручного учёта в Excel, потому что интегрируемся прямо в Telegram и не требуем переключения контекста.»
+Example: "We help freelancers track project time automatically, unlike manual bookkeeping in Excel, because we integrate directly into Telegram and require no context switching."
 
-Эта формулировка используется в: задача 18b (One-pager, секция «Решение»), задача 18d (слайд 16), задача 18a (параметр «Ценностное предложение»).
+This wording is reused in: task 18b (one-pager, the "Solution" section), task 18d (slide 16) and task 18a (the "Value proposition" parameter).
 
-**Результат:** Листы «Бизнес-модель» (Lean Canvas или BMC) и «Продукт» (PAC) в финплане.
-
----
-
-### Задача 11: SWOT-анализ
-
-Чек-листы:
-- **Сильные:** сетевые эффекты, маржинальность, регулярные доходы, уникальный канал, стоимость переключения
-- **Слабые:** из холста — где недостаток ресурсов / активностей
-- **Возможности:** новые сегменты, регулярные платежи, тренды, партнёры
-- **Угрозы:** конкуренты, альтернативы, регуляторные изменения
-
-**9 ключевых рисков (чек-лист):**
-- [ ] Потребность не соответствует ценностным предложениям
-- [ ] Объём рынка недостаточен для целей
-- [ ] Не учтена дифференциация от конкурентов
-- [ ] Каналы нецелесообразны на этом рынке
-- [ ] Монетизация не позволяет свести экономику
-- [ ] Процессы и ресурсы нереалистичны
-- [ ] Бизнес-модель не эксплуатирует тренды
-- [ ] Не учтено влияние регуляторов и Value Chain
-- [ ] Драйверы роста выручки и ценности не согласованы
-
-⚠️ **Красный флаг:** нет дифференциации ни от одного из 4 типов → сообщи.
-
-**Результат:** Лист «SWOT» в финплане.
+**Output:** the "Business model" sheet (Lean Canvas or BMC) and the "Product" sheet (PAC) in the financial plan.
 
 ---
 
-### Задача 12: Opportunity Solution Tree (OST)
+### Task 11: SWOT analysis
 
-**Структура (4 уровня):**
+Checklists:
+- **Strengths:** network effects, margin, recurring revenue, a unique channel, switching costs
+- **Weaknesses:** from the canvas — where resources or activities are lacking
+- **Opportunities:** new segments, recurring payments, trends, partners
+- **Threats:** competitors, alternatives, regulatory change
+
+**9 key risks (checklist):**
+- [ ] The need does not match the value propositions
+- [ ] The market is too small for the stated goals
+- [ ] Differentiation from competitors was not accounted for
+- [ ] The channels do not make sense on this market
+- [ ] Monetisation cannot make the economics work
+- [ ] The processes and resources are unrealistic
+- [ ] The business model does not exploit the trends
+- [ ] The influence of regulators and the value chain was not accounted for
+- [ ] The revenue and value growth drivers are not aligned
+
+⚠️ **Red flag:** no differentiation from any of the 4 competitor types → report it.
+
+**Output:** the "SWOT" sheet in the financial plan.
+
+---
+
+### Task 12: Opportunity Solution Tree (OST)
+
+**Structure (4 levels):**
 
 ```
-БИЗНЕС-ЦЕЛЬ — конкретная, измеримая
-└── ВОЗМОЖНОСТЬ 1
-│   ├── Под-возможность 1.1
-│   │   ├── Решение A → Эксперимент A1
-│   │   └── Решение B → Эксперимент B1
-│   └── Под-возможность 1.2
-└── ВОЗМОЖНОСТЬ 2
+BUSINESS OUTCOME — concrete and measurable
+└── OPPORTUNITY 1
+│   ├── Sub-opportunity 1.1
+│   │   ├── Solution A → Experiment A1
+│   │   └── Solution B → Experiment B1
+│   └── Sub-opportunity 1.2
+└── OPPORTUNITY 2
 ```
 
-**Алгоритм:**
-1. Бизнес-цель — измеримая. Не «стать лучшим», а «Retention 20% → 35% за 6 мес.»
-2. Возможности из задач 7–9. Декомпозируй большие → меньшие.
-3. Целевая возможность — по OS. Одна за раз.
-4. Минимум 3 решения (предотвращает confirmation bias).
-5. Эксперименты: самое рисковое → минимальный эксперимент.
+**Algorithm:**
+1. The business outcome must be measurable. Not "become the best" but "retention 20% → 35% in 6 months".
+2. Opportunities come from tasks 7–9. Decompose the big ones into smaller ones.
+3. Pick the target opportunity by OS. One at a time.
+4. At least 3 solutions (this prevents confirmation bias).
+5. Experiments: take the riskiest assumption → the smallest experiment that tests it.
 
-**Версионирование:** фиксируй дату и изменения при каждом обновлении.
+**Versioning:** record the date and what changed on every update.
 
-**Результат:** OST-диаграмма (лист «OST» в финплане).
-
----
-
-### Задача 13: Альтернативные сценарии
-
-**Шаг 1 — Нужны ли альтернативы?**
-
-Оцени текущий сценарий по тем же 7 критериям, которые используются для сравнения в задаче 14. Здесь оцениваем только текущий сценарий (0 = не выполнено, 1 = выполнено):
-
-| Критерий | Оценка текущего сценария (0–1) |
-|----------|-------------------------------|
-| Объём рынка (SAM) | |
-| Желательность (Jobs ↔ ЦП) | |
-| Жизнеспособность (экономика) | |
-| Реализуемость (ресурсы) | |
-| Дифференциация | |
-| Использование трендов | |
-| Рисковые гипотезы (меньше = лучше) | |
-| **Итого** | |
-
-- Итого < 4/7 **или** Желательность / Жизнеспособность / Реализуемость = 0 → альтернативы **нужны**
-- Итого ≥ 5/7 → альтернативы **опциональны**, переходи к задаче 14
-
-**Шаг 2 — SWOT-матрица:**
-
-| Пара | Вопрос |
-|------|--------|
-| Сильные + Возможности | Как использовать силу? |
-| Сильные + Угрозы | Как силой предотвратить угрозы? |
-| Слабые + Возможности | Как возможности устраняют слабости? |
-| Слабые + Угрозы | Как минимизировать риски? |
-
-**Шаг 3:** каждый альтернативный сценарий — Lean Canvas или BMC + PAC с заголовком «СЦЕНАРИЙ 2: [Название]» в лист «Бизнес-модель» (один лист, разделители).
-
-**Результат:** Альтернативные сценарии в листе «Бизнес-модель» финплана.
+**Output:** the OST diagram (the "OST" sheet in the financial plan).
 
 ---
 
-### Задача 14: Скоринг сценариев + RICE
+### Task 13: alternative scenarios
 
-> ⚠️ **Light-режим:** в Light задача 13 пропущена, полноценных альтернативных сценариев нет. Три варианта:
+**Step 1 — are alternatives needed?**
+
+Score the current scenario against the same 7 criteria used for the comparison in task 14. Here you score only the current scenario (0 = not met, 1 = met):
+
+| Criterion | Score for the current scenario (0–1) |
+|-----------|--------------------------------------|
+| Market size (SAM) | |
+| Desirability (jobs ↔ value proposition) | |
+| Viability (economics) | |
+| Feasibility (resources) | |
+| Differentiation | |
+| Use of trends | |
+| Risky hypotheses (fewer is better) | |
+| **Total** | |
+
+- Total < 4/7 **or** Desirability / Viability / Feasibility = 0 → alternatives **are needed**
+- Total ≥ 5/7 → alternatives are **optional**; move on to task 14
+
+**Step 2 — the SWOT matrix:**
+
+| Pair | Question |
+|------|----------|
+| Strengths + Opportunities | How do we use the strength? |
+| Strengths + Threats | How does the strength head off the threats? |
+| Weaknesses + Opportunities | How do the opportunities remove the weaknesses? |
+| Weaknesses + Threats | How do we minimise the risk? |
+
+**Step 3:** each alternative scenario gets a Lean Canvas or BMC plus a PAC, headed "SCENARIO 2: [Name]", on the "Business model" sheet (one sheet, with separators).
+
+**Output:** the alternative scenarios on the "Business model" sheet of the financial plan.
+
+---
+
+### Task 14: scenario scoring + RICE
+
+> ⚠️ **Light mode:** task 13 is skipped in Light, so there are no fully developed alternative scenarios. Three options:
 >
-> 1. **По умолчанию:** скоринг только текущего сценария по 7 критериям (раздел A). Если итог < 4/7 — предложи человеку Full или переход к варианту 2/3.
-> 2. **Быстрая альтернатива из OST:** возьми возможность №2 (вторая по OS) из OST задачи 12 и сформулируй как альтернативный сценарий в 3 предложениях (целевой сегмент + Value Proposition + монетизация). Не полный Lean Canvas, но даёт второй вариант для сравнения. 5–10 минут.
-> 3. **Полная альтернатива:** выполни задачу 13 сокращённо (Lean Canvas без PAC) для одного альтернативного сценария. +15 минут к Light.
+> 1. **Default:** score only the current scenario against the 7 criteria (section A). If the total is < 4/7, offer the person Full mode or a move to option 2 or 3.
+> 2. **A quick alternative from the OST:** take opportunity 2 (the second-highest OS) from the task 12 OST and state it as an alternative scenario in 3 sentences (target segment + value proposition + monetisation). Not a full Lean Canvas, but it gives a second option to compare against. 5–10 minutes.
+> 3. **A full alternative:** run task 13 in short form (Lean Canvas without the PAC) for one alternative scenario. Adds 15 minutes to Light.
 >
-> RICE-приоритизация (раздел B) выполняется как есть.
+> The RICE prioritisation (section B) runs as normal.
 
-**A) Сравнение сценариев:**
+**A) Scenario comparison:**
 
-Используется **та же таблица из 7 критериев, что и в задаче 13 (Шаг 1)**, но с колонками для каждого сценария. Если в задаче 13 ты уже оценивал текущий сценарий — используй те же значения в колонке «Сценарий 1», не пересчитывай.
+This uses **the same 7-criteria table as task 13 (Step 1)**, with a column per scenario. If you already scored the current scenario in task 13, reuse those values in the "Scenario 1" column instead of recalculating.
 
-| Критерий | Сценарий 1 | Сценарий 2 | Сценарий 3 |
-|----------|-----------|-----------|-----------|
-| Объём рынка (SAM) | | | |
-| Желательность (Jobs ↔ ЦП) | | | |
-| Жизнеспособность (экономика) | | | |
-| Реализуемость (ресурсы) | | | |
-| Дифференциация | | | |
-| Использование трендов | | | |
-| Рисковые гипотезы (меньше = лучше) | | | |
-| **Итого** | | | |
+| Criterion | Scenario 1 | Scenario 2 | Scenario 3 |
+|-----------|-----------|-----------|-----------|
+| Market size (SAM) | | | |
+| Desirability (jobs ↔ value proposition) | | | |
+| Viability (economics) | | | |
+| Feasibility (resources) | | | |
+| Differentiation | | | |
+| Use of trends | | | |
+| Risky hypotheses (fewer is better) | | | |
+| **Total** | | | |
 
-Если пользователь не принимает результат скоринга — спроси о блокирующем факторе, скорректируй веса и пересчитай.
+If the user does not accept the scoring result, ask what the blocking factor is, adjust the weights and recalculate.
 
-**B) RICE-приоритизация возможностей из OST:**
+**B) RICE prioritisation of the opportunities from the OST:**
 
 `RICE = (Reach × Impact × Confidence) / Effort`
 
-- Reach — чел./мес.
-- **Impact** — используй OS из задачи 7 как основу: OS ≥ 15 → Impact = 3; OS 10–14 → Impact = 2; OS 6–9 → Impact = 1; OS < 6 → Impact = 0.5. Это устраняет дублирование оценочной работы и делает RICE обоснованным данными интервью.
+- Reach — people per month
+- **Impact** — derive it from the task 7 OS: OS ≥ 15 → Impact = 3; OS 10–14 → Impact = 2; OS 6–9 → Impact = 1; OS < 6 → Impact = 0.5. This removes duplicated judgement work and grounds RICE in the interview data.
 - Confidence — 100% / 80% / 50%
-- Effort — человеко-месяцы
+- Effort — person-months
 
-**Результат:**
-- Скоринг сценариев → лист «Пул гипотез», раздел «Скоринг сценариев»
-- RICE → лист «Пул гипотез», раздел «RICE приоритизация»
+**Output:**
+- Scenario scoring → the "Hypothesis pool" sheet, section "Scenario scoring"
+- RICE → the "Hypothesis pool" sheet, section "RICE prioritisation"
 
 ---
