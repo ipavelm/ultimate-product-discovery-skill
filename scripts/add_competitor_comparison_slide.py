@@ -184,7 +184,7 @@ def add_competitor_comparison_slide(pptx_path: str) -> bool:
     # When python-pptx copies a slide it copies the _rels too, which leaves
     # several slides pointing at one notesSlide. PowerPoint then refuses to open
     # the file (LibreOffice opens it regardless).
-    # See references/block-6-artifacts.md, section "Troubleshooting pack.py".
+    # See references/block-6-artifacts.md, section "Troubleshooting validation".
     cleanup_duplicate_notes_refs(pptx_path)
 
     print(f"✅ Slide \"{SLIDE_TITLE}\" inserted at position {target_index + 1}.")

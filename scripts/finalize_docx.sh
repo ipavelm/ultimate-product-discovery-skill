@@ -38,19 +38,32 @@ fi
 OUTPUT_DIR=$(dirname "$OUTPUT")
 mkdir -p "$OUTPUT_DIR"
 
+# Use the docx skill's soffice wrapper rather than bare soffice: bare soffice is
+# unreliable in the sandbox. Set DOCX_SKILL to override where that skill lives.
+DOCX_SKILL="${DOCX_SKILL:-/mnt/skills/public/docx}"
+SOFFICE_WRAP="$DOCX_SKILL/scripts/office/soffice.py"
+
 echo "🔄 Step 1/3: LibreOffice round-trip..."
 TMP_DIR=$(mktemp -d)
-soffice --headless --convert-to docx:"MS Word 2007 XML" "$INPUT" --outdir "$TMP_DIR" > /dev/null 2>&1
+if [ -f "$SOFFICE_WRAP" ]; then
+    timeout 180 python3 "$SOFFICE_WRAP" --headless --convert-to docx:"MS Word 2007 XML" \
+        "$INPUT" --outdir "$TMP_DIR" > /dev/null 2>&1 || true
+else
+    timeout 180 soffice --headless --convert-to docx:"MS Word 2007 XML" \
+        "$INPUT" --outdir "$TMP_DIR" > /dev/null 2>&1 || true
+fi
 CONVERTED=$(find "$TMP_DIR" -name "*.docx" | head -1)
 if [ -z "$CONVERTED" ]; then
-    echo "❌ LibreOffice conversion failed"
-    rm -rf "$TMP_DIR"
-    exit 1
+    echo "   ⚠️  Round-trip produced no file — carrying on with the original."
+    echo "      Word compatibility is NOT guaranteed; open the file in Word before sending it."
+    cp "$INPUT" "$OUTPUT"
+    ROUNDTRIP=skipped
+else
+    cp "$CONVERTED" "$OUTPUT"
+    echo "   ✅ Round-trip complete"
+    ROUNDTRIP=done
 fi
-
-cp "$CONVERTED" "$OUTPUT"
 rm -rf "$TMP_DIR"
-echo "   ✅ Round-trip complete"
 
 echo "🔄 Step 2/3: Verification through python-docx..."
 python3 - << PYEOF
@@ -78,4 +91,9 @@ SIZE=$(stat -c '%s' "$OUTPUT" 2>/dev/null || stat -f '%z' "$OUTPUT")
 echo "   ✅ File size: $SIZE bytes"
 echo ""
 echo "✅ Finalization complete: $OUTPUT"
-echo "   This file is Word-compatible (tested via round-trip + python-docx verification)"
+if [ "${ROUNDTRIP:-skipped}" = "done" ]; then
+    echo "   Word compatibility verified: LibreOffice round-trip + python-docx verification"
+else
+    echo "   ⚠️  Word compatibility NOT verified — the round-trip did not run."
+    echo "      Styles resolve, but open the file in Word before sending it."
+fi

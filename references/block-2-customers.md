@@ -95,14 +95,14 @@ Identify the **aha moment** and the **pain peak**.
 **Template:** use `assets/interview-guide-template.docx` as the base. The template carries 8 ready-made sections (how to use the guide, consent to recording, 3 per-segment guides, insight table, interview red flags, market cheat sheet) with the placeholders `{{PROJECT_NAME}}`, `{{GEO}}`, `{{SEGMENT_1}}–{{SEGMENT_3}}`, `{{PRODUCT_DESCRIPTION}}`.
 
 ```bash
-cp /mnt/skills/user/product-discovery/assets/interview-guide-template.docx /home/claude/interview-guide.docx
+cp "$SKILL_DIR/assets/interview-guide-template.docx" /home/claude/interview-guide.docx
 ```
 
 Fill in the placeholders and generate 5–7 story-based questions per segment from the Job Map (task 7). Fill the market cheat sheet (section 7) with the key facts from blocks I and III (PESTEL, trends, competitors).
 
 **CRITICAL — use `python-docx`, not the `docx` npm package:** the npm library produces files with broken style references (~30% of paragraphs end up with `style: None`). LibreOffice opens such files; Word does not. See Rule 6 in SKILL.md.
 
-Once generated, you must run `scripts/finalize_docx.sh` before saving into outputs (Rule 6).
+Once generated, you must run `$SKILL_DIR/scripts/finalize_docx.sh` before saving into outputs (Rule 6).
 
 **Choosing respondents (5–10):**
 - a) current users of comparable products
@@ -199,7 +199,7 @@ Patterns: a pain named by 3 or more respondents is critical. Update the JTBD, th
 
 Insight formula: *"[X]% [do / think / feel] this, because [reason]. Which means: [conclusion]."*
 
-**Output:** the `.docx` guide (`/mnt/user-data/outputs/interview-guide-[project-slug].docx`, produced through `bash scripts/finalize_docx.sh /home/claude/interview-guide.docx /mnt/user-data/outputs/interview-guide-[slug].docx`) plus the recruiting messages and the insight table (the "Interviews" sheet in the financial plan).
+**Output:** the `.docx` guide (`/mnt/user-data/outputs/interview-guide-[project-slug].docx`, produced through `bash "$SKILL_DIR/scripts/finalize_docx.sh" /home/claude/interview-guide.docx /mnt/user-data/outputs/interview-guide-[slug].docx`) plus the recruiting messages and the insight table (the "Interviews" sheet in the financial plan).
 
 ⚠️ **Red flag:** fewer than 5 out of 10 confirm the pain → tell the user.
 

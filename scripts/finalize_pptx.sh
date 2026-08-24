@@ -1,63 +1,82 @@
 #!/bin/bash
 # Deck finalisation — one command that guarantees PowerPoint compatibility.
 #
-# It performs three steps:
-# 1. pack.py with full validation (WITHOUT --validate false!)
-# 2. A PowerPoint round-trip through LibreOffice (Microsoft Impress Office Open XML filter)
-# 3. Verification through python-pptx — that the file really does open
+# It performs four steps:
+# 1. Repack, when given an unpacked directory (skipped when given a .pptx)
+# 2. Schema and relationship validation through the pptx skill's office/validate.py
+# 3. A PowerPoint round-trip through LibreOffice, via office/soffice.py
+#    (the wrapper, not bare soffice — bare soffice is unreliable in the sandbox)
+# 4. Verification through python-pptx, plus an unfilled-placeholder check
 #
 # Usage:
-#     bash scripts/finalize_pptx.sh /path/to/unpacked-dir /path/to/output.pptx /path/to/original.pptx
+#     bash scripts/finalize_pptx.sh <input.pptx | unpacked-dir> <output.pptx> [original-template.pptx]
 #
 # Where:
-#   unpacked-dir  — the folder holding unpacked/ppt/... (the result of unpack.py)
+#   input         — either a finished .pptx or the unpacked directory holding ppt/...
 #   output.pptx   — the final file (usually /mnt/user-data/outputs/presentation-[slug].pptx)
-#   original.pptx — the original template (for --original in pack.py)
+#   original      — optional; the template the deck came from. Pass it for any
+#                   template-derived deck so the template's own schema quirks are
+#                   not reported as yours.
+#
+# Set PPTX_SKILL to override where the public pptx skill lives.
 
-set -e
+set -euo pipefail
 
-UNPACKED="$1"
-OUTPUT="$2"
-ORIGINAL="$3"
+INPUT="${1:-}"
+OUTPUT="${2:-}"
+ORIGINAL="${3:-}"
 
-if [ -z "$UNPACKED" ] || [ -z "$OUTPUT" ] || [ -z "$ORIGINAL" ]; then
-    echo "Usage: bash finalize_pptx.sh <unpacked-dir> <output.pptx> <original.pptx>"
+if [ -z "$INPUT" ] || [ -z "$OUTPUT" ]; then
+    echo "Usage: bash finalize_pptx.sh <input.pptx | unpacked-dir> <output.pptx> [original-template.pptx]"
     exit 1
 fi
 
-if [ ! -d "$UNPACKED" ]; then
-    echo "❌ Unpacked directory not found: $UNPACKED"
+PPTX_SKILL="${PPTX_SKILL:-/mnt/skills/public/pptx}"
+VALIDATE="$PPTX_SKILL/scripts/office/validate.py"
+SOFFICE_WRAP="$PPTX_SKILL/scripts/office/soffice.py"
+
+if [ ! -f "$VALIDATE" ]; then
+    echo "🔴 Not found: $VALIDATE"
+    echo "   The public pptx skill is required. Set PPTX_SKILL to its directory."
     exit 1
 fi
 
-# Check that LibreOffice is present
-if ! command -v libreoffice >/dev/null 2>&1; then
-    echo "🔴 LibreOffice not found — PowerPoint compatibility is not guaranteed."
-    echo "   The file will be produced by pack.py alone, with no round-trip."
-    echo "   Install LibreOffice for maximum reliability."
-    NO_LIBREOFFICE=1
+# validate.py needs these; without them it dies with ModuleNotFoundError, which
+# would otherwise read as a validation failure.
+if ! python3 -c "import defusedxml, lxml" 2>/dev/null; then
+    echo "⚠️  validate.py needs defusedxml and lxml. Installing them:"
+    pip install --quiet defusedxml lxml || {
+        echo "🔴 Could not install defusedxml/lxml — validation cannot run."; exit 1; }
 fi
 
+OUTPUT_DIR=$(dirname "$OUTPUT")
+mkdir -p "$OUTPUT_DIR"
 TMPDIR=$(mktemp -d)
-trap "rm -rf $TMPDIR" EXIT
-
+trap 'rm -rf "$TMPDIR"' EXIT
 STEP1="$TMPDIR/step1.pptx"
 
-echo "=== Step 1: pack.py with full validation ==="
-# Path to pack.py from the pptx skill
-PACK_PY="/mnt/skills/public/pptx/scripts/office/pack.py"
-if [ ! -f "$PACK_PY" ]; then
-    # Fallback: search for pack.py
-    PACK_PY=$(find / -name "pack.py" -path "*pptx*" 2>/dev/null | head -1)
-    if [ -z "$PACK_PY" ]; then
-        echo "🔴 pack.py not found. Check that the pptx skill is installed."
-        exit 1
-    fi
+echo "=== Step 1/4: packaging ==="
+if [ -d "$INPUT" ]; then
+    # zip from INSIDE the directory, and remove the target first, or deleted parts survive
+    ( cd "$INPUT" && rm -f "$STEP1" && zip -qXr "$STEP1" . )
+    echo "   ✅ repacked from $INPUT"
+elif [ -f "$INPUT" ]; then
+    cp "$INPUT" "$STEP1"
+    echo "   ✅ taken as-is (already a .pptx)"
+else
+    echo "❌ Input not found: $INPUT"
+    exit 1
 fi
 
-if ! python3 "$PACK_PY" "$UNPACKED" "$STEP1" --original "$ORIGINAL" 2>&1; then
+echo "=== Step 2/4: validation ==="
+if [ -n "$ORIGINAL" ] && [ -f "$ORIGINAL" ]; then
+    VALIDATE_ARGS=("$STEP1" --original "$ORIGINAL")
+else
+    VALIDATE_ARGS=("$STEP1")
+fi
+if ! python3 "$VALIDATE" "${VALIDATE_ARGS[@]}"; then
     echo ""
-    echo "🔴 pack.py failed validation."
+    echo "🔴 validate.py reported failures. Each one names its fix — apply it."
     echo ""
     echo "Common causes:"
     echo "  1. Duplicated notesSlides references — left behind by"
@@ -66,60 +85,48 @@ if ! python3 "$PACK_PY" "$UNPACKED" "$STEP1" --original "$ORIGINAL" 2>&1; then
     echo "  2. Missing rels. Check that every slide referenced by"
     echo "     presentation.xml exists as a file."
     echo ""
-    echo "See references/block-6-artifacts.md, section 'Troubleshooting pack.py'."
-    echo ""
-    echo "NEVER use --validate false — the file will not open in PowerPoint."
+    echo "See references/block-6-artifacts.md, section 'Troubleshooting validation'."
+    echo "Never ship a deck that failed validation — PowerPoint will refuse it."
     exit 1
 fi
+echo "   ✅ validation passed"
 
-echo "✅ pack.py passed validation"
-
-if [ "$NO_LIBREOFFICE" = "1" ]; then
-    # No LibreOffice — just copy the pack.py result
-    cp "$STEP1" "$OUTPUT"
-    echo "⚠️  Copied without the LibreOffice round-trip (it may not open in PowerPoint)"
-else
-    echo ""
-    echo "=== Step 2: LibreOffice round-trip ==="
-    timeout 60 libreoffice --headless --convert-to pptx "$STEP1" \
-        --outdir "$TMPDIR/lo/" 2>&1 | tail -2
-
+echo "=== Step 3/4: LibreOffice round-trip ==="
+if [ -f "$SOFFICE_WRAP" ]; then
+    timeout 180 python3 "$SOFFICE_WRAP" --headless --convert-to pptx "$STEP1" --outdir "$TMPDIR/lo/" 2>&1 | tail -2 || true
     LO_OUTPUT="$TMPDIR/lo/$(basename "$STEP1")"
-    if [ ! -f "$LO_OUTPUT" ]; then
-        echo "🔴 The LibreOffice conversion produced no file."
-        echo "   Check the LibreOffice install: libreoffice --version"
-        exit 1
+    if [ -f "$LO_OUTPUT" ]; then
+        cp "$LO_OUTPUT" "$OUTPUT"
+        echo "   ✅ rebuilt through the Office Open XML filter"
+    else
+        cp "$STEP1" "$OUTPUT"
+        echo "   ⚠️  round-trip produced no file — copied the validated package instead."
+        echo "      The deck may still fail to open in PowerPoint; check it before sending."
     fi
-
-    cp "$LO_OUTPUT" "$OUTPUT"
-    echo "✅ LibreOffice round-trip — the file was rebuilt through the"
-    echo "   Microsoft Impress Office Open XML filter"
+else
+    cp "$STEP1" "$OUTPUT"
+    echo "   ⚠️  $SOFFICE_WRAP not found — copied without the round-trip."
 fi
 
-echo ""
-echo "=== Step 3: verification through python-pptx ==="
+echo "=== Step 4/4: verification through python-pptx ==="
 python3 - <<PYEOF
-import sys
+import sys, os, re, subprocess
 try:
     from pptx import Presentation
     p = Presentation("$OUTPUT")
-    import os
-    size_kb = os.path.getsize("$OUTPUT") / 1024
-    print(f"✅ python-pptx opens the file")
+    print(f"   ✅ python-pptx opens the file")
     print(f"   Slides: {len(p.slides)}")
-    print(f"   Size:   {size_kb:.1f} KB")
-    # Check that no placeholders were left unfilled
-    import subprocess, re
-    result = subprocess.run(['extract-text', "$OUTPUT"], capture_output=True, text=True)
-    if result.returncode == 0:
-        placeholders = re.findall(r'\[[^\]]{1,80}\]', result.stdout)
-        real = [p for p in placeholders if not any(x in p for x in ['✅','⚠️','🔴','🟠','🟡','🟢'])]
-        if real:
-            print(f"   ⚠️  Unfilled placeholders found: {len(real)}")
-            for p in real[:5]:
-                print(f"      - {p}")
-        else:
-            print(f"   ✅ No unfilled placeholders")
+    print(f"   Size:   {os.path.getsize('$OUTPUT')/1024:.1f} KB")
+    texts = [r.text for s in p.slides for sh in s.shapes
+             if sh.has_text_frame for para in sh.text_frame.paragraphs for r in para.runs]
+    ph = [t for t in texts if re.search(r'\[[^\]]{1,80}\]', t)]
+    real = [t for t in ph if not any(x in t for x in ['✅','⚠️','🔴','🟠','🟡','🟢'])]
+    if real:
+        print(f"   ⚠️  Unfilled placeholders found: {len(real)}")
+        for t in real[:5]:
+            print(f"      - {t[:70]}")
+    else:
+        print(f"   ✅ No unfilled placeholders")
 except Exception as e:
     print(f"🔴 python-pptx cannot open the file: {e}")
     sys.exit(1)

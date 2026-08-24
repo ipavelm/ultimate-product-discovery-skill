@@ -15,6 +15,24 @@ The output is four artifacts in `/mnt/user-data/outputs/`:
 - `presentation-[slug].pptx` — Verification-stage deck
 - `interview-guide-[slug].docx` — guide for live interviews (Full mode only, from task 9)
 
+## Where this skill lives
+
+The instructions below refer to the skill's own files as `$SKILL_DIR/assets/...` and
+`$SKILL_DIR/scripts/...`. Resolve `$SKILL_DIR` to the directory this SKILL.md sits in:
+
+| Runtime | `$SKILL_DIR` |
+|---------|--------------|
+| Claude Code, global install | `~/.claude/skills/product-discovery` |
+| Claude Code, project install | `./.claude/skills/product-discovery` |
+| claude.ai / mounted runtime | `/mnt/skills/user/product-discovery` |
+
+Set it once at the start of the run, so every later command is portable:
+
+```bash
+SKILL_DIR="$(dirname "$(find ~ /mnt/skills -name SKILL.md -path '*product-discovery*' 2>/dev/null | head -1)")"
+echo "$SKILL_DIR"
+```
+
 ## How the skill is organised
 
 The methodology is split into 18 tasks across 6 blocks. Detailed per-block instructions live in `references/` — read the matching file before starting a block, so you never hold all 1500 lines in context at once.
@@ -40,7 +58,7 @@ Scripts in `scripts/` cover the repetitive technical steps:
 - `delete_light_slides.py` — removes the empty slides in Light mode (34 → 21)
 - `reorder_summary_first.py` — moves the Summary sheet back to first position in the financial plan if openpyxl operations displaced it
 - `add_competitor_comparison_slide.py` — inserts the "Competitor comparison" slide into the deck (applied to the template once; skips if the template already has it)
-- `finalize_pptx.sh` — final step for the deck: pack.py → LibreOffice round-trip → verification through python-pptx (Rule 3)
+- `finalize_pptx.sh` — final step for the deck: packaging → `office/validate.py` → LibreOffice round-trip → verification through python-pptx (Rule 3)
 - `finalize_docx.sh` — final step for the interview guide: LibreOffice round-trip → verification through python-docx (Rule 6). Required for Word compatibility
 - `roll_formulas.py` — expands month-1 formulas into months 2–12 in the P&L and Cash Flow sheets of the financial plan (Rule 4)
 
@@ -68,29 +86,39 @@ Mapping table:
 
 Before every `python3 scripts/X.py`, state it out loud: "Project mode: [light/full] → this script is [allowed/not allowed]".
 
-### Rule 2 — NEVER use `pack.py --validate false`
+### Rule 2 — NEVER ship a deck that skipped validation
 
-The `--validate false` flag turns off OOXML integrity checks. The file will pass `pack.py` without complaint, and then **PowerPoint will refuse to open it**. The usual cause is duplicated notesSlides references left behind after copying slides.
+After repacking a deck, always run the pptx skill's validator:
 
-If `pack.py` fails validation, read the message and fix the root cause. Common errors and their fixes: [references/block-6-artifacts.md](references/block-6-artifacts.md), section "Troubleshooting pack.py".
+```bash
+python3 /mnt/skills/public/pptx/scripts/office/validate.py deck.pptx --original template.pptx
+```
+
+It checks schema, relationships, content types, charts and slide XML, and every failure names its own fix. Pass `--original` for any deck built from a template, so the template's own schema quirks are not reported as yours. Skipping this step produces a file that opens in LibreOffice and Google Slides and that **PowerPoint refuses**; the usual cause is duplicated notesSlides references left behind after copying slides.
+
+`finalize_pptx.sh` runs this step for you. Common failures and their fixes: [references/block-6-artifacts.md](references/block-6-artifacts.md), section "Troubleshooting validation".
+
+Older versions of the pptx skill exposed a `pack.py` with a `--validate false` flag. That script no longer exists; packaging is now a plain zip and validation is the separate step above.
 
 ### Rule 3 — PowerPoint round-trip as the final step (STOP-GATE)
 
 **Trigger:** before any `cp *.pptx /mnt/user-data/outputs/`.
 
-**What to do:** run `finalize_pptx.sh` INSTEAD of `cp`. The script copies the file into outputs itself, after the round-trip:
+**What to do:** run `finalize_pptx.sh` INSTEAD of `cp`. The script writes the file into outputs itself, after the round-trip:
 
 ```bash
-bash scripts/finalize_pptx.sh /home/claude/presentation.pptx /mnt/user-data/outputs/presentation-[slug].pptx
+bash "$SKILL_DIR/scripts/finalize_pptx.sh" /home/claude/presentation.pptx \
+     /mnt/user-data/outputs/presentation-[slug].pptx \
+     "$SKILL_DIR/assets/presentation-template.pptx"
 ```
 
-In one call the script does: valid packaging → LibreOffice round-trip through the Impress Office Open XML filter → verification through python-pptx.
+The first argument takes either a finished `.pptx` or the unpacked directory holding `ppt/…`; the third is optional but pass the template whenever the deck came from one. In one call the script does: packaging → `office/validate.py` → LibreOffice round-trip through `office/soffice.py` → verification through python-pptx, including an unfilled-placeholder check.
 
 **Failure mode without this step:** the deck opens in LibreOffice and Google Slides, but PowerPoint refuses it because of quirks in the OOXML manifests (duplicated notesSlides references, malformed relationships). In front of an investor that is fatal.
 
 **How to tell the rule was followed:** if you are about to copy a .pptx into outputs with `cp` or `present_files` without running `finalize_pptx.sh` first — STOP. Go back to the script.
 
-A manual round-trip through `soffice --convert-to pptx` also works in the simple case, but `finalize_pptx.sh` additionally runs python-pptx verification and catches 4 classes of error (wrong slide references, sparse shapes, broken relationships, dangling notesSlides) — none of which a bare soffice call checks.
+Do the round-trip through `office/soffice.py`, not bare `soffice` — bare `soffice` is unreliable in the sandbox. `finalize_pptx.sh` uses the wrapper and additionally runs validation and python-pptx verification, catching 4 classes of error (wrong slide references, sparse shapes, broken relationships, dangling notesSlides) that a bare conversion never checks. If the round-trip cannot run, the script says so instead of pretending the file is verified — treat that as "open it in PowerPoint before sending".
 
 ### Rule 4 — Expand the financial-plan formulas into months 2–12 (STOP-GATE)
 
@@ -125,10 +153,11 @@ Since v3.7 the `financial-plan-template.xlsx` template ships with neutral placeh
 **What to do:** run `finalize_docx.sh` instead of `cp`:
 
 ```bash
-bash scripts/finalize_docx.sh /home/claude/interview-guide.docx /mnt/user-data/outputs/interview-guide-[slug].docx
+bash "$SKILL_DIR/scripts/finalize_docx.sh" /home/claude/interview-guide.docx \
+     /mnt/user-data/outputs/interview-guide-[slug].docx
 ```
 
-The script performs a LibreOffice round-trip through the Microsoft Word 2007 XML filter plus verification through python-docx. It guarantees the file opens in Word.
+The script performs a LibreOffice round-trip through the Microsoft Word 2007 XML filter — via the docx skill's `office/soffice.py` wrapper, not bare `soffice` — plus verification through python-docx. When the round-trip runs, the file is Word-compatible; when it cannot run, the script says so explicitly rather than claiming verification it did not do.
 
 **Failure mode without this step:** libraries such as the `docx` npm package produce technically valid .docx files that LibreOffice, python-docx and Google Docs open without complaint, but Word refuses because of broken style references (≈30% of paragraphs parse with `style: None`). You only find out when the user opens the file in Word and hits an error — far too late.
 

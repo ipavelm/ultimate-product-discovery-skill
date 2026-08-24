@@ -65,6 +65,19 @@ python3 -c "from docx import Document" 2>/dev/null \
     && echo "  ✅ python-docx: import works" \
     || echo "  ⚠️  python-docx: import FAILS — task 9 will emit the guide as markdown instead of docx"
 
+python3 -c "import defusedxml, lxml" 2>/dev/null \
+    && echo "  ✅ defusedxml + lxml: import works" \
+    || echo "  ⚠️  defusedxml / lxml missing — office/validate.py cannot run (pip install defusedxml lxml)"
+
+# The public pptx/docx skills supply the validator and the LibreOffice wrapper
+for s in "${PPTX_SKILL:-/mnt/skills/public/pptx}" "${DOCX_SKILL:-/mnt/skills/public/docx}"; do
+    if [ -f "$s/scripts/office/validate.py" ] && [ -f "$s/scripts/office/soffice.py" ]; then
+        echo "  ✅ $s: validate.py + soffice.py"
+    else
+        echo "  ⚠️  $s: validate.py / soffice.py NOT found — Rules 3 and 6 cannot run"
+    fi
+done
+
 # Artifact utilities
 SKILL_ROOT="$(dirname "$(dirname "$(realpath "$0")")")"
 echo ""

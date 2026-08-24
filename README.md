@@ -137,7 +137,7 @@ The entry point is `SKILL.md`.
 The skill carries **6 STOP-GATE rules** that prevent the failure modes seen in production:
 
 1. Pin `PD_MODE` before running any script
-2. Never pass `pack.py --validate false`
+2. Never ship a deck that skipped `office/validate.py`
 3. PowerPoint round-trip (LibreOffice) before shipping a `.pptx`
 4. Expand financial-plan formulas through `roll_formulas.py`
 5. Verify template compatibility

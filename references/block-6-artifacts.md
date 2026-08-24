@@ -29,7 +29,7 @@ Read the skill at `/mnt/skills/public/pptx/SKILL.md` before building it.
 **One-pager template:** the file `assets/one-pager-template.pptx` holds a finished dark design with 9 sections on a single slide. Use it as the base:
 
 ```bash
-cp /mnt/skills/user/product-discovery/assets/one-pager-template.pptx /home/claude/one-pager.pptx
+cp "$SKILL_DIR/assets/one-pager-template.pptx" /home/claude/one-pager.pptx
 ```
 
 **Template structure (one 16:9 slide):**
@@ -80,7 +80,7 @@ Read the skill at `/mnt/skills/public/xlsx/SKILL.md` before building it.
 #### Step 1 — preparation
 
 ```bash
-cp /mnt/skills/user/product-discovery/assets/financial-plan-template.xlsx /home/claude/financial-plan.xlsx
+cp "$SKILL_DIR/assets/financial-plan-template.xlsx" /home/claude/financial-plan.xlsx
 # Copying the scripts is idempotent (it does not fail if they are already there):
 mkdir -p /home/claude/scripts
 cp -rn /mnt/skills/public/xlsx/scripts/. /home/claude/scripts/
@@ -373,7 +373,7 @@ The existing sheets' style: Arial 10, headers #1F3864, data #2E75B6, borders #BF
 Read the skill at `/mnt/skills/public/pptx/SKILL.md` before building it.
 
 ```bash
-cp /mnt/skills/user/product-discovery/assets/presentation-template.pptx /home/claude/presentation.pptx
+cp "$SKILL_DIR/assets/presentation-template.pptx" /home/claude/presentation.pptx
 ```
 
 > ⚠️ **Light mode:** delete the slides that have no data source — 5, 6, 9, 10, 13, 14, 27, 28, 29, 30, 31, 32, 33. The result is 21 slides instead of 34. Use the ready-made script:
@@ -496,9 +496,18 @@ real = [p for p in placeholders if not any(x in p for x in ['✅','⚠️','🔴
 assert len(real) == 0, f"Still unfilled: {real}"
 ```
 
-#### Troubleshooting pack.py
+#### Troubleshooting validation
 
-**NEVER use `pack.py --validate false`.** That flag bypasses the very checks PowerPoint applies when opening a file. The result: the file passes your pack.py and will not open for the user.
+Packaging a deck is a plain zip; validation is a separate step you must not skip:
+
+```bash
+python3 -c "import sys,zipfile; zipfile.ZipFile(sys.argv[1]).extractall('unpacked')" deck.pptx
+# edit unpacked/ppt/slides/slideN.xml
+(cd unpacked && rm -f ../out.pptx && zip -qXr ../out.pptx .)   # zip from INSIDE the dir
+python3 /mnt/skills/public/pptx/scripts/office/validate.py out.pptx --original deck.pptx
+```
+
+`validate.py` names the fix for each failure. Never ship a deck that failed it — PowerPoint applies the same checks and will refuse the file.
 
 Common errors and how to fix them:
 
@@ -525,22 +534,27 @@ if os.path.exists(notes_dir):
 
 An investor deck does not need notes — removing them is safe.
 
-**"Missing required file" or "Invalid Content_Types"** — usually the result of editing `[Content_Types].xml` by hand. Revert the edit and leave that file alone; `pack.py` regenerates it correctly on its own.
+**"Missing required file" or "Invalid Content_Types"** — usually the result of editing `[Content_Types].xml` by hand, or of zipping from outside the unpacked directory so the paths gained a prefix. Revert the hand edit, and always zip with `(cd unpacked && zip -qXr ../out.pptx .)`.
 
 #### Final step: the PowerPoint round-trip through LibreOffice
 
-Even after `pack.py` succeeds, an OOXML-valid file may still fail to open in PowerPoint because of manifest quirks. Re-saving through LibreOffice fixes it, because LibreOffice exports through the Microsoft Impress Office Open XML filter:
+Even after validation passes, an OOXML-valid file may still fail to open in PowerPoint because of manifest quirks. Re-saving through LibreOffice fixes it, because LibreOffice exports through the Office Open XML filter:
 
 ```bash
-bash scripts/finalize_pptx.sh /home/claude/presentation.pptx /mnt/user-data/outputs/presentation-[slug].pptx
+bash "$SKILL_DIR/scripts/finalize_pptx.sh" /home/claude/presentation.pptx \
+     /mnt/user-data/outputs/presentation-[slug].pptx \
+     "$SKILL_DIR/assets/presentation-template.pptx"
 ```
 
-The script does three things:
-1. `pack.py` with full validation
-2. The LibreOffice round-trip (`libreoffice --headless --convert-to pptx`)
-3. Verification through `python-pptx` (the file really does open)
+The first argument accepts a finished `.pptx` or the unpacked directory; the third is the template, optional but worth passing whenever the deck derives from one.
 
-Without step 2 the deck may open in LibreOffice and Google Slides but **not** in PowerPoint. That is fatal if the user sends the file to an investor.
+The script does four things:
+1. Packaging (a plain zip, when given a directory)
+2. `office/validate.py`, with `--original` when a template was passed
+3. The LibreOffice round-trip through `office/soffice.py` (the wrapper, not bare `soffice`)
+4. Verification through `python-pptx`, including an unfilled-placeholder check
+
+Without step 3 the deck may open in LibreOffice and Google Slides but **not** in PowerPoint. That is fatal if the user sends the file to an investor. If the round-trip cannot run, the script warns instead of claiming the file is verified.
 
 #### Quality checklist
 
@@ -553,7 +567,7 @@ Without step 2 the deck may open in LibreOffice and Google Slides but **not** in
 - [ ] Slide 18: the horizon matches the answer from Step 0 (12 or 24 months)
 - [ ] Slide 22: all 3 consistency criteria are filled in (desirability / viability / feasibility)
 - [ ] Slide 33: the final OS holds the top 10 outcomes from task 17
-- [ ] The final `pack.py` ran **without** `--validate false`
+- [ ] `office/validate.py` passed on the final file
 - [ ] `scripts/finalize_pptx.sh` has been run — the PowerPoint round-trip through LibreOffice
 - [ ] Opening check through `python-pptx`: `Presentation(path)` does not raise and `len(pres.slides)` matches expectations (21 for Light, 34 for Full)
 
