@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-"""Раскатывает формулы из колонки C (мес. 1) в D-N (мес. 2-12) на P&L и Cash Flow.
+"""Expand the formulas from column C (month 1) into D-N (months 2-12) on P&L and Cash Flow.
 
-Шаблон financial-plan-template.xlsx содержит формулы только в колонке C. Колонки
-D..N (мес. 2..12) пустые. Без раскатки финплан показывает выручку только за 1-й
-месяц — для инвестора бесполезно.
+The financial-plan-template.xlsx template carries formulas only in column C.
+Columns D..N (months 2..12) are empty. Without expanding them the plan shows
+revenue for month 1 alone, which is useless to an investor.
 
-Скрипт проходит по листам P&L и Cash Flow, находит строки с формулами в C и
-раскатывает их в D..N со сдвигом относительных ссылок. Абсолютные ссылки ($X)
-не трогаются.
+The script walks the P&L and Cash Flow sheets, finds the rows holding formulas in
+C and expands them into D..N, shifting the relative references. Absolute
+references ($X) are left alone.
 
 Usage:
     python3 scripts/roll_formulas.py /home/claude/financial-plan.xlsx
 
-После этого обязательно пересчитай:
+Afterwards you must recalculate:
     python3 /home/claude/scripts/recalc.py /home/claude/financial-plan.xlsx
 """
 import sys
@@ -22,26 +22,26 @@ try:
     import openpyxl
     from openpyxl.utils import get_column_letter, column_index_from_string
 except ImportError:
-    print("❌ Нужна библиотека openpyxl. Установить: pip install openpyxl")
+    print("❌ openpyxl is required. Install it with: pip install openpyxl")
     sys.exit(1)
 
 
 def shift_formula(formula: str, delta: int):
-    """Сдвигает относительные ссылки на колонки на delta.
+    """Shift the relative column references by delta.
 
-    Абсолютные ссылки ($C$5) не трогаются. Работает с двумя типами:
-    - A1, AB5 — относительные, сдвигаются
-    - $A1, $AB5 — абсолютные по колонке, не сдвигаются
-    - A$1 — относительные по колонке, сдвигаются (строка фиксирована)
+    Absolute references ($C$5) are left alone. It handles these forms:
+    - A1, AB5 — relative, shifted
+    - $A1, $AB5 — column-absolute, not shifted
+    - A$1 — column-relative, shifted (the row is pinned)
     """
     if not isinstance(formula, str) or not formula.startswith("="):
         return None
 
     def shift_ref(m):
         full = m.group(0)
-        # Проверяем есть ли $ перед буквами колонки
+        # Check whether there is a $ before the column letters
         if full.startswith('$'):
-            return full  # абсолютная по колонке — не трогаем
+            return full  # column-absolute — leave it
         col_letters = m.group(1)
         row_num = m.group(2)
         col_idx = column_index_from_string(col_letters)
@@ -50,17 +50,17 @@ def shift_formula(formula: str, delta: int):
             return full
         return f"{get_column_letter(new_col_idx)}{row_num}"
 
-    # Регекс для ссылок: опциональный $, буквы колонки, цифры строки
+    # Reference regex: optional $, column letters, row digits
     return re.sub(r'\$?([A-Z]+)(\d+)', shift_ref, formula)
 
 
 def roll_sheet(ws, start_col=4, end_col=15):
-    """Раскатывает формулы из колонки C в колонки [start_col..end_col).
+    """Expand the formulas from column C into columns [start_col..end_col).
 
-    По умолчанию D=4..N=14 включительно (end_col=15 — exclusive).
+    The default is D=4..N=14 inclusive (end_col=15 is exclusive).
 
-    Возвращает кортеж (rolled, skipped): сколько раскатано и сколько пропущено
-    (потому что ячейка уже содержала значение).
+    Returns the tuple (rolled, skipped): how many were expanded and how many were
+    skipped because the cell already held a value.
     """
     rolled = 0
     skipped = 0
@@ -89,36 +89,36 @@ def main():
     try:
         wb = openpyxl.load_workbook(path)
     except FileNotFoundError:
-        print(f"❌ Файл не найден: {path}")
+        print(f"❌ File not found: {path}")
         sys.exit(1)
     except Exception as e:
-        print(f"❌ Не удалось открыть файл: {e}")
+        print(f"❌ Could not open the file: {e}")
         sys.exit(1)
 
     total_rolled = 0
     for sheet_name in ["P&L", "Cash Flow"]:
         if sheet_name not in wb.sheetnames:
-            print(f"⚠️  Лист «{sheet_name}» не найден — пропускаю")
+            print(f"⚠️  Sheet \"{sheet_name}\" not found — skipping")
             continue
         rolled, skipped = roll_sheet(wb[sheet_name])
         total_rolled += rolled
-        print(f"✅ {sheet_name}: раскатано {rolled} формул"
-              + (f" (пропущено {skipped} уже заполненных ячеек)" if skipped else ""))
+        print(f"✅ {sheet_name}: {rolled} formulas expanded"
+              + (f" ({skipped} already-filled cells skipped)" if skipped else ""))
 
     if total_rolled == 0:
         print()
-        print("⚠️  Ничего не раскатано — возможно формулы уже на месте,")
-        print("   или файл не соответствует ожидаемой структуре шаблона.")
+        print("⚠️  Nothing was expanded — the formulas may already be in place,")
+        print("   or the file does not match the template's expected structure.")
         sys.exit(0)
 
     wb.save(path)
     print()
-    print(f"✅ Сохранено: {path}")
+    print(f"✅ Saved: {path}")
     print()
-    print("Следующий шаг — пересчитай значения через LibreOffice:")
+    print("Next step — recalculate the values through LibreOffice:")
     print(f"    python3 /home/claude/scripts/recalc.py {path}")
     print()
-    print("Ожидаемый результат: \"status\": \"success\", \"total_errors\": 0")
+    print("Expected result: \"status\": \"success\", \"total_errors\": 0")
 
 
 if __name__ == "__main__":

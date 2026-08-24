@@ -1,76 +1,76 @@
 #!/usr/bin/env python3
-"""Удалить слайды, не актуальные в Light-режиме PD.
+"""Delete the slides that are not applicable in Light mode.
 
-Light-режим пропускает задачи 2, 4, 6, 8, 9, 13, 15, 16, 17, поэтому соответствующие
-слайды презентации (5, 6, 8, 9, 12, 13, 26-32) остаются без данных. Этот скрипт
-удаляет их и помечает обновление оглавления как задачу для агента.
+Light mode skips tasks 2, 4, 6, 8, 9, 13, 15, 16 and 17, so the matching slides
+(5, 6, 8, 9, 12, 13, 26-32) are left with no data. This script removes them and
+flags updating the contents page as a job for the agent.
 
 Usage:
-    export PD_MODE=light   # обязательно установить режим
+    export PD_MODE=light   # the mode must be set
     python3 delete_light_slides.py <path-to-presentation.pptx>
 
-Входные и выходные файлы совпадают — скрипт модифицирует файл на месте.
+Input and output are the same file — the script modifies it in place.
 
-⚠️ Скрипт ОТКАЖЕТСЯ работать в Full-режиме (PD_MODE=full) без флага --force.
-   Это защита: в Full-режиме нужны все 34 слайда для инвестора.
+⚠️ The script REFUSES to run in Full mode (PD_MODE=full) without --force.
+   That is the guard: Full mode needs all 34 slides for the investor.
 """
 import sys
 import os
 from pathlib import Path
 
 # ═══════════════════════════════════════════════════════════════════════════
-# Защита режима — предотвращает потерю 13 слайдов в Full-режиме
+# Mode guard — prevents losing 13 slides in Full mode
 # ═══════════════════════════════════════════════════════════════════════════
 _mode = os.environ.get("PD_MODE", "").lower()
 _force = "--force" in sys.argv
 
 if _mode == "full" and not _force:
-    print("🔴 ОТКАЗ: PD_MODE=full, а этот скрипт — только для Light.")
+    print("🔴 REFUSING: PD_MODE=full, and this script is for Light only.")
     print()
-    print("В Full-режиме презентация должна содержать все 34 слайда,")
-    print("включая тренды, PESTEL, CJM, альтернативный сценарий, PMF.")
+    print("In Full mode the deck must keep all 34 slides,")
+    print("including trends, PESTEL, CJM, the alternative scenario and PMF.")
     print()
-    print("Если режим установлен по ошибке — переустанови: export PD_MODE=light")
-    print("Если точно нужно удалить слайды в Full — передай --force, но ты")
-    print("потеряешь 13 слайдов, которые нужны инвестору.")
+    print("If the mode was set by mistake, reset it: export PD_MODE=light")
+    print("If you really do need to delete slides in Full, pass --force — but you")
+    print("will lose 13 slides the investor needs.")
     sys.exit(2)
 
 if _mode not in ("light", "full"):
-    print("⚠️  PD_MODE не установлен.")
+    print("⚠️  PD_MODE is not set.")
     print()
-    print("Этот скрипт требует явной установки режима, чтобы избежать ошибок:")
-    print("    export PD_MODE=light   # для Light-режима (45 мин)")
-    print("    export PD_MODE=full    # для Full-режима (2-3 часа, не запускай этот скрипт)")
+    print("This script requires the mode to be set explicitly, to avoid mistakes:")
+    print("    export PD_MODE=light   # for Light mode (45 min)")
+    print("    export PD_MODE=full    # for Full mode (2-3 hours; do not run this script)")
     print()
-    print("См. references/step-0-questions.md, раздел 'Финальный шаг'.")
+    print("See references/step-0-questions.md, section 'Final step'.")
     sys.exit(3)
 
-# Убираем --force из argv чтобы не мешал sys.argv[1]
+# Strip --force out of argv so it does not shift sys.argv[1]
 if _force:
     sys.argv = [a for a in sys.argv if a != "--force"]
 
 try:
     from pptx import Presentation
 except ImportError:
-    print("❌ Нужна библиотека python-pptx. Установить: pip install python-pptx")
+    print("❌ python-pptx is required. Install it with: pip install python-pptx")
     sys.exit(1)
 
-# Слайды, которые становятся пустыми в Light (нумерация с 1, для презентации из 34 слайдов):
-# 5, 6 — тренды и Value Chain (задача 2)
-# 9 — ключевой конкурент (задача 4)  [был 8 до вставки слайда сравнения конкурентов]
-# 10 — PESTEL (задача 6)
-# 13 — CJM (задача 8)
-# 14 — инсайты интервью (задача 9)
-# 27-30 — раздел 05: альтернативный сценарий и пул гипотез (задачи 13-16)
-# 31-33 — раздел 06 кроме финальных шагов (задача 17)
-# Слайд 8 (Сравнение конкурентов) — НЕ удаляется в Light, так как задача 3 выполняется
+# The slides that end up empty in Light (1-based, for a 34-slide deck):
+# 5, 6 — trends and the value chain (task 2)
+# 9 — key competitor (task 4)  [was 8 before the competitor comparison slide was inserted]
+# 10 — PESTEL (task 6)
+# 13 — CJM (task 8)
+# 14 — interview insights (task 9)
+# 27-30 — section 05: the alternative scenario and the hypothesis pool (tasks 13-16)
+# 31-33 — section 06 apart from the next steps (task 17)
+# Slide 8 (competitor comparison) is NOT deleted in Light, because task 3 does run
 LIGHT_SKIP_SLIDES_1BASED = [5, 6, 9, 10, 13, 14, 27, 28, 29, 30, 31, 32, 33]
 
 
 def delete_light_slides(pptx_path: str) -> int:
-    """Удалить пустые Light-слайды из презентации. Возвращает число удалённых."""
+    """Delete the empty Light slides from the deck. Returns how many were removed."""
     prs = Presentation(pptx_path)
-    # python-pptx индексирует слайды с 0, поэтому конвертируем
+    # python-pptx indexes slides from 0, so convert
     skip_indices = sorted({i - 1 for i in LIGHT_SKIP_SLIDES_1BASED}, reverse=True)
 
     xml_slides = prs.slides._sldIdLst
@@ -92,10 +92,10 @@ if __name__ == "__main__":
 
     path = Path(sys.argv[1])
     if not path.exists():
-        print(f"❌ Файл не найден: {path}")
+        print(f"❌ File not found: {path}")
         sys.exit(1)
 
     n = delete_light_slides(str(path))
-    total_left = 34 - n  # 34 — стандартное число слайдов в шаблоне (с учётом слайда сравнения конкурентов)
-    print(f"✅ Удалено {n} слайдов. Осталось: {total_left}.")
-    print("⚠️  Не забудь обновить слайд 2 (Содержание) — он теперь ссылается на удалённые страницы.")
+    total_left = 34 - n  # 34 is the template's standard slide count (including the competitor comparison slide)
+    print(f"✅ Deleted {n} slides. Remaining: {total_left}.")
+    print("⚠️  Remember to update slide 2 (Contents) — it now points at pages that are gone.")
