@@ -9,7 +9,7 @@ metadata:
 
 This skill runs a structured investigation of a startup's market hypothesis. It combines several methodologies: Jobs-to-be-Done (Ulwick/Christensen), Opportunity Solution Tree (Teresa Torres), Customer Development (Steve Blank), The Mom Test (Rob Fitzpatrick), Lean Canvas (Ash Maurya), PESTEL, SWOT and the Business Model Canvas.
 
-The output is four artifacts in `/mnt/user-data/outputs/`:
+The output is three artifacts, or four in Full mode, in `/mnt/user-data/outputs/`:
 - `one-pager-[slug].pptx` — a short summary for a CEO or investor
 - `financial-plan-[slug].xlsx` — a financial model built on the main scenario
 - `presentation-[slug].pptx` — Verification-stage deck
@@ -138,7 +138,7 @@ The script finds the formulas in column C (month 1) on the P&L and Cash Flow she
 
 ### Rule 5 — Clear the placeholder segments in the financial-plan template
 
-Since v3.7 the `financial-plan-template.xlsx` template ships with neutral placeholder segments: "Segment 1", "Segment 2", "Segment 3", "Segment 4" (previously apparel-specific ones such as "Bloggers" and "Local brands"). The formulas on the "Model" sheet reference the segment structure.
+The `financial-plan-template.xlsx` template ships with neutral placeholder segments, labelled `Сегмент 1` through `Сегмент 4` in the workbook. The formulas on the Model sheet reference the segment structure, not the labels, so renaming a segment does not break them.
 
 **What to do:** replace "Segment 1–4" with the real names of your segments (taken from the Lean Canvas / BMC). If you have fewer than 4 segments, either leave the extras unused or zero out their values.
 

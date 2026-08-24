@@ -108,7 +108,7 @@ fi
 - Start with **Assumptions** — it is the source of every calculation
 - Month 1 is filled in as an example; months 2–12 (and 13–24 when the horizon is 24 months) are empty
 
-> **A 24-month horizon:** if the user chose 24 months in Step 0, also fill months 13–24 on the Model sheet (the columns already exist in the template).
+> **A 24-month horizon:** the template is not uniformly 24 months wide. P&L runs to column Z (24 months); Model carries month labels to month 17; Cash Flow stops at column N (12 months). For a 24-month horizon you must add the missing columns yourself on Model and Cash Flow before filling them — otherwise runway and break-even past month 12 have nowhere to live. `roll_formulas.py` expands D..N only, i.e. months 2–12; months 13+ have to be rolled separately.
 
 > **If the business is a marketplace:** the key P&L differences are:
 > - **Revenue** = GMV × take rate (%), NOT GMV directly
@@ -205,9 +205,11 @@ for row in range(1, ws.max_row + 1):
 
 #### Step 2.6 — CRITICAL: clear the example data out of the template
 
-The **Assumptions** and **Model** sheets in `financial-plan-template.xlsx` carry example data from an apparel business — the segments "Local brands", "Bloggers", "Clothing design", "T-shirts with custom prints". The Model sheet's formulas reference those segments.
+The **Assumptions** and **Model** sheets in `financial-plan-template.xlsx` ship with neutral placeholder segments — "Сегмент 1" through "Сегмент 4" — plus a worked example on the analysis sheets (an invoicing SaaS for small business). The Model sheet's formulas reference the segment structure, not the labels.
 
-**If that data is not replaced**, Model keeps calculating an apparel business while the assumptions block you filled in above it is ignored by the formulas. Summary then shows a mixed picture.
+**If that data is not replaced**, Model keeps calculating the placeholder segments while the assumptions block you filled in above it is ignored by the formulas. Summary then shows a mixed picture.
+
+Check the labels rather than trusting this list: `python3 -c "import openpyxl; wb=openpyxl.load_workbook('financial-plan.xlsx'); ws=wb['Model']; print([ws.cell(row=r,column=1).value for r in range(28,46)])"`
 
 **Option A (recommended):** make the P&L independent of Model.
 
@@ -361,7 +363,7 @@ The existing sheets' style: Arial 10, headers #1F3864, data #2E75B6, borders #BF
 - [ ] The Product sheet (PAC) exists
 - [ ] The sensitivity analysis is filled in (5 parameters)
 - [ ] Runway has been added to Cash Flow
-- [ ] 24-month horizon: months 13–24 on Model are filled in (where required)
+- [ ] 24-month horizon: columns for months 13–24 were added to Model and Cash Flow, and filled
 - [ ] Formulas: `python3 /home/claude/scripts/recalc.py /home/claude/financial-plan.xlsx 60` → `"status": "success"`
 - [ ] The tax regime is chosen correctly
 - [ ] Light mode: the task 18a inputs are shaded yellow

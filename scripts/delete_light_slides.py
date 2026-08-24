@@ -2,8 +2,9 @@
 """Delete the slides that are not applicable in Light mode.
 
 Light mode skips tasks 2, 4, 6, 8, 9, 13, 15, 16 and 17, so the matching slides
-(5, 6, 8, 9, 12, 13, 26-32) are left with no data. This script removes them and
-flags updating the contents page as a job for the agent.
+(5, 6, 9, 10, 13, 14, 27-33 — the list in LIGHT_SKIP_SLIDES_1BASED below) are
+left with no data. This script removes them and flags updating the contents page
+as a job for the agent.
 
 Usage:
     export PD_MODE=light   # the mode must be set

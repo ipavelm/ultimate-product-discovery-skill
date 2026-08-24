@@ -3,7 +3,7 @@
 ## v3.8 (2026-04-22)
 
 ### Added
-- **`assets/interview-guide-template.docx`** — a general-purpose interview guide template with 8 ready-made sections (how to use the guide, consent, 3 per-segment guides, insight table, red flags, market cheat sheet). Placeholders: {{PROJECT_NAME}}, {{GEO}}, {{SEGMENT_1-3}}, {{PRODUCT_DESCRIPTION}}, {{PRODUCT_CATEGORY}}, {{MONTH_YEAR}}.
+- **`assets/interview-guide-template.docx`** — a general-purpose interview guide template with 8 ready-made sections (how to use the guide, consent, 3 per-segment guides, insight table, red flags, market cheat sheet). Placeholders: {{PROJECT_NAME}}, {{GEO}}, {{SEGMENT_1-3}}, {{PRODUCT_DESCRIPTION}}, {{PRODUCT_CATEGORY}}, {{MONTH_YEAR}}, {{AUDIENCE}}, {{NAME}}, {{PAIN_POINT}} — 11 in total.
 - **`scripts/finalize_docx.sh`** — finalizes docx artifacts through a LibreOffice round-trip plus python-docx verification. Guarantees Word compatibility.
 - **Rule 6 (new, STOP-GATE)** — Word round-trip for docx artifacts. Fires before any `cp *.docx` into outputs.
 

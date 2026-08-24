@@ -9,6 +9,9 @@ The script walks the P&L and Cash Flow sheets, finds the rows holding formulas i
 C and expands them into D..N, shifting the relative references. Absolute
 references ($X) are left alone.
 
+It covers months 2-12 only (columns D..N). For a 24-month horizon, roll months
+13+ separately after adding the columns.
+
 Usage:
     python3 scripts/roll_formulas.py /home/claude/financial-plan.xlsx
 

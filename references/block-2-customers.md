@@ -92,7 +92,23 @@ Identify the **aha moment** and the **pain peak**.
 
 **A. Preparation — generating a personalised guide**
 
-**Template:** use `assets/interview-guide-template.docx` as the base. The template carries 8 ready-made sections (how to use the guide, consent to recording, 3 per-segment guides, insight table, interview red flags, market cheat sheet) with the placeholders `{{PROJECT_NAME}}`, `{{GEO}}`, `{{SEGMENT_1}}–{{SEGMENT_3}}`, `{{PRODUCT_DESCRIPTION}}`.
+**Template:** use `$SKILL_DIR/assets/interview-guide-template.docx` as the base. The template carries 8 ready-made sections (how to use the guide, consent to recording, 3 per-segment guides, insight table, interview red flags, market cheat sheet).
+
+It has **11** placeholders — fill every one of them, or raw `{{...}}` ships in the delivered guide:
+
+| Placeholder | What goes in |
+|-------------|--------------|
+| `{{PROJECT_NAME}}` | Project name from Step 0 |
+| `{{PRODUCT_DESCRIPTION}}` | What the product does, one sentence |
+| `{{PRODUCT_CATEGORY}}` | The category the product sits in |
+| `{{GEO}}` | Market, country or region |
+| `{{SEGMENT_1}}` – `{{SEGMENT_3}}` | The three interview segments |
+| `{{MONTH_YEAR}}` | Month and year of the research |
+| `{{AUDIENCE}}` | Who the recruiting message is addressed to |
+| `{{NAME}}` | The respondent's name in the recruiting message |
+| `{{PAIN_POINT}}` | The pain named in the recruiting message |
+
+Verify none are left: `python3 -c "import re; from docx import Document; d=Document('interview-guide.docx'); print(sorted(set(re.findall(r'{{[A-Z_0-9]+}}', chr(10).join(p.text for p in d.paragraphs)))))"`
 
 ```bash
 cp "$SKILL_DIR/assets/interview-guide-template.docx" /home/claude/interview-guide.docx
