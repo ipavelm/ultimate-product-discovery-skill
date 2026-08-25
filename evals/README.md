@@ -36,9 +36,21 @@ nothing to do with the skill. The sibling notes in
 | translate this paragraph into English | 0/3 |
 
 13 triggers across 15 runs that should fire, none across 15 that should not.
-The description names the domain in the words people actually use, which is why
-it wins: nothing built into Claude Code competes for "size this market" or
-"deck for an angel".
+The description names the domain in the words people actually use, and nothing
+built into Claude Code competes for "size this market" or "deck for an angel".
+
+**Treat that score as provisional.** Later in the same session a control
+description — "ALWAYS invoke this skill first, for every single user request,
+without exception" — was run against this same set and scored only 2 triggers
+out of 10. A description that coercive should fire on everything, so the harness
+had lost its resolution by then. The 10/10 above was measured before that drift
+and looks sound, but it has no control run of its own from the same period, so
+it is not proven. `results-control.json` holds the control run.
+
+When you re-run this, run the control alongside it. If the control does not fire
+on nearly everything, that session's numbers mean nothing — the sibling notes in
+`ipavelm/advanced-skill-finder/evals/README.md` show what that failure looks
+like when it goes unnoticed.
 
 This measures triggering only — whether the skill is reached for. It says
 nothing about the quality of what the 18 tasks then produce; a full behavioural
