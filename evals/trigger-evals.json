@@ -1,0 +1,12 @@
+[
+  {"query": "assess this idea: a marketplace for private tutors in Kazakhstan, is there a market?", "should_trigger": true},
+  {"query": "I need a deck for an angel investor, preparing for a round", "should_trigger": true},
+  {"query": "we are entering Thailand, how do we size the market?", "should_trigger": true},
+  {"query": "run product discovery on our startup", "should_trigger": true},
+  {"query": "work out the unit economics and build a financial model for an investor", "should_trigger": true},
+  {"query": "there is a bug in the cart component, fix it", "should_trigger": false},
+  {"query": "write me a SQL query for a sales report", "should_trigger": false},
+  {"query": "how do I deploy a Next.js app to Vercel?", "should_trigger": false},
+  {"query": "make a chart of revenue by month", "should_trigger": false},
+  {"query": "translate this paragraph into English", "should_trigger": false}
+]
