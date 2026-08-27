@@ -24,7 +24,7 @@ import os
 import re
 import sys
 
-SKILL_VERSION = "4.1"
+SKILL_VERSION = "4.2"
 DEFAULT_KB = "/home/claude/pd-knowledge-base.md"
 DEFAULT_OUTPUTS = "/mnt/user-data/outputs"
 

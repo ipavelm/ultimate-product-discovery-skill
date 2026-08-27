@@ -2,7 +2,7 @@
 name: product-discovery
 description: "Product Discovery through an 18-task methodology in 6 blocks — from market analysis to an investor-ready financial plan. Use when someone wants to run Product Discovery, validate a startup, assess a market hypothesis, prepare for an investment round, or raises an adjacent topic — idea validation, niche sizing, competitor teardown, product-market fit, pitch preparation, startup unit economics, geographic expansion into a new country, go-to-market for SEA / Asia / MENA. People rarely name PD explicitly; they say 'is there a market for this', 'assess my idea', 'I need a deck for an angel', 'we are entering Thailand/Singapore/UAE, how do we size it'. Use the skill in those cases too. Three modes: Light (~45 min, idea stage), Full (~2-3 h, MVP with customers), Geographic Expansion (~2 h, product entering a new geography). Produces 3-4 artifacts in /mnt/user-data/outputs/: one-pager.pptx, financial-plan.xlsx, presentation.pptx, optionally interview-guide.docx."
 metadata:
-  version: "4.1"
+  version: "4.2"
 ---
 
 # Product Discovery

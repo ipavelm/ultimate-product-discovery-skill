@@ -1,5 +1,21 @@
 # Changelog
 
+## v4.2 (2026-08-27)
+
+### Fixed
+- **`scripts/finalize_pptx.sh` no longer installs packages on its own.** When
+  `defusedxml` and `lxml` were missing it announced them and ran
+  `pip install`, treating a dependency it needed as permission to change the
+  user's environment — inside their session, unasked. It now reports what is
+  missing, prints the command, and stops, since validation is a stop-gate under
+  Rule 2 and silently proceeding is not an option either. `PD_ALLOW_INSTALL=1`
+  opts in for an unattended run.
+
+  This is the same principle the skill applies to ingested content and to
+  artifacts: do the work, but do not commit the user to something they did not
+  agree to. Found while auditing what the published skill actually does on
+  someone else's machine, prompted by a Socket alert on the catalog listing.
+
 ## v4.1 (2026-08-25)
 
 Knowledge Bases written by v4.0 stay readable; `pd_status.py` will note the

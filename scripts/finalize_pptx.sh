@@ -42,11 +42,23 @@ if [ ! -f "$VALIDATE" ]; then
 fi
 
 # validate.py needs these; without them it dies with ModuleNotFoundError, which
-# would otherwise read as a validation failure.
+# would otherwise read as a validation failure. Report it and stop rather than
+# installing: needing a package is not permission to change someone's
+# environment, and this script runs inside their session. Set
+# PD_ALLOW_INSTALL=1 to opt in for an unattended run.
 if ! python3 -c "import defusedxml, lxml" 2>/dev/null; then
-    echo "⚠️  validate.py needs defusedxml and lxml. Installing them:"
-    pip install --quiet defusedxml lxml || {
-        echo "🔴 Could not install defusedxml/lxml — validation cannot run."; exit 1; }
+    if [ "${PD_ALLOW_INSTALL:-0}" = "1" ]; then
+        echo "⚠️  validate.py needs defusedxml and lxml; PD_ALLOW_INSTALL=1, installing:"
+        pip install --quiet defusedxml lxml || {
+            echo "🔴 Could not install defusedxml/lxml — validation cannot run."; exit 1; }
+    else
+        echo "🔴 validate.py needs defusedxml and lxml, which are not installed."
+        echo "   Validation is a STOP-GATE (Rule 2), so this cannot be skipped."
+        echo "   Install them and rerun:"
+        echo "       pip install defusedxml lxml"
+        echo "   Or rerun with PD_ALLOW_INSTALL=1 to let this script install them."
+        exit 1
+    fi
 fi
 
 OUTPUT_DIR=$(dirname "$OUTPUT")
