@@ -1,5 +1,29 @@
 # Changelog
 
+## v4.1 (2026-08-25)
+
+Knowledge Bases written by v4.0 stay readable; `pd_status.py` will note the
+version difference rather than refuse them.
+
+### Added
+- **`scripts/pd_status.py`** — reports where an interrupted run stands. Parses
+  the Knowledge Base into a definite position (mode, per-task status, next step),
+  then checks that position against the artifacts actually on disk and reports
+  the disagreements. `--json` gives the same answer machine-readably.
+
+### Changed
+- Resuming now starts with `pd_status.py` instead of reading the Knowledge Base
+  by eye. The KB is prose, which suits handing context to a person but left
+  resuming to whoever interpreted it: entries could be missing, the format could
+  drift, and nothing connected a log line claiming an artifact was produced to
+  that file existing. The script names the disagreements — the consequential one
+  being a log reporting task 18 done while the output directory is empty, which
+  means the run died during artifact generation and block VI must be redone
+  rather than PD declared finished.
+- Documented that a log entry counts only when it matches
+  `### [date] — Task N: name — done|partial|blocked`, since that format is what
+  makes resuming reliable later.
+
 ## v4.0 (2026-08-24)
 
 Breaking for anything that reads the artifact templates or the pptx pipeline by

@@ -20,7 +20,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-SKILL_VERSION = "4.0"
+SKILL_VERSION = "4.1"
 
 TEMPLATE = """# PD Knowledge Base — {project}
 skill-version: {version}

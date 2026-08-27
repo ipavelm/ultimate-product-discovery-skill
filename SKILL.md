@@ -2,7 +2,7 @@
 name: product-discovery
 description: "Product Discovery through an 18-task methodology in 6 blocks — from market analysis to an investor-ready financial plan. Use when someone wants to run Product Discovery, validate a startup, assess a market hypothesis, prepare for an investment round, or raises an adjacent topic — idea validation, niche sizing, competitor teardown, product-market fit, pitch preparation, startup unit economics, geographic expansion into a new country, go-to-market for SEA / Asia / MENA. People rarely name PD explicitly; they say 'is there a market for this', 'assess my idea', 'I need a deck for an angel', 'we are entering Thailand/Singapore/UAE, how do we size it'. Use the skill in those cases too. Three modes: Light (~45 min, idea stage), Full (~2-3 h, MVP with customers), Geographic Expansion (~2 h, product entering a new geography). Produces 3-4 artifacts in /mnt/user-data/outputs/: one-pager.pptx, financial-plan.xlsx, presentation.pptx, optionally interview-guide.docx."
 metadata:
-  version: "4.0"
+  version: "4.1"
 ---
 
 # Product Discovery
@@ -61,6 +61,7 @@ Scripts in `scripts/` cover the repetitive technical steps:
 - `finalize_pptx.sh` — final step for the deck: packaging → `office/validate.py` → LibreOffice round-trip → verification through python-pptx (Rule 3)
 - `finalize_docx.sh` — final step for the interview guide: LibreOffice round-trip → verification through python-docx (Rule 6). Required for Word compatibility
 - `roll_formulas.py` — expands month-1 formulas into months 2–12 in the P&L and Cash Flow sheets of the financial plan (Rule 4)
+- `pd_status.py` — reports where an interrupted run stands: parses the Knowledge Base into mode, per-task status and next step, then cross-checks it against the artifacts actually on disk and reports the disagreements. Run it first when resuming
 - `self_check.py` — verifies the skill's own integrity after it is edited: frontmatter, internal links, referenced files, workbook formulas and cross-sheet references, placeholder coverage in the templates, leftover data, and a recalculation of the financial-plan template that asserts the model still produces possible numbers. Pass `--no-recalc` for the structural checks alone. Not needed during a PD run
 
 ## Critical safety rules
@@ -311,11 +312,31 @@ PD can run for 2–3 hours and be interrupted anywhere. The Knowledge Base at `/
 - **After every block (full):** update the block's section using the template from `init_kb.py`.
 
 **Resuming:**
-If the person returns to an interrupted PD ("let's continue"), read the KB and:
-1. Check the mode in the header (`mode: Light` or `mode: Full`). If the placeholder was never replaced with a real value, the KB is corrupt — ask the person for the mode.
-2. Check `skill-version` — if it is older than the current one, warn that the format may differ.
-3. Find the last `done` entry and say: "Last completed step: [task N] in [M] mode. Next step: [task N+1]. Continue, or do you want to revisit anything?"
-4. Once confirmed, continue from N+1 in the same mode.
+If the person returns to an interrupted PD ("let's continue"), start with:
+
+```bash
+python3 scripts/pd_status.py            # add --json for a machine-readable answer
+```
+
+It parses the KB into a definite position — mode, which of the 18 tasks are
+done, partial or blocked, and what comes next — and then checks that position
+against the filesystem instead of trusting it. Read its inconsistencies section
+first: it is the part that catches a KB which has drifted from what actually
+happened. The case that matters most is a log claiming task 18 is done while
+`/mnt/user-data/outputs/` holds no artifact, which means the run died during
+artifact generation and block VI has to be redone rather than PD declared
+finished. It also catches an unreplaced `mode` placeholder, a KB written by an
+older skill version, a log whose entries stopped parsing, and tasks that never
+reached `done` while later ones did.
+
+Then confirm with the person before doing anything: "Last completed step:
+[task N] in [M] mode. Next step: [task N+1]. Continue, or do you want to revisit
+anything?" Once confirmed, continue from N+1 in the same mode.
+
+If `pd_status.py` reports the log has no parseable entries, do not infer progress
+from the prose sections — ask. An entry only counts when it matches the log
+format: `### [date] — Task N: name — done|partial|blocked`, so keeping to that
+format is what makes resuming reliable later.
 
 **Switching modes mid-PD:**
 - **Light → Full** — rare but realistic: the person saw the Light results and wants more depth. Add tasks 2, 4, 6, 8, 9, 13, 15, 16, 17 in block order. Regenerate the artifacts. Add a line to the KB: "Mode upgraded to Full: [date]".
